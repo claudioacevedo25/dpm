@@ -1,0 +1,18 @@
+.containerButton .button {
+  background: linear-gradient(94.09deg, #11998e 4.17%, #38ef7d 111.64%);
+  margin: 20px 0;
+  width: 100%;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+}
+
+.button > span {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.containerButton {
+  text-align: center;
+}
