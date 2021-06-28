@@ -1,7 +1,7 @@
-import { Switch } from "react-router-dom";
-// import { PrivateRoute } from "./helperRoutes";
-// import path from "../constants/paths.constants";
-// import LoginPage from "../components/LoginPage";
+import { Switch, Redirect, Route } from "react-router-dom";
+import { PrivateRoute } from "./helperRoutes";
+import path from "../constants/paths.constants";
+import Home from "../components/DPM/Home";
 
 /**
  * Return private routes
@@ -13,8 +13,14 @@ import { Switch } from "react-router-dom";
 const PrivateRoutes = (props) => {
   return (
     <Switch>
-      {/* <PrivateRoute exact path={path.public.login} component={LoginPage} />
-      <Redirect path="/**" to={path.public.login} /> */}
+      <PrivateRoute exact path={path.private.home} component={Home} />
+      <Route
+        exact
+        path="*"
+        render={() => {
+          return <Redirect to={path.private.home} />;
+        }}
+      />
     </Switch>
   );
 };

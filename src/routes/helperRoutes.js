@@ -8,8 +8,8 @@ import path from "../constants/paths.constants";
  */
 
 export const PrivateRoute = ({ component, ...options }) => {
-  const isAuth = false;
-  if (isAuth) {
+  const isAuth = sessionStorage.getItem("user");
+  if (!!isAuth) {
     return <Route {...options} component={component} />;
   }
   return <Redirect to={path.public.login} />;
@@ -21,9 +21,8 @@ export const PrivateRoute = ({ component, ...options }) => {
  */
 
 export const PublicRoute = ({ component, ...options }) => {
-  const isAuth = false;
+  const isAuth = sessionStorage.getItem("user");
   if (!isAuth) {
     return <Route {...options} component={component} />;
   }
-  return <Redirect to={path.public.login} />;
 };

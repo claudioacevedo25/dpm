@@ -22,13 +22,14 @@ function App(props) {
     },
   });
 
+  const isAuth = sessionStorage.getItem("user");
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
         <Provider store={store}>
           <BrowserRouter>
-            <PublicRoutes />
-            <PrivateRoutes props={props} />
+            {!!isAuth ? <PrivateRoutes props={props} /> : <PublicRoutes />}
           </BrowserRouter>
         </Provider>
       </Paper>

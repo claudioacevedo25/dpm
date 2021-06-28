@@ -14,7 +14,7 @@ const LoginPageComponent = ({
     <div className="container">
       <FormRender
         initialValues={initialValues}
-        formOnSubmit={(values) => formOnSubmit(values, login)}
+        formOnSubmit={(values) => formOnSubmit(values)}
         formValues={formValues}
         textButton="Entrar"
         validationSchema={LoginSchema}

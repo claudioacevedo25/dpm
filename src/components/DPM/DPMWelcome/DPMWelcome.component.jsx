@@ -5,7 +5,7 @@ import imageDPMHome from "../../../assets/images/DPMHome.png";
 import logoDPM from "../../../assets/images/LogoDPM.png";
 import "./index.css";
 
-const DPMHomeComponent = () => {
+const DPMWelcomeComponent = () => {
   return (
     <div className="containerDPM">
       <div className="containerDPM__login">
@@ -24,4 +24,4 @@ const DPMHomeComponent = () => {
   );
 };
 
-export default DPMHomeComponent;
+export default DPMWelcomeComponent;
