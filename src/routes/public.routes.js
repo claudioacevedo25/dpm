@@ -1,13 +1,19 @@
-import { Switch, Redirect } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 import { PublicRoute } from "./helperRoutes";
 import path from "../constants/paths.constants";
-import LoginPage from "../components/LoginPage";
+import DPMWelcome from "../components/DPM/DPMWelcome";
 
 const PublicRoutes = () => {
   return (
     <Switch>
-      <PublicRoute exact path={path.public.login} component={LoginPage} />
-      <Redirect path="/**" to={path.public.login} />
+      <PublicRoute exact path={path.public.login} component={DPMWelcome} />
+      <Route
+        exact
+        path="*"
+        render={() => {
+          return <Redirect to={path.public.login} />;
+        }}
+      />
     </Switch>
   );
 };
