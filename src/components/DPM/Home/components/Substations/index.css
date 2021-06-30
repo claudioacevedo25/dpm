@@ -1,0 +1,30 @@
+.subestations {
+  background: #19192b;
+  border-radius: 16px;
+}
+
+.subestationsContainer__table__head .subestationsContainer__table__head__item {
+  border-bottom: 1px solid #242437;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 16px;
+}
+
+.subestationsContainer__table__body .subestationsContainer__table__body__item {
+  border-bottom: none;
+  padding: 10px 16px;
+}
+
+.subestationsContainer__table__body__item
+  .subestationsContainer__table__body__item__icon {
+  width: 12px;
+  height: 12px;
+}
+
+.icon--notFail {
+  color: #2bd283;
+}
+
+.icon--isFail {
+  color: #d22b53;
+}

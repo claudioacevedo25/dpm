@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import Substations from "./components/Substations";
 import "./index.css";
 
 const HomeComponent = () => {
@@ -35,6 +36,12 @@ const HomeComponent = () => {
             }}
           />
         </div>
+      </div>
+      <Typography className="home__subtitle">
+        Conoce el estado de cada subestación
+      </Typography>
+      <div>
+        <Substations />
       </div>
     </div>
   );
