@@ -1,6 +1,8 @@
 import { Switch, Redirect, Route } from "react-router-dom";
 import { PrivateRoute } from "./helperRoutes";
 import path from "../constants/paths.constants";
+import Drawer from "../reusable/Drawer";
+import Header from "../reusable/Header";
 import Home from "../components/DPM/Home";
 
 /**
@@ -12,16 +14,20 @@ import Home from "../components/DPM/Home";
 
 const PrivateRoutes = (props) => {
   return (
-    <Switch>
-      <PrivateRoute exact path={path.private.home} component={Home} />
-      <Route
-        exact
-        path="*"
-        render={() => {
-          return <Redirect to={path.private.home} />;
-        }}
-      />
-    </Switch>
+    <>
+      <Drawer />
+      {/* <Header /> */}
+      <Switch>
+        <PrivateRoute exact path={path.private.home} component={Home} />
+        <Route
+          exact
+          path="*"
+          render={() => {
+            return <Redirect to={path.private.home} />;
+          }}
+        />
+      </Switch>
+    </>
   );
 };
 

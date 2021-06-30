@@ -8,6 +8,15 @@ import { BrowserRouter } from "react-router-dom";
 
 function App(props) {
   const theme = createMuiTheme({
+    props: {
+      MuiDrawer: {},
+      MuiPaper: {
+        elevation: {
+          boxShadow: "none",
+        },
+      },
+    },
+
     palette: {
       background: {
         paper: "0f0f1f",
@@ -17,6 +26,7 @@ function App(props) {
         main: "#20BA87",
       },
     },
+
     typography: {
       fontFamily: "Poppins",
     },
@@ -26,7 +36,7 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper>
+      <Paper style={{ marginLeft: "250px" }}>
         <Provider store={store}>
           <BrowserRouter>
             {!!isAuth ? <PrivateRoutes props={props} /> : <PublicRoutes />}

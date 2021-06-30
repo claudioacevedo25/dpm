@@ -1,0 +1,19 @@
+.home {
+  margin: 0 10px 0 15px;
+}
+
+.home__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.home__header .home__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.home__header__contentSearch .home__header__contentSearch__search {
+  margin-right: 6px;
+}
