@@ -9,14 +9,10 @@ import { BrowserRouter } from "react-router-dom";
 function App(props) {
   const theme = createMuiTheme({
     props: {
-      MuiDrawer: {},
       MuiPaper: {
-        elevation: {
-          boxShadow: "none",
-        },
+        elevation: 0,
       },
     },
-
     palette: {
       background: {
         paper: "0f0f1f",

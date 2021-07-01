@@ -1,3 +1,3 @@
-import Maps from "./maps.container";
+import Map from "./map.container";
 
-export default Maps;
+export default Map;

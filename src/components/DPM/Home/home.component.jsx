@@ -2,6 +2,7 @@ import React from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Substations from "./components/Substations";
+import Maps from "./components/Maps";
 import "./index.css";
 
 const HomeComponent = () => {
@@ -40,8 +41,13 @@ const HomeComponent = () => {
       <Typography className="home__subtitle">
         Conoce el estado de cada subestación
       </Typography>
-      <div>
-        <Substations />
+      <div className="home__substations">
+        <div className="home__substations__map">
+          <Maps />
+        </div>
+        <div className="home__substations__table">
+          <Substations />
+        </div>
       </div>
     </div>
   );
