@@ -4,6 +4,9 @@ const paths = {
   },
   private: {
     home: "/home",
+    ide: "/ide",
+    backup: "/backup",
+    eventTimeline: "/eventTimeline",
   },
 };
 

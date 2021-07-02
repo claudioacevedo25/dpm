@@ -1,6 +1,7 @@
 .home__substations__table .subestations {
   background: #19192b;
   border-radius: 16px;
+  height: 100%;
 }
 
 .subestationsContainer__table__head .subestationsContainer__table__head__item {

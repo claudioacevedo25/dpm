@@ -16,9 +16,16 @@ const PrivateRoutes = (props) => {
   return (
     <>
       <Drawer />
-      {/* <Header /> */}
+      <Header />
       <Switch>
         <PrivateRoute exact path={path.private.home} component={Home} />
+        <PrivateRoute exact path={path.private.ide} component={Home} />
+        <PrivateRoute exact path={path.private.backup} component={Home} />
+        <PrivateRoute
+          exact
+          path={path.private.eventTimeline}
+          component={Home}
+        />
         <Route
           exact
           path="*"

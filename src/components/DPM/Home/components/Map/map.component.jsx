@@ -16,10 +16,21 @@ const markers = [
     markerOffset: -25,
     name: "Buenos Aires",
     coordinates: [-58.3816, -34.6037],
+    is_fail: false,
   },
-  { markerOffset: -15, name: "Prueba", coordinates: [-60.375797, -26.451159] },
+  {
+    markerOffset: -15,
+    name: "Prueba",
+    coordinates: [-60.375797, -26.451159],
+    is_fail: true,
+  },
 
-  { markerOffset: -15, name: "Lima", coordinates: [-77.0428, -12.0464] },
+  {
+    markerOffset: -15,
+    name: "Lima",
+    coordinates: [-77.0428, -12.0464],
+    is_fail: true,
+  },
 ];
 
 const MapComponent = () => {
@@ -37,20 +48,26 @@ const MapComponent = () => {
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies
-                .filter((d) => d.properties.REGION_UN === "Americas")
+                // .filter((d) => d.properties.REGION_UN === "Americas")
                 .map((geo) => (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="#EAEAEC"
+                    fill="#ebeced"
                     stroke="#D6D6DA"
                   />
                 ))
             }
           </Geographies>
-          {markers.map(({ name, coordinates, markerOffset }) => (
+          {markers.map(({ name, coordinates, markerOffset, is_fail }) => (
             <Marker key={name} coordinates={coordinates}>
-              <circle r={6} fill="#19192B" stroke="#fff" strokeWidth={2} />
+              <circle
+                r={6}
+                fill={is_fail ? "#2bd283" : "#d22b53"}
+                stroke="#fff"
+                strokeWidth={2}
+              />
+              {/* aca deberia uir una card para que muestre los datos */}
               <text
                 textAnchor="middle"
                 y={markerOffset}

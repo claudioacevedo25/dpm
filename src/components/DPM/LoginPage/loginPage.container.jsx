@@ -6,7 +6,6 @@ const LoginPage = () => {
   const formOnSubmit = async (values) => {
     try {
       const data = await loginService(values);
-
       sessionStorage.setItem("user", JSON.stringify(data));
       window.location.href = "/home";
     } catch (error) {
