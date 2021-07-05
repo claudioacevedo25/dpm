@@ -10,7 +10,7 @@ const DPMWelcomeComponent = () => {
     <div className="containerDPM">
       <div className="containerDPM__login">
         <div className="containerDPM__header">
-          <img src={logoDPM} />
+          <img alt="logoDPM" src={logoDPM} />
           <Typography className="containerDPM__header__title">
             ¡Bienvenido a DPM!
           </Typography>
@@ -18,7 +18,7 @@ const DPMWelcomeComponent = () => {
         <LoginPage />
       </div>
       <div className="containerDPM__image">
-        <img src={imageDPMHome} />
+        <img alt="imageHome" src={imageDPMHome} />
       </div>
     </div>
   );

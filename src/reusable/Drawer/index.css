@@ -1,6 +1,7 @@
 .drawer {
   width: 240px;
   flex-shrink: 0;
+  display: flex;
 }
 
 .drawer__header {

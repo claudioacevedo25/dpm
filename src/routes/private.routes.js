@@ -14,9 +14,7 @@ import Home from "../components/DPM/Home";
 
 const PrivateRoutes = (props) => {
   return (
-    <>
-      <Drawer />
-      <Header />
+    <Drawer>
       <Switch>
         <PrivateRoute exact path={path.private.home} component={Home} />
         <PrivateRoute exact path={path.private.ide} component={Home} />
@@ -34,7 +32,7 @@ const PrivateRoutes = (props) => {
           }}
         />
       </Switch>
-    </>
+    </Drawer>
   );
 };
 

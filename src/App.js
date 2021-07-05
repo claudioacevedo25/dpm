@@ -32,7 +32,7 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{ marginLeft: "250px" }}>
+      <Paper>
         <Provider store={store}>
           <BrowserRouter>
             {!!isAuth ? <PrivateRoutes props={props} /> : <PublicRoutes />}
