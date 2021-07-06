@@ -1,0 +1,20 @@
+.ide {
+  margin: 0 46px;
+}
+
+.ide__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 35px;
+}
+
+.ide__header .ide__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.ide__header__contentSearch .ide__header__contentSearch__search {
+  margin-right: 6px;
+}

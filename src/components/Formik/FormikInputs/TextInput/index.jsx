@@ -1,7 +1,6 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
+import { Field } from "formik";
 import { TextField } from "formik-material-ui";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import "./index.css";
 
@@ -15,7 +14,6 @@ const TextInput = (props) => {
     inputMaxLength,
     inputType = "text",
   } = props.value;
-  const { errors, touched } = props;
   return (
     <div className="containerInput">
       <label htmlFor={inputName} className="containerInput__label">
@@ -28,7 +26,7 @@ const TextInput = (props) => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <img src={icon} />
+              <img alt="icon" src={icon} />
             </InputAdornment>
           ),
         }}
@@ -39,7 +37,6 @@ const TextInput = (props) => {
         minLength={inputMinLength}
         maxLength={inputMaxLength}
       />
-      {/* <ErrorMessage name={inputName} component={InputError} /> */}
     </div>
   );
 };

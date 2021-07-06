@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 34px;
+}
+
+.header .header__icon {
+  margin: 15px;
+}

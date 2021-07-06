@@ -8,6 +8,11 @@ import { BrowserRouter } from "react-router-dom";
 
 function App(props) {
   const theme = createMuiTheme({
+    props: {
+      MuiPaper: {
+        elevation: 0,
+      },
+    },
     palette: {
       background: {
         paper: "0f0f1f",
@@ -17,6 +22,7 @@ function App(props) {
         main: "#20BA87",
       },
     },
+
     typography: {
       fontFamily: "Poppins",
     },

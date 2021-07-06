@@ -1,0 +1,57 @@
+.drawer {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.drawer__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.drawer > div {
+  width: 240px;
+  background: #131324;
+  border-right: none;
+  box-shadow: 5px 4px 51px #0c0c1d;
+}
+
+.drawer__header__logo {
+  height: 40px;
+  width: 90px;
+}
+
+.drawer__header .drawer__header__title {
+  font-weight: bold;
+  margin: 14px;
+  font-size: 1.2rem;
+}
+
+.drawer__list .drawer__list__item {
+  border-bottom: 1px solid #242437;
+  padding: 16px;
+}
+
+.drawer__list__item__button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.drawer__list__item__button--active {
+  background: #20ba87;
+  border-radius: 13px;
+}
+
+.drawer__list .drawer__list__item:last-child {
+  border-bottom: none;
+}
+
+.drawer__list__item .drawer__list__icon {
+  min-width: 40px;
+}

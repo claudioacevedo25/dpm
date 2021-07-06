@@ -1,7 +1,9 @@
 import { Switch, Redirect, Route } from "react-router-dom";
 import { PrivateRoute } from "./helperRoutes";
 import path from "../constants/paths.constants";
+import Drawer from "../reusable/Drawer";
 import Home from "../components/DPM/Home";
+import IDE from "../components/DPM/IDE";
 
 /**
  * Return private routes
@@ -12,16 +14,25 @@ import Home from "../components/DPM/Home";
 
 const PrivateRoutes = (props) => {
   return (
-    <Switch>
-      <PrivateRoute exact path={path.private.home} component={Home} />
-      <Route
-        exact
-        path="*"
-        render={() => {
-          return <Redirect to={path.private.home} />;
-        }}
-      />
-    </Switch>
+    <Drawer>
+      <Switch>
+        <PrivateRoute exact path={path.private.home} component={Home} />
+        <PrivateRoute exact path={path.private.ide} component={IDE} />
+        <PrivateRoute exact path={path.private.backup} component={Home} />
+        <PrivateRoute
+          exact
+          path={path.private.eventTimeline}
+          component={Home}
+        />
+        <Route
+          exact
+          path="*"
+          render={() => {
+            return <Redirect to={path.private.home} />;
+          }}
+        />
+      </Switch>
+    </Drawer>
   );
 };
 

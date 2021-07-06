@@ -1,14 +1,7 @@
 import axios from "axios";
-import {
-  processenvREACT_APP_API_URL,
-  httpRequestsValues,
-} from "../constants/api.constants";
+import { httpRequestsValues } from "../constants/api.constants";
 
 const { POST, DELETE, GET, PUT } = httpRequestsValues;
-
-const publicFetch = axios.create({
-  baseURL: processenvREACT_APP_API_URL,
-});
 
 const actionFnIsOk = (action) =>
   action === GET || action === POST || action === PUT || action === DELETE;
@@ -19,13 +12,22 @@ const actionFnIsOk = (action) =>
  * @param {"the object data"} params
  * @returns Promise pattern
  */
-const genericHttpRequest = async (action, endpoint, params = {}) => {
+const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
   const endpointIsOk = !!endpoint && typeof endpoint === "string";
+  const user = sessionStorage.getItem("user");
+  const headers = !!user && {
+    Authorization: "Bearer " + JSON.parse(user).access,
+  };
+  const isHeaders = !!user ? { params, headers } : params;
   const actionIsOk = actionFnIsOk(action);
   const paramsOk = endpointIsOk && actionIsOk;
+  const publicFetch = axios.create({
+    baseURL: API_URL,
+  });
+
   if (paramsOk) {
     try {
-      const { data } = await publicFetch[action](endpoint, params);
+      const { data } = await publicFetch[action](endpoint, isHeaders);
       return data;
     } catch (error) {
       throw error;
