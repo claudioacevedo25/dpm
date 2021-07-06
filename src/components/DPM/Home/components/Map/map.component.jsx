@@ -12,29 +12,7 @@ import "./index.css";
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const markers = [
-  {
-    markerOffset: -25,
-    name: "Buenos Aires",
-    coordinates: [-58.3816, -34.6037],
-    is_fail: false,
-  },
-  {
-    markerOffset: -15,
-    name: "Prueba",
-    coordinates: [-60.375797, -26.451159],
-    is_fail: true,
-  },
-
-  {
-    markerOffset: -15,
-    name: "Lima",
-    coordinates: [-77.0428, -12.0464],
-    is_fail: true,
-  },
-];
-
-const MapComponent = () => {
+const MapComponent = (props) => {
   return (
     <Card className="map">
       <CardContent className="map">
@@ -61,8 +39,8 @@ const MapComponent = () => {
                   ))
               }
             </Geographies>
-            {markers.map(({ name, coordinates, markerOffset, is_fail }) => (
-              <Marker key={name} coordinates={coordinates}>
+            {props.substations.map(({ name, lat, lon, is_fail }) => (
+              <Marker key={name} coordinates={[lon, lat]}>
                 <circle
                   r={6}
                   fill={is_fail ? "#2bd283" : "#d22b53"}
@@ -72,7 +50,7 @@ const MapComponent = () => {
                 {/* aca deberia uir una card para que muestre los datos */}
                 <text
                   textAnchor="middle"
-                  y={markerOffset}
+                  y="-15"
                   style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
                 >
                   {name}

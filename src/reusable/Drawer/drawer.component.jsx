@@ -1,9 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Drawer,
   List,
@@ -11,15 +9,12 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  IconButton,
 } from "@material-ui/core";
 import {
   HomeOutlined,
   GroupWorkRounded,
   BackupOutlined,
   TimelineOutlined,
-  ChevronLeft,
-  ChevronRight,
 } from "@material-ui/icons";
 import Header from "../Header";
 import paths from "../../constants/paths.constants";
@@ -72,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
 
 const DrawerComponent = (props) => {
   const { history } = props;
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
   const path = window.location.pathname;
 
   const listItem = [
@@ -100,17 +97,6 @@ const DrawerComponent = (props) => {
       onclick: () => history.push(paths.private.eventTimeline),
     },
   ];
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div className={classes.root}>
@@ -134,7 +120,7 @@ const DrawerComponent = (props) => {
           </IconButton>
         </div> */}
         <div className="drawer__header">
-          <img className="drawer__header__logo" src={logoDPM} />
+          <img className="drawer__header__logo" alt="logoDPM" src={logoDPM} />
           <Typography className="drawer__header__title">DPM</Typography>
         </div>
         <List className="drawer__list">

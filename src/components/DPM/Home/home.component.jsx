@@ -5,7 +5,7 @@ import Substations from "./components/Substations";
 import Maps from "./components/Map";
 import "./index.css";
 
-const HomeComponent = () => {
+const HomeComponent = (props) => {
   return (
     <div className="home">
       <div className="home__header">
@@ -41,14 +41,16 @@ const HomeComponent = () => {
       <Typography className="home__subtitle">
         Conoce el estado de cada subestación
       </Typography>
-      <div className="home__substations">
-        <div className="home__substations__map">
-          <Maps />
+      {!!props.substations && (
+        <div className="home__substations">
+          <div className="home__substations__map">
+            <Maps substations={props.substations} />
+          </div>
+          <div className="home__substations__table">
+            <Substations substations={props.substations} />
+          </div>
         </div>
-        <div className="home__substations__table">
-          <Substations />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
