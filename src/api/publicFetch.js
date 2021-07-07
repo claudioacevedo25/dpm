@@ -1,5 +1,9 @@
 import axios from "axios";
-import { httpRequestsValues } from "../constants/api.constants";
+import {
+  httpRequestsValues,
+  platform_API_URL,
+  REFRESH,
+} from "../constants/api.constants";
 
 const { POST, DELETE, GET, PUT } = httpRequestsValues;
 
@@ -14,7 +18,7 @@ const actionFnIsOk = (action) =>
  */
 const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
   const endpointIsOk = !!endpoint && typeof endpoint === "string";
-  const user = sessionStorage.getItem("user");
+  let user = sessionStorage.getItem("user");
   const headers = !!user && {
     Authorization: "Bearer " + JSON.parse(user).access,
   };
@@ -25,11 +29,41 @@ const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
     baseURL: API_URL,
   });
 
+  const loginRefresh = async () => {
+    const params = { refresh: JSON.parse(user).refresh };
+    try {
+      const { data } = await axios.post(platform_API_URL + REFRESH, params);
+      const newUser = {
+        ...JSON.parse(user),
+        access: data.access,
+      };
+      sessionStorage.setItem("user", JSON.stringify(newUser));
+      return {
+        Authorization: "Bearer " + newUser.access,
+      };
+    } catch (error) {
+      sessionStorage.removeItem("user");
+      window.location.href = "/login";
+    }
+  };
+
   if (paramsOk) {
     try {
-      const { data } = await publicFetch[action](endpoint, isHeaders);
+      const { data } = await publicFetch[action](endpoint, {
+        params,
+        isHeaders,
+      });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        const headers = await loginRefresh();
+
+        const { data } = await publicFetch[action](endpoint, {
+          params,
+          headers,
+        });
+        return data;
+      }
       throw error;
     }
   }
