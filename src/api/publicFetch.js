@@ -22,6 +22,7 @@ const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
   const headers = !!user && {
     Authorization: "Bearer " + JSON.parse(user).access,
   };
+  const isHeaders = !!user ? { params, headers } : params;
   const actionIsOk = actionFnIsOk(action);
   const paramsOk = endpointIsOk && actionIsOk;
   const publicFetch = axios.create({
@@ -48,10 +49,10 @@ const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
 
   if (paramsOk) {
     try {
-      const { data } = await publicFetch[action](
-        endpoint,
-        !!user ? { params, headers } : params
-      );
+      const { data } = await publicFetch[action](endpoint, {
+        params,
+        isHeaders,
+      });
       return data;
     } catch (error) {
       if (error.response.status === 401) {
