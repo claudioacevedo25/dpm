@@ -41,7 +41,8 @@ const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
         Authorization: "Bearer " + newUser.access,
       };
     } catch (error) {
-      console.log("error :>> ", error);
+      sessionStorage.removeItem("user");
+      window.location.href = "/login";
     }
   };
 
