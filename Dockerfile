@@ -1,3 +1,4 @@
+FROM node as node
 RUN mkdir -p /var/platform-front
 WORKDIR /var/platform-front
 ENV NG_CLI_ANALYTICS=off
