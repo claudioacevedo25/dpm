@@ -5,5 +5,5 @@ ENV NG_CLI_ANALYTICS=off
 COPY package*.json ./
 RUN npm install
 COPY . .
-npm run build
+RUN npm run build
 CMD ["npm","start"]
