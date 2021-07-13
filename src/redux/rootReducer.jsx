@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
-import authReducer from "./auth/authReducer";
 import substationsReducer from "./substations/substationsReducer";
+import substationStructureReducer from "./substationStructure/substationStructureReducer";
+import paniosReducer from "./panios/paniosReducer";
+import relaysReducer from "./relays/relaysReducer";
 
 const rootReducer = combineReducers({
-  user: authReducer,
   substations: substationsReducer,
+  substationSelected: substationStructureReducer,
+  panios: paniosReducer,
+  relays: relaysReducer,
 });
 
 export default rootReducer;

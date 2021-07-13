@@ -1,4 +1,4 @@
-.table {
+.ide__tablesContainer__item .table {
   background: #19192b;
   border-radius: 16px;
   height: 100%;
@@ -14,4 +14,9 @@
 .tableContainer__table__body .tableContainer__table__body__item {
   border-bottom: none;
   padding: 10px 16px;
+}
+
+.tableContainer__table__body .tableContainer__table__body__item:hover {
+  background: #2a2a42;
+  border-radius: 6px;
 }

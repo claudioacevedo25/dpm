@@ -1,4 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import {
+  updateSubstation,
+  updatePanio,
+  updateRelay,
+} from "../../../../../redux/substationStructure/substationStructureActions";
 import {
   Card,
   CardContent,
@@ -10,21 +16,34 @@ import {
   TableBody,
   Paper,
 } from "@material-ui/core";
-import { connect } from "react-redux";
-import {
-  updateSubstation,
-  updatePanio,
-  updateRelay,
-} from "../../../../../redux/substationStructure/substationStructureActions";
 import "./index.css";
 
-const TableComponent = (
-  rows,
-  header,
-  updateSubstation,
-  updatePanio,
-  updateRelay
-) => {
+const TableComponent = ({
+  getPanios,
+  getRelays,
+  type,
+  dispatchSubstation,
+  dispatchPanio,
+  dispatchRelay,
+  ...props
+}) => {
+  const onChange = async (selected) => {
+    switch (type) {
+      case "substation":
+        await getPanios(selected.id);
+        return dispatchSubstation(selected);
+
+      case "panio":
+        await getRelays(selected.id);
+        return dispatchPanio(selected);
+      case "relay":
+        return dispatchRelay(selected);
+
+      default:
+        return;
+    }
+  };
+
   return (
     <Card className="table">
       <CardContent className="tableContainer">
@@ -36,18 +55,19 @@ const TableComponent = (
                   className="tableContainer__table__head__item"
                   align="center"
                 >
-                  {header}
+                  {props.header}
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody className="tableContainer__table__body">
-              {rows.map((row) => (
-                <TableRow key={row}>
+              {props.rows.map((row) => (
+                <TableRow onClick={() => onChange(row)} key={row.id}>
                   <TableCell
+                    key={row.id}
                     className="tableContainer__table__body__item"
                     align="center"
                   >
-                    {row}
+                    {!!row.name ? row.name : row.mnemo}
                   </TableCell>
                 </TableRow>
               ))}
@@ -59,22 +79,12 @@ const TableComponent = (
   );
 };
 
-const mapDispatchToProps = {
-  updateSubstation,
-  updatePanio,
-  updateRelay,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchSubstation: (substation) => dispatch(updateSubstation(substation)),
+    dispatchPanio: (panio) => dispatch(updatePanio(panio)),
+    dispatchRelay: (relay) => dispatch(updateRelay(relay)),
+  };
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     dispatchNews: (news) => dispatch(newsType(news)),
-//   };
-// };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     news: state.news,
-//   };
-// };
 
 export default connect(null, mapDispatchToProps)(TableComponent);

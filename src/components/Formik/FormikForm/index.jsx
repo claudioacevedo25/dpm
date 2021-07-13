@@ -43,7 +43,7 @@ const FormRender = ({
                   ))
                 : null}
             </div>
-            <Button textButton={textButton} />
+            <Button textButton={textButton} type="submit" />
           </Form>
         )}
       </Formik>

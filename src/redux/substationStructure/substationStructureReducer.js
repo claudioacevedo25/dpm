@@ -5,18 +5,9 @@ import {
 } from "./substationStructureTypes";
 
 const initialState = {
-  substation: {
-    id: "",
-    name: "",
-  },
-  relay: {
-    id: "",
-    name: "",
-  },
-  panio: {
-    id: "",
-    name: "",
-  },
+  substation: {},
+  relay: {},
+  panio: {},
 };
 
 const authReducer = (state = initialState, action) => {
@@ -24,10 +15,13 @@ const authReducer = (state = initialState, action) => {
     case UPDATESUBSTATION:
       return {
         substation: action.payload.substation,
+        panio: {},
+        relay: {},
       };
     case UPDATEPANIO:
       return {
         ...state,
+        relay: {},
         panio: action.payload.panio,
       };
     case UPDATERELAY:
