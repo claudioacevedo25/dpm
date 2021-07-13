@@ -49,10 +49,7 @@ const genericHttpRequest = async (action, endpoint, params = {}, API_URL) => {
 
   if (paramsOk) {
     try {
-      const { data } = await publicFetch[action](endpoint, {
-        params,
-        isHeaders,
-      });
+      const { data } = await publicFetch[action](endpoint, isHeaders);
       return data;
     } catch (error) {
       if (error.response.status === 401) {
