@@ -4,6 +4,7 @@ import path from "../constants/paths.constants";
 import Drawer from "../reusable/Drawer";
 import Home from "../components/DPM/Home";
 import IDE from "../components/DPM/IDE";
+import BackUp from "../components/DPM/BackUp";
 
 /**
  * Return private routes
@@ -18,7 +19,7 @@ const PrivateRoutes = (props) => {
       <Switch>
         <PrivateRoute exact path={path.private.home} component={Home} />
         <PrivateRoute exact path={path.private.ide} component={IDE} />
-        <PrivateRoute exact path={path.private.backup} component={Home} />
+        <PrivateRoute exact path={path.private.backup} component={BackUp} />
         <PrivateRoute
           exact
           path={path.private.eventTimeline}
