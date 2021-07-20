@@ -1,0 +1,39 @@
+.Pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Pagination .Pagination__button {
+  margin: 0 15px;
+  min-width: 23px;
+  height: 23px;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.Pagination .Pagination__button[disabled] {
+  border: 1px solid #33333328;
+}
+
+.Pagination .Pagination__button span {
+  font-size: 0.75rem;
+}
+
+.Pagination .Pagionation__button--selected {
+  background: #c0c0c0;
+}
+
+.Pagination__span {
+  font-size: 0.9rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .Pagination .Pagination__button {
+    display: flex;
+    flex-direction: column;
+  }
+  .Pagination .Pagionation__button--selected:hover {
+    background: #c0c0c0;
+  }
+}

@@ -9,6 +9,7 @@
   align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 35px;
+  border-bottom: 1px solid #242437;
 }
 
 .ide__header .ide__title {

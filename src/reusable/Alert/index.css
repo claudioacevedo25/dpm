@@ -1,0 +1,28 @@
+.alert div div {
+  background: #4f4f63;
+  max-width: 440px;
+  padding: 20px;
+  border-radius: 31px;
+}
+
+.alert .alert__message {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.alert .alert__actions {
+  display: flex;
+  padding-top: 0px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.alert__buttonAgree span {
+  color: #ffffff;
+  font-weight: 200;
+}
+
+.alert__buttonDisagree span {
+  color: #ffffff;
+  font-weight: 200;
+}

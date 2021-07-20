@@ -1,0 +1,26 @@
+.backUp__header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #242437;
+}
+
+.backUp__header .backUp__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.backUp__header__contentSearch .backUp__header__contentSearch__search {
+  margin-right: 6px;
+}
+
+.backUp__button {
+  display: flex;
+  justify-content: flex-end;
+}
+.backUp__button .containerButton {
+  width: 15%;
+}
