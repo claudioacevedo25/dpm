@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { updateAlert } from "../../redux/alert/alertActions";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,9 +18,10 @@ import {
   BackupOutlined,
   TimelineOutlined,
 } from "@material-ui/icons";
-import Header from "../Header";
 import paths from "../../constants/paths.constants";
 import logoDPM from "../../assets/images/LogoDPM.png";
+import Header from "../Header";
+import Alert from "../Alert";
 import "./index.css";
 
 const drawerWidth = 240;
@@ -65,41 +68,69 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DrawerComponent = (props) => {
+const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const { history } = props;
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open] = useState(true);
+  const [redirect, setRedirect] = useState("");
   const path = window.location.pathname;
+
+  const onClickRedirect = (path) => {
+    if (!alert.isAlert) {
+      history.push(path);
+    } else {
+      setRedirect(path);
+    }
+  };
+
+  const onClickFollow = (follow) => {
+    if (follow) {
+      history.push(redirect);
+      setRedirect("");
+      dispatchAlert({ isAlert: false });
+    } else {
+      setRedirect("");
+    }
+  };
 
   const listItem = [
     {
       text: "Inicio",
       icon: <HomeOutlined />,
       href: paths.private.home,
-      onclick: () => history.push(paths.private.home),
+      onclick: () => onClickRedirect(paths.private.home),
     },
     {
       text: "IED",
       icon: <GroupWorkRounded />,
       href: paths.private.ide,
-      onclick: () => history.push(paths.private.ide),
+      onclick: () => onClickRedirect(paths.private.ide),
     },
     {
       text: "Backup",
       icon: <BackupOutlined />,
       href: paths.private.backup,
-      onclick: () => history.push(paths.private.backup),
+      onclick: () => onClickRedirect(paths.private.backup),
     },
     {
       text: "Event timeline",
       icon: <TimelineOutlined />,
       href: paths.private.eventTimeline,
-      onclick: () => history.push(paths.private.eventTimeline),
+      onclick: () => onClickRedirect(paths.private.eventTimeline),
     },
   ];
 
   return (
     <div className={classes.root}>
+      {!!redirect && (
+        <Alert
+          onClickFollow={onClickFollow}
+          openDialogue={true}
+          text={alert.message}
+          agree={alert.agree}
+          disagree={alert.disagree}
+        />
+      )}
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -157,4 +188,16 @@ const DrawerComponent = (props) => {
   );
 };
 
-export default withRouter(DrawerComponent);
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchAlert: (alert) => dispatch(updateAlert(alert)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(DrawerComponent));

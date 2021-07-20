@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getSubstation as obtainSubstations } from "../../../redux/substations/substationsActions";
 import { substations as substationsService } from "../../../api/substationsService";
-import { panios as paniosService } from "../../../api/paniosService";
-import { relays as relaysService } from "../../../api/relaysService";
 import IDEComponent from "./ide.component";
 
 const IDE = ({
