@@ -1,0 +1,7 @@
+.home__substations__spinner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 280px);
+  align-items: center;
+}

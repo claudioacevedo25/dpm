@@ -1,3 +1,7 @@
+.backUp {
+  margin: 0 46px;
+}
+
 .backUp__header {
   display: flex;
   flex-direction: row;
