@@ -6,6 +6,7 @@ import { Search, FilterList } from "@material-ui/icons";
 import Button from "../../Button";
 import Pagination from "../../../reusable/Pagination";
 import SelectableTable from "./components/SelectableTable";
+import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
@@ -79,7 +80,7 @@ const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
           textButton="Guardar"
         />
       </div>
-      {Object.keys(listRelays).length !== 0 && (
+      {Object.keys(listRelays).length !== 0 ? (
         <>
           <SelectableTable
             onClickSelected={onClickSelected}
@@ -92,6 +93,8 @@ const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
             activePage={activePage}
           ></Pagination>
         </>
+      ) : (
+        <Spinner />
       )}
     </div>
   );

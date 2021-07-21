@@ -20,13 +20,7 @@ const Home = (props) => {
     getSubstations();
   }, []);
 
-  return (
-    <>
-      {props.substations.length !== 0 && (
-        <HomeComponent substations={props.substations} />
-      )}
-    </>
-  );
+  return <HomeComponent substations={props.substations} />;
 };
 
 const mapDispatchToProps = (dispatch) => {

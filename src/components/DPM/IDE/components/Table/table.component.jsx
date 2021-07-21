@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   updateSubstation,
@@ -27,7 +27,9 @@ const TableComponent = ({
   dispatchRelay,
   ...props
 }) => {
+  const [selected, setSelected] = useState("");
   const onChange = async (selected) => {
+    setSelected(selected.id);
     switch (type) {
       case "substation":
         await getPanios(selected.id);
@@ -59,12 +61,16 @@ const TableComponent = ({
                 </TableCell>
               </TableRow>
             </TableHead>
+
             <TableBody className="tableContainer__table__body">
               {props.rows.map((row) => (
                 <TableRow onClick={() => onChange(row)} key={row.id}>
                   <TableCell
                     key={row.id}
-                    className="tableContainer__table__body__item"
+                    className={`tableContainer__table__body__item ${
+                      selected === row.id &&
+                      "tableContainer__table__body--selected"
+                    }`}
                     align="center"
                   >
                     {!!row.name ? row.name : row.mnemo}

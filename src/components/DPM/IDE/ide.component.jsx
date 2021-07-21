@@ -3,11 +3,12 @@ import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Table from "./components/Table";
 import Button from "../../Button";
+import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const IDEComponent = ({ ...props }) => {
-  const isTrue = (selected, list) =>
-    Object.keys(selected).length !== 0 && list.length !== 0;
+  const isSelected = (selected) => Object.keys(selected).length !== 0;
+
   const canNext = (selectedRelay) => Object.keys(selectedRelay).length !== 0;
 
   return (
@@ -53,27 +54,33 @@ const IDEComponent = ({ ...props }) => {
           textButton="Continuar"
         />
       </div>
-      <div className="ide__tablesContainer">
-        {!!props.substations && props.substations.length !== 0 && (
-          <div className="ide__tablesContainer__item">
-            <Table
-              header="N de subestación"
-              rows={props.substations}
-              type="substation"
-            />
-          </div>
-        )}
-        {isTrue(props.substationSelected.substation, props.panios) && (
-          <div className="ide__tablesContainer__item">
-            <Table header="Paño" rows={props.panios} type="panio" />
-          </div>
-        )}
-        {isTrue(props.substationSelected.panio, props.relays) && (
-          <div className="ide__tablesContainer__item">
-            <Table header="N de relé" rows={props.relays} type="relay" />
-          </div>
-        )}
-      </div>
+      {props.substations.length !== 0 ? (
+        <div className="ide__tablesContainer">
+          {!!props.substations && props.substations.length !== 0 && (
+            <div className="ide__tablesContainer__item">
+              <Table
+                header="N de subestación"
+                rows={props.substations}
+                type="substation"
+              />
+            </div>
+          )}
+          {isSelected(props.substationSelected.substation) &&
+            props.panios.length > 0 && (
+              <div className="ide__tablesContainer__item">
+                <Table header="Paño" rows={props.panios} type="panio" />
+              </div>
+            )}
+          {isSelected(props.substationSelected.panio) &&
+            props.relays.length > 0 && (
+              <div className="ide__tablesContainer__item">
+                <Table header="N de relé" rows={props.relays} type="relay" />
+              </div>
+            )}
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };
