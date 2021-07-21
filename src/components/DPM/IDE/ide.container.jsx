@@ -27,13 +27,11 @@ const IDE = ({
 
   return (
     <>
-      {substations.substations.length !== 0 && (
-        <IDEComponent
-          substations={substations.substations}
-          substationSelected={substationSelected}
-          {...props}
-        />
-      )}
+      <IDEComponent
+        substations={substations.substations}
+        substationSelected={substationSelected}
+        {...props}
+      />
     </>
   );
 };

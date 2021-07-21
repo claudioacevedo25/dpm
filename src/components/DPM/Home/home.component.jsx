@@ -3,6 +3,7 @@ import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Substations from "./components/Substations";
 import Maps from "./components/Map";
+import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const HomeComponent = (props) => {
@@ -41,16 +42,21 @@ const HomeComponent = (props) => {
       <Typography className="home__subtitle">
         Conoce el estado de cada subestación
       </Typography>
-      {!!props.substations && (
-        <div className="home__substations">
-          <div className="home__substations__map">
-            <Maps substations={props.substations} />
-          </div>
-          <div className="home__substations__table">
-            <Substations substations={props.substations} />
-          </div>
-        </div>
-      )}
+
+      <div className="home__substations">
+        {props.substations.length > 0 ? (
+          <>
+            <div className="home__substations__map">
+              <Maps substations={props.substations} />
+            </div>
+            <div className="home__substations__table">
+              <Substations substations={props.substations} />
+            </div>
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </div>
     </div>
   );
 };
