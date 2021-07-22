@@ -1,5 +1,5 @@
 import React from "react";
-import { allRelays as allRelaysService } from "../../../api/allRelaysService";
+import { allRelays as allRelaysService } from "../../../api/relaysService";
 import BackUpComponent from "./backUp.component";
 
 const BackUp = () => {

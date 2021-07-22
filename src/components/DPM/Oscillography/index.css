@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 34px;
+  align-items: center;
+}
+
+.header .header__icon {
+  margin: 15px;
+}
+
+.header .header__icon__avatar {
+  background-color: #4e4e65;
+  color: white;
+}

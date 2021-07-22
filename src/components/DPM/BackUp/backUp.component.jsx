@@ -78,9 +78,10 @@ const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
         <Button
           color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
           textButton="Guardar"
+          disabled={selected.length > 0 ? false : true}
         />
       </div>
-      {Object.keys(listRelays).length !== 0 ? (
+      {Object.keys(listRelays) && Object.keys(listRelays).length !== 0 ? (
         <>
           <SelectableTable
             onClickSelected={onClickSelected}
