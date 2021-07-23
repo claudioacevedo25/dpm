@@ -1,6 +1,5 @@
-export const platform_API_URL = "http://3.230.214.82:8000/";
-
-export const dpm_API_URL = "http://3.230.214.82:8001/dpm/";
+export const DPM = "DPM";
+export const PLATFORM = "PLATFORM";
 
 export const LOGIN = "login/";
 export const REFRESH = "login/refresh/";

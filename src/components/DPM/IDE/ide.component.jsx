@@ -65,18 +65,24 @@ const IDEComponent = ({ ...props }) => {
               />
             </div>
           )}
-          {isSelected(props.substationSelected.substation) &&
-            props.panios.length > 0 && (
-              <div className="ide__tablesContainer__item">
+          {isSelected(props.substationSelected.substation) && (
+            <div className="ide__tablesContainer__item">
+              {props.panios.length > 0 ? (
                 <Table header="Paño" rows={props.panios} type="panio" />
-              </div>
-            )}
-          {isSelected(props.substationSelected.panio) &&
-            props.relays.length > 0 && (
-              <div className="ide__tablesContainer__item">
+              ) : (
+                <Spinner className="spinner_item" />
+              )}
+            </div>
+          )}
+          {isSelected(props.substationSelected.panio) && (
+            <div className="ide__tablesContainer__item">
+              {props.relays.length > 0 ? (
                 <Table header="N de relé" rows={props.relays} type="relay" />
-              </div>
-            )}
+              ) : (
+                <Spinner />
+              )}
+            </div>
+          )}
         </div>
       ) : (
         <Spinner />
