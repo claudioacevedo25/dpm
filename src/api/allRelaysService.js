@@ -1,12 +1,8 @@
 import { genericHttpRequest } from "./publicFetch";
-import {
-  ALLRELAYS,
-  httpRequestsValues,
-  dpm_API_URL,
-} from "../constants/api.constants";
+import { ALLRELAYS, httpRequestsValues, DPM } from "../constants/api.constants";
 
 const { GET } = httpRequestsValues;
-const API_URL = dpm_API_URL;
+const apiSelection = DPM;
 
 /**
  *
@@ -18,5 +14,5 @@ export const allRelays = (page, size) => {
     page: page,
     page_size: size,
   };
-  return genericHttpRequest(GET, ALLRELAYS, data, API_URL);
+  return genericHttpRequest(GET, ALLRELAYS, data, apiSelection);
 };

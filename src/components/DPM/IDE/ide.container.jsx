@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getSubstation as obtainSubstations } from "../../../redux/substations/substationsActions";
+import { updateSubstation } from "../../../redux/substationStructure/substationStructureActions";
 import { substations as substationsService } from "../../../api/substationsService";
 import IDEComponent from "./ide.component";
 
@@ -8,6 +9,7 @@ const IDE = ({
   substations,
   substationSelected,
   dispatchSubstations,
+  dispatchSelectedSubstation,
   ...props
 }) => {
   const getSubstations = async () => {
@@ -23,6 +25,9 @@ const IDE = ({
 
   useEffect(() => {
     getSubstations();
+    return function cleanup() {
+      dispatchSelectedSubstation("");
+    };
   }, []);
 
   return (
@@ -44,6 +49,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchSubstations: (substations) =>
       dispatch(obtainSubstations(substations)),
+    dispatchSelectedSubstation: (substation) =>
+      dispatch(updateSubstation(substation)),
   };
 };
 
