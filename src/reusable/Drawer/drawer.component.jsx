@@ -72,20 +72,23 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const { history } = props;
   const classes = useStyles();
   const [open] = useState(true);
-  const [redirect, setRedirect] = useState("");
-  const path = window.location.pathname;
+  const [redirect, setRedirect] = useState({});
+  let valueTab = localStorage.getItem("valueTab");
 
-  const onClickRedirect = (path) => {
+  const onClickRedirect = (path, valueTab) => {
     if (!alert.isAlert) {
       history.push(path);
+      localStorage.setItem("valueTab", valueTab);
     } else {
-      setRedirect(path);
+      const redirect = { path: path, valueTab: valueTab };
+      setRedirect(redirect);
     }
   };
 
   const onClickFollow = (follow) => {
     if (follow) {
-      history.push(redirect);
+      history.push(redirect.path);
+      localStorage.setItem("valueTab", redirect.valueTab);
       setRedirect("");
       dispatchAlert({ isAlert: false });
     } else {
@@ -96,33 +99,37 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const listItem = [
     {
       text: "Inicio",
+      value: 0,
       icon: <HomeOutlined />,
       href: paths.private.home,
-      onclick: () => onClickRedirect(paths.private.home),
+      onclick: () => onClickRedirect(paths.private.home, 0),
     },
     {
       text: "IED",
+      value: 1,
       icon: <GroupWorkRounded />,
       href: paths.private.ide,
-      onclick: () => onClickRedirect(paths.private.ide),
+      onclick: () => onClickRedirect(paths.private.ide, 1),
     },
     {
       text: "Backup",
+      value: 2,
       icon: <BackupOutlined />,
       href: paths.private.backup,
-      onclick: () => onClickRedirect(paths.private.backup),
+      onclick: () => onClickRedirect(paths.private.backup, 2),
     },
     {
       text: "Event timeline",
+      value: 3,
       icon: <TimelineOutlined />,
       href: paths.private.eventTimeline,
-      onclick: () => onClickRedirect(paths.private.eventTimeline),
+      onclick: () => onClickRedirect(paths.private.eventTimeline, 3),
     },
   ];
 
   return (
     <div className={classes.root}>
-      {!!redirect && (
+      {!!redirect.path && (
         <Alert
           onClickFollow={onClickFollow}
           openDialogue={true}
@@ -165,7 +172,7 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
               <div
                 className={`drawer__list__item__button ${
                   !!item.href &&
-                  path === item.href &&
+                  localStorage.getItem("valueTab") == item.value &&
                   "drawer__list__item__button--active"
                 }`}
               >

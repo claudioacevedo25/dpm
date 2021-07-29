@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getPanios as obtainPanios } from "../../../../../redux/panios/paniosActions";
 import { getRelays as obtainRelays } from "../../../../../redux/relays/relaysActions";
 import { panios as paniosService } from "../../../../../api/paniosService";
-import { relays as relaysService } from "../../../../../api/relaysService";
+import { getRelays as relaysService } from "../../../../../api/relaysService";
 import TableComponent from "./table.component";
 
 const Table = ({ dispatchnPanios, dispatchnRelays, ...props }) => {

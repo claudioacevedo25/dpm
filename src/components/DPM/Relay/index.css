@@ -1,0 +1,69 @@
+.relay {
+  margin: 0 46px;
+}
+
+.relay__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #242437;
+}
+
+.relay__header .relay__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.relay__header__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.relay__header__container .relay__header__appBar {
+  width: auto;
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.relay__header__appBar__tabs .relay__header__appBar__tabs__item {
+  min-width: auto;
+  margin: 0 15px;
+  text-transform: capitalize;
+  font-weight: 200;
+  letter-spacing: 0.4px;
+  font-size: 1rem;
+}
+
+.relay__header__appBar__tabs .relay__header__appBar__tabs--active {
+  color: #20ba87;
+  font-weight: bold;
+  border-bottom: 1px solid #20ba87;
+}
+
+.relay__header__appBar__tabs > div > div button span {
+  align-items: flex-start;
+  width: auto;
+}
+
+.relay__header__appBar__tabs > div > div button {
+  align-items: flex-end;
+  padding: 0;
+}
+
+.relay__header__appBar__tabs > div span {
+  background-color: transparent;
+}
+
+.relay__header__contentSearch .relay__header__contentSearch__search {
+  margin-right: 6px;
+}
+
+.relay .relay__subtitle {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 30px 0;
+}

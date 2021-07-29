@@ -60,11 +60,11 @@ const genericHttpRequest = async (
   if (paramsOk) {
     try {
       const { data } = await publicFetch[action](endpoint, isHeaders);
+
       return data;
     } catch (error) {
       if (error.response.status === 401) {
         const headers = await loginRefresh();
-
         const { data } = await publicFetch[action](endpoint, {
           params,
           headers,

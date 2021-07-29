@@ -1,15 +1,23 @@
 import React from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 import Table from "./components/Table";
 import Button from "../../Button";
 import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const IDEComponent = ({ ...props }) => {
+  const history = useHistory();
   const isSelected = (selected) => Object.keys(selected).length !== 0;
 
   const canNext = (selectedRelay) => Object.keys(selectedRelay).length !== 0;
+
+  const handlePageRele = () => {
+    history.push(
+      `/ide/${props.substationSelected.relay.id}/${props.substationSelected.relay.mnemo}`
+    );
+  };
 
   return (
     <div className="ide">
@@ -52,6 +60,7 @@ const IDEComponent = ({ ...props }) => {
             canNext(props.substationSelected.relay) ? "#20BA87" : "#2A2A42"
           }
           textButton="Continuar"
+          onClickButton={handlePageRele}
         />
       </div>
       {props.substations.length !== 0 ? (

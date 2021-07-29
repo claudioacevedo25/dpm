@@ -7,6 +7,7 @@ const LoginPage = () => {
     try {
       const data = await loginService(values);
       sessionStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("valueTab", 0);
       window.location.href = "/home";
     } catch (error) {
       console.log("error :>> ", error);
