@@ -7,6 +7,7 @@ const paths = {
     ide: "/ide",
     backup: "/backup",
     eventTimeline: "/eventTimeline",
+    relay: "/ide/:relayId/:relayName",
   },
 };
 

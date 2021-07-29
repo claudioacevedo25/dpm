@@ -2,7 +2,13 @@ import React from "react";
 import { Button as ButtonMaterial } from "@material-ui/core";
 import "./index.css";
 
-const Button = ({ textButton, type, color, disabled = false }) => {
+const Button = ({
+  textButton,
+  type,
+  color,
+  disabled = false,
+  onClickButton = false,
+}) => {
   return (
     <div className="containerButton">
       <ButtonMaterial
@@ -11,6 +17,7 @@ const Button = ({ textButton, type, color, disabled = false }) => {
         type={type}
         variant="contained"
         className="button"
+        onClick={!!onClickButton && onClickButton}
       >
         {textButton}
       </ButtonMaterial>

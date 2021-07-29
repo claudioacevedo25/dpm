@@ -9,7 +9,12 @@ import SelectableTable from "./components/SelectableTable";
 import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
-const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
+const BackUpComponent = ({
+  getAllRelays,
+  dispatchAlert,
+  alert,
+  handleBackupRelays,
+}) => {
   const [listRelays, setListRelays] = useState({});
   const [activePage, setActivePage] = useState(0);
   const [selected, setSelected] = useState([]);
@@ -21,10 +26,12 @@ const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
   }, []);
 
   const onPageChange = async (page) => {
-    setActivePage(page);
     const listRelays = await getAllRelays(page);
     setListRelays(listRelays);
+    setActivePage(page);
   };
+
+  const onClickBackup = async () => {};
 
   const onClickSelected = async (selected) => {
     if (selected.length > 0 && !alert.isAlert) {
@@ -79,6 +86,7 @@ const BackUpComponent = ({ getAllRelays, dispatchAlert, alert }) => {
           color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
           textButton="Guardar"
           disabled={selected.length > 0 ? false : true}
+          onClickButton={onClickBackup}
         />
       </div>
       {Object.keys(listRelays) && Object.keys(listRelays).length !== 0 ? (

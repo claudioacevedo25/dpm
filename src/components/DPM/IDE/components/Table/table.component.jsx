@@ -32,15 +32,13 @@ const TableComponent = ({
     setSelected(selected.id);
     switch (type) {
       case "substation":
-        await getPanios(selected.id);
-        return dispatchSubstation(selected);
-
+        dispatchSubstation(selected);
+        return await getPanios(selected.id);
       case "panio":
-        await getRelays(selected.id);
-        return dispatchPanio(selected);
+        dispatchPanio(selected);
+        return await getRelays(selected.id);
       case "relay":
         return dispatchRelay(selected);
-
       default:
         return;
     }

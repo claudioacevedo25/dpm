@@ -1,0 +1,22 @@
+.events {
+  margin-top: 20px;
+}
+
+.events .events__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-left: 14px;
+}
+
+.events__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Pagination {
+  margin-top: 10px;
+}
+
+.events__subtitle {
+  align-self: center;
+}

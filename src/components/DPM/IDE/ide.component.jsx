@@ -1,15 +1,23 @@
 import React from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 import Table from "./components/Table";
 import Button from "../../Button";
 import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const IDEComponent = ({ ...props }) => {
+  const history = useHistory();
   const isSelected = (selected) => Object.keys(selected).length !== 0;
 
   const canNext = (selectedRelay) => Object.keys(selectedRelay).length !== 0;
+
+  const handlePageRele = () => {
+    history.push(
+      `/ide/${props.substationSelected.relay.id}/${props.substationSelected.relay.mnemo}`
+    );
+  };
 
   return (
     <div className="ide">
@@ -52,6 +60,7 @@ const IDEComponent = ({ ...props }) => {
             canNext(props.substationSelected.relay) ? "#20BA87" : "#2A2A42"
           }
           textButton="Continuar"
+          onClickButton={handlePageRele}
         />
       </div>
       {props.substations.length !== 0 ? (
@@ -65,18 +74,24 @@ const IDEComponent = ({ ...props }) => {
               />
             </div>
           )}
-          {isSelected(props.substationSelected.substation) &&
-            props.panios.length > 0 && (
-              <div className="ide__tablesContainer__item">
+          {isSelected(props.substationSelected.substation) && (
+            <div className="ide__tablesContainer__item">
+              {props.panios.length > 0 ? (
                 <Table header="Paño" rows={props.panios} type="panio" />
-              </div>
-            )}
-          {isSelected(props.substationSelected.panio) &&
-            props.relays.length > 0 && (
-              <div className="ide__tablesContainer__item">
+              ) : (
+                <Spinner className="spinner_item" />
+              )}
+            </div>
+          )}
+          {isSelected(props.substationSelected.panio) && (
+            <div className="ide__tablesContainer__item">
+              {props.relays.length > 0 ? (
                 <Table header="N de relé" rows={props.relays} type="relay" />
-              </div>
-            )}
+              ) : (
+                <Spinner />
+              )}
+            </div>
+          )}
         </div>
       ) : (
         <Spinner />

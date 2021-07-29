@@ -3,11 +3,11 @@ import {
   RELAYS,
   OSCILLOGRAPHIES,
   httpRequestsValues,
-  dpm_API_URL,
+  DPM,
 } from "../constants/api.constants";
 
 const { GET } = httpRequestsValues;
-const API_URL = dpm_API_URL;
+const apiSelection = DPM;
 
 /**
  *
@@ -20,6 +20,5 @@ export const getOscillographies = (idRelay, page, size) => {
     page_size: size,
   };
   const RELAYOSCILLOGRAPHIES = RELAYS + idRelay + "/" + OSCILLOGRAPHIES;
-  console.log("object :>> ", RELAYOSCILLOGRAPHIES);
-  return genericHttpRequest(GET, RELAYOSCILLOGRAPHIES, data, API_URL);
+  return genericHttpRequest(GET, RELAYOSCILLOGRAPHIES, data, apiSelection);
 };
