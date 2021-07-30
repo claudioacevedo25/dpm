@@ -41,5 +41,9 @@ export const getRelayEvents = (id, page, size) => {
   return genericHttpRequest(GET, relayByID, data, apiSelection);
 };
 
-export const backupRelays = (data) =>
-  genericHttpRequest(POST, BACKUP, data, apiSelection);
+export const backupRelays = (listRelays) => {
+  const data = {
+    relays: listRelays,
+  };
+  return genericHttpRequest(POST, BACKUP, data, apiSelection);
+};

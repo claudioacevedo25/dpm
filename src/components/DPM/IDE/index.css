@@ -1,6 +1,6 @@
 .ide {
-  margin: 0 46px;
-  height: calc(100vh - 245px);
+  margin: 0 46px 46px 46px;
+  height: calc(100vh - 265px);
 }
 
 .ide__header {

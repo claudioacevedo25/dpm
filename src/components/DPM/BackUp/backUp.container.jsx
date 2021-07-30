@@ -6,9 +6,9 @@ import {
 import BackUpComponent from "./backUp.component";
 
 const BackUp = () => {
-  const getAllRelays = async (page = 0) => {
+  const getAllRelays = async (page = 0, size) => {
     try {
-      const data = await allRelaysService(page, 8);
+      const data = await allRelaysService(page, size);
       return data;
     } catch (error) {
       console.log("error :>> ", error);
@@ -16,9 +16,8 @@ const BackUp = () => {
   };
 
   const handleBackupRelays = async (listRelays) => {
-    const selectedRelay = { data: listRelays };
     try {
-      await backupRelays(selectedRelay);
+      await backupRelays(listRelays);
     } catch (error) {
       console.log("error :>> ", error);
     }

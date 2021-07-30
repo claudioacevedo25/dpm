@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { updateAlert } from "../../../redux/alert/alertActions";
-import { Typography, TextField, InputAdornment } from "@material-ui/core";
+import {
+  Typography,
+  TextField,
+  InputAdornment,
+  Snackbar,
+} from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Button from "../../Button";
 import Pagination from "../../../reusable/Pagination";
@@ -18,20 +23,31 @@ const BackUpComponent = ({
   const [listRelays, setListRelays] = useState({});
   const [activePage, setActivePage] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [notificationMessage, setNotificationMessage] = useState(null);
   const headers = ["Nombre", "N subestación", "Paño"];
-  const totalPage = (total) => Math.ceil(total / 8);
+  const size = 7;
+  const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {
-    onPageChange(0);
+    onPageChange(0, size);
   }, []);
 
   const onPageChange = async (page) => {
-    const listRelays = await getAllRelays(page);
+    const listRelays = await getAllRelays(page, size);
     setListRelays(listRelays);
     setActivePage(page);
   };
 
-  const onClickBackup = async () => {};
+  const onClickBackup = async () => {
+    await handleBackupRelays(selected);
+    setNotificationMessage("Sus cambios se guardaron correctamente");
+    onPageChange(0);
+    setSelected([]);
+    dispatchAlert("");
+    setTimeout(() => {
+      setNotificationMessage(null);
+    }, 5000);
+  };
 
   const onClickSelected = async (selected) => {
     if (selected.length > 0 && !alert.isAlert) {
@@ -51,6 +67,18 @@ const BackUpComponent = ({
 
   return (
     <div className="backUp">
+      {!!notificationMessage && (
+        <Snackbar
+          className="success"
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          open
+          message={notificationMessage}
+          severity="success"
+        ></Snackbar>
+      )}
       <div className="backUp__header">
         <Typography className="backUp__title">Backup</Typography>
         <div className="backUp__header__contentSearch">

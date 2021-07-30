@@ -28,3 +28,8 @@
 .backUp__button .containerButton {
   width: 15%;
 }
+
+.success div {
+  background-color: #1d7a26;
+  color: white;
+}
