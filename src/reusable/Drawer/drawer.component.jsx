@@ -73,7 +73,6 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const classes = useStyles();
   const [open] = useState(true);
   const [redirect, setRedirect] = useState({});
-  let valueTab = localStorage.getItem("valueTab");
 
   const onClickRedirect = (path, valueTab) => {
     if (!alert.isAlert) {
@@ -172,7 +171,7 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
               <div
                 className={`drawer__list__item__button ${
                   !!item.href &&
-                  localStorage.getItem("valueTab") == item.value &&
+                  parseInt(localStorage.getItem("valueTab")) === item.value &&
                   "drawer__list__item__button--active"
                 }`}
               >
