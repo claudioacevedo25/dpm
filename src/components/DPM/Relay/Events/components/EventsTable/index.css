@@ -1,0 +1,15 @@
+.eventsContainer__table__head .eventsContainer__table__head__item {
+  color: #aaaabe;
+  border-bottom: none;
+  font-size: 1rem;
+}
+
+.eventsContainer__table__body .eventsContainer__table__body__item {
+  border-bottom: none;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+}
+
+.eventsContainer__table__body .eventsContainer__table__row:nth-of-type(odd) {
+  background: rgba(30, 30, 52, 0.4);
+}

@@ -29,12 +29,23 @@ const genericHttpRequest = async (
   const headers = !!user && {
     Authorization: "Bearer " + JSON.parse(user).access,
   };
-  const isHeaders = !!user ? { params, headers } : params;
   const actionIsOk = actionFnIsOk(action);
   const paramsOk = endpointIsOk && actionIsOk;
-  const publicFetch = axios.create({
+  let publicFetch = axios.create({
     baseURL: backendURL(apiSelection),
+    headers,
   });
+  const paramsByAction = (action) => {
+    switch (action) {
+      case GET:
+        return { params };
+      case POST:
+        return params;
+
+      default:
+        return params;
+    }
+  };
 
   const loginRefresh = async () => {
     const params = { refresh: JSON.parse(user).refresh };
@@ -48,9 +59,13 @@ const genericHttpRequest = async (
         access: data.access,
       };
       sessionStorage.setItem("user", JSON.stringify(newUser));
-      return {
+      const headers = {
         Authorization: "Bearer " + newUser.access,
       };
+      publicFetch = axios.create({
+        baseURL: backendURL(apiSelection),
+        headers,
+      });
     } catch (error) {
       sessionStorage.removeItem("user");
       window.location.href = "/login";
@@ -59,16 +74,18 @@ const genericHttpRequest = async (
 
   if (paramsOk) {
     try {
-      const { data } = await publicFetch[action](endpoint, isHeaders);
+      const { data } = await publicFetch[action](
+        endpoint,
+        paramsByAction(action)
+      );
       return data;
     } catch (error) {
       if (error.response.status === 401) {
-        const headers = await loginRefresh();
-
-        const { data } = await publicFetch[action](endpoint, {
-          params,
-          headers,
-        });
+        await loginRefresh();
+        const { data } = await publicFetch[action](
+          endpoint,
+          paramsByAction(action)
+        );
         return data;
       }
       throw error;
