@@ -6,10 +6,12 @@
   border-bottom: none;
   height: 20px;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .selectableTable__head th {
   border-bottom: none;
   padding: 10px 0;
+  color: #aaaabe;
+  font-size: 1rem;
 }

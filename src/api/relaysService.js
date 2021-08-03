@@ -4,6 +4,8 @@ import {
   ALLRELAYS,
   EVENTS,
   BACKUP,
+  OSCILLOGRAPHIES,
+  DOWNLOAD,
   httpRequestsValues,
   DPM,
 } from "../constants/api.constants";
@@ -11,11 +13,6 @@ import {
 const { GET, POST } = httpRequestsValues;
 const apiSelection = DPM;
 
-/**
- *
- * @param {"email and password are required"} data
- * @returns Return the Login User and the user's token
- */
 export const getRelays = (data) =>
   genericHttpRequest(GET, RELAYS, data, apiSelection);
 
@@ -46,4 +43,21 @@ export const backupRelays = (listRelays) => {
     relays: listRelays,
   };
   return genericHttpRequest(POST, BACKUP, data, apiSelection);
+};
+
+export const getRelayOscillographies = (id, page, size) => {
+  const relayByID = RELAYS + id + "/" + OSCILLOGRAPHIES;
+  const data = {
+    page: page,
+    page_size: size,
+  };
+  return genericHttpRequest(GET, relayByID, data, apiSelection);
+};
+
+export const downloadRelayOscillographies = (id, listRelays) => {
+  const relayByID = RELAYS + id + "/" + DOWNLOAD;
+  const data = {
+    oscillographies: listRelays,
+  };
+  return genericHttpRequest(POST, relayByID, data, apiSelection);
 };

@@ -8,9 +8,11 @@ import {
   TableRow,
   Checkbox,
 } from "@material-ui/core";
+import { TimelineOutlined } from "@material-ui/icons";
+import moment from "moment";
 import "./index.css";
 
-const SelectableTableComponent = ({ onClickSelected, headers, rows }) => {
+const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
   const [selected, setSelected] = useState([]);
 
   const handleClick = (event, id) => {
@@ -39,14 +41,15 @@ const SelectableTableComponent = ({ onClickSelected, headers, rows }) => {
       <Table aria-label="customized table">
         <TableHead className="selectableTable__head">
           <TableRow>
-            <TableCell key="checkbox"></TableCell>
-            {headers.map((header) => (
-              <TableCell key={header}>{header}</TableCell>
-            ))}
+            {/* <TableCell key="checkbox"></TableCell> */}
+
+            <TableCell>Nombre</TableCell>
+            <TableCell>Fecha</TableCell>
+            <TableCell>Hora</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => {
+          {listOscillographies.map((row) => {
             const isItemSelected = isSelected(row.id);
             return (
               <TableRow
@@ -57,17 +60,19 @@ const SelectableTableComponent = ({ onClickSelected, headers, rows }) => {
                 aria-checked={isItemSelected}
                 tabIndex={-1}
               >
-                <TableCell padding="checkbox">
+                <TableCell>
                   <Checkbox
                     onClick={(event) => handleClick(event, row.id)}
-                    disabled={row.is_reporter}
                     color="primary"
-                    checked={isItemSelected || row.is_reporter}
+                    checked={isItemSelected || false}
                   />
+                  {row.name}
                 </TableCell>
-                <TableCell>{row.mnemo}</TableCell>
-                <TableCell>{row.substation}</TableCell>
-                <TableCell>{row.panio}</TableCell>
+                <TableCell>{moment(row.date).format("DD/MM/YYYY")}</TableCell>
+                <TableCell>{moment(row.date).format("hh:mm a")}</TableCell>
+                <TableCell>
+                  <TimelineOutlined />
+                </TableCell>
               </TableRow>
             );
           })}
