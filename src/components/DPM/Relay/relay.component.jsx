@@ -8,13 +8,14 @@ import {
   Tab,
 } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import Oscillography from "./Oscillography/oscillography.container";
 import Events from "./Events";
 import "./index.css";
 
 const RelayComponent = ({ relayID, relayName }) => {
   const [valueTab, setValueTab] = useState(1);
   const tabs = [
-    { name: "Osilografías", disabled: true },
+    { name: "Osilografías" },
     { name: "Eventos" },
     { name: "Reportes", disabled: true },
   ];
@@ -41,6 +42,7 @@ const RelayComponent = ({ relayID, relayName }) => {
             >
               {tabs.map((tab, index) => (
                 <Tab
+                  key={index}
                   disabled={!!tab.disabled && tab.disabled}
                   value={index}
                   className={`relay__header__appBar__tabs__item ${
@@ -84,8 +86,7 @@ const RelayComponent = ({ relayID, relayName }) => {
 
       <div>
         <TabPanel value={valueTab} index={0}>
-          {" "}
-          cosas1
+          <Oscillography relayID={relayID} />
         </TabPanel>
         <TabPanel value={valueTab} index={1}>
           <Events relayID={relayID} />

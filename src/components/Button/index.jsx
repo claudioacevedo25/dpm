@@ -7,7 +7,7 @@ const Button = ({
   type,
   color,
   disabled = false,
-  onClickButton = false,
+  onClickButton,
 }) => {
   return (
     <div className="containerButton">
@@ -17,7 +17,7 @@ const Button = ({
         type={type}
         variant="contained"
         className="button"
-        onClick={!!onClickButton && onClickButton}
+        onClick={onClickButton}
       >
         {textButton}
       </ButtonMaterial>

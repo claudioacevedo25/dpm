@@ -1,11 +1,14 @@
 import React from "react";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import "./index.css";
 
-const SpinnerComponent = () => {
+const SpinnerComponent = ({ description }) => {
   return (
-    <div className="home__substations__spinner">
+    <div className="spinner">
       <CircularProgress size="55px" disableShrink />
+      {!!description && (
+        <Typography className="spinner__description">{description}</Typography>
+      )}
     </div>
   );
 };
