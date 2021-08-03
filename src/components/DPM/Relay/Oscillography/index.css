@@ -1,1 +1,29 @@
+.oscillographies .oscillographies__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
 
+.oscillographies__button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.oscillographies__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oscillographies__button .containerButton .button {
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+.oscillographies__subtitle {
+  text-align: center;
+}
+
+.oscillographies__container .spinner {
+  height: calc(100vh - 300px);
+}
