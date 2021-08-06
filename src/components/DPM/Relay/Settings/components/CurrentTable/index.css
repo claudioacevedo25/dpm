@@ -1,0 +1,33 @@
+.currentTable {
+}
+
+.currentTable .currentTable__head {
+  color: #aaaabe;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 4px 0 6px 0;
+}
+
+.currentTable__container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: rgba(30, 30, 52, 0.4);
+  padding: 8px 5px;
+}
+
+.currentTable__container .currentTable__container__name {
+  width: 40%;
+  font-size: 0.8rem;
+}
+
+.currentTable__container .currentTable__container__date {
+  width: 30%;
+  font-size: 0.8rem;
+}
+
+.currentTable__container .currentTable__container__time {
+  width: 30%;
+  font-size: 0.8rem;
+}

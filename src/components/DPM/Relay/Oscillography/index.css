@@ -20,8 +20,9 @@
   margin: 12px 0;
 }
 
-.oscillographies__subtitle {
+.oscillographies .oscillographies__subtitle {
   text-align: center;
+  margin-top: 40px;
 }
 
 .oscillographies__container .spinner {

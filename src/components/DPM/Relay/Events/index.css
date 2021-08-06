@@ -16,8 +16,9 @@
   margin-top: 10px;
 }
 
-.events__subtitle {
-  align-self: center;
+.events .events__subtitle {
+  text-align: center;
+  margin-top: 40px;
 }
 
 .events__container .spinner {

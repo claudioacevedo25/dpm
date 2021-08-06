@@ -73,13 +73,13 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const classes = useStyles();
   const [open] = useState(true);
   const [redirect, setRedirect] = useState({});
+  const pathname = history.location.pathname.split("/", (1, 2));
 
-  const onClickRedirect = (path, valueTab) => {
+  const onClickRedirect = (path) => {
     if (!alert.isAlert) {
       history.push(path);
-      localStorage.setItem("valueTab", valueTab);
     } else {
-      const redirect = { path: path, valueTab: valueTab };
+      const redirect = { path: path };
       setRedirect(redirect);
     }
   };
@@ -87,7 +87,6 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const onClickFollow = (follow) => {
     if (follow) {
       history.push(redirect.path);
-      localStorage.setItem("valueTab", redirect.valueTab);
       setRedirect("");
       dispatchAlert({ isAlert: false });
     } else {
@@ -98,28 +97,28 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const listItem = [
     {
       text: "Inicio",
-      value: 0,
+      value: "home",
       icon: <HomeOutlined />,
       href: paths.private.home,
       onclick: () => onClickRedirect(paths.private.home, 0),
     },
     {
       text: "IED",
-      value: 1,
+      value: "ide",
       icon: <GroupWorkRounded />,
       href: paths.private.ide,
       onclick: () => onClickRedirect(paths.private.ide, 1),
     },
     {
       text: "Backup",
-      value: 2,
+      value: "backup",
       icon: <BackupOutlined />,
       href: paths.private.backup,
       onclick: () => onClickRedirect(paths.private.backup, 2),
     },
     {
       text: "Event timeline",
-      value: 3,
+      value: "eventTimeline",
       icon: <TimelineOutlined />,
       href: paths.private.eventTimeline,
       onclick: () => onClickRedirect(paths.private.eventTimeline, 3),
@@ -171,7 +170,7 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
               <div
                 className={`drawer__list__item__button ${
                   !!item.href &&
-                  parseInt(localStorage.getItem("valueTab")) === item.value &&
+                  pathname[1] === item.value &&
                   "drawer__list__item__button--active"
                 }`}
               >

@@ -22,25 +22,30 @@ const EventsComponent = ({ getRelayIDEvents }) => {
 
   return (
     <div className="events">
-      <Typography className="events__title">Eventos Registrados</Typography>
-      <div className="events__container">
-        {listEvents.data ? (
-          listEvents.data.length > 0 ? (
-            <>
+      {listEvents.data ? (
+        listEvents.data.length > 0 ? (
+          <>
+            <Typography className="events__title">
+              Eventos Registrados
+            </Typography>
+
+            <div className="events__container">
               <EventsTable listEvents={listEvents.data} />
               <Pagination
                 totalPages={totalPage(listEvents.total)}
                 onPageChange={onPageChange}
                 activePage={activePage}
-              />
-            </>
-          ) : (
-            <Typography className="events__subtitle">No hay eventos</Typography>
-          )
+              />{" "}
+            </div>
+          </>
         ) : (
-          <Spinner />
-        )}
-      </div>
+          <Typography className="events__subtitle">
+            No hay eventos registrados
+          </Typography>
+        )
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };
