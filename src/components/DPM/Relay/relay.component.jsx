@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   TextField,
@@ -7,18 +7,30 @@ import {
   Tabs,
   Tab,
 } from "@material-ui/core";
-import { Search, FilterList } from "@material-ui/icons";
+import { Search, FilterList, FiberManualRecord } from "@material-ui/icons";
 import Oscillography from "./Oscillography/oscillography.container";
 import Events from "./Events";
+import Settings from "./Settings";
 import "./index.css";
 
-const RelayComponent = ({ relayID, relayName }) => {
+const RelayComponent = ({ relayID, relayName, getRelayID }) => {
   const [valueTab, setValueTab] = useState(1);
+  const [relayUpdated, setRelayUpdated] = useState(null);
   const tabs = [
     { name: "Osilografías" },
     { name: "Eventos" },
     { name: "Reportes", disabled: true },
+    { name: "Ajustes", state: relayUpdated },
   ];
+
+  useEffect(() => {
+    getRelays();
+  }, []);
+
+  const getRelays = async () => {
+    const data = await getRelayID();
+    setRelayUpdated(data.updated);
+  };
 
   const handleStateTabChange = (event, newValue) => {
     setValueTab(newValue);
@@ -43,6 +55,13 @@ const RelayComponent = ({ relayID, relayName }) => {
               {tabs.map((tab, index) => (
                 <Tab
                   key={index}
+                  icon={
+                    tab.state !== undefined &&
+                    tab.state !== null &&
+                    !tab.state && (
+                      <FiberManualRecord className="relay__header__appBar__tabs__icon" />
+                    )
+                  }
                   disabled={!!tab.disabled && tab.disabled}
                   value={index}
                   className={`relay__header__appBar__tabs__item ${
@@ -83,18 +102,26 @@ const RelayComponent = ({ relayID, relayName }) => {
           </div>
         </div>
       </div>
-
-      <div>
-        <TabPanel value={valueTab} index={0}>
-          <Oscillography relayID={relayID} />
-        </TabPanel>
-        <TabPanel value={valueTab} index={1}>
-          <Events relayID={relayID} />
-        </TabPanel>
-        <TabPanel value={valueTab} index={2}>
-          cosas 2
-        </TabPanel>
-      </div>
+      {relayUpdated !== null && (
+        <>
+          <TabPanel value={valueTab} index={0}>
+            <Oscillography relayID={relayID} />
+          </TabPanel>
+          <TabPanel value={valueTab} index={1}>
+            <Events relayID={relayID} />
+          </TabPanel>
+          <TabPanel value={valueTab} index={2}>
+            cosas 2
+          </TabPanel>
+          <TabPanel value={valueTab} index={3}>
+            <Settings
+              relayID={relayID}
+              relayUpdated={relayUpdated}
+              updated={setRelayUpdated}
+            />
+          </TabPanel>
+        </>
+      )}
     </div>
   );
 };

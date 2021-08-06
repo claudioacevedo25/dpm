@@ -8,11 +8,10 @@ import {
   TableRow,
   Checkbox,
 } from "@material-ui/core";
-import { TimelineOutlined } from "@material-ui/icons";
 import moment from "moment";
 import "./index.css";
 
-const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
+const SelectableTableComponent = ({ onClickSelected, listSettings }) => {
   const [selected, setSelected] = useState([]);
 
   const handleClick = (event, id) => {
@@ -41,13 +40,13 @@ const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
       <Table aria-label="customized table">
         <TableHead className="selectableTable__head">
           <TableRow>
-            <TableCell>Nombre</TableCell>
+            <TableCell>Superado</TableCell>
             <TableCell>Fecha</TableCell>
             <TableCell>Hora</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {listOscillographies.map((row) => {
+          {listSettings.map((row) => {
             const isItemSelected = isSelected(row.id);
             return (
               <TableRow
@@ -58,7 +57,7 @@ const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
                 aria-checked={isItemSelected}
                 tabIndex={-1}
               >
-                <TableCell>
+                <TableCell className="selectableTable__row__name">
                   <Checkbox
                     onClick={(event) => handleClick(event, row.id)}
                     color="primary"
@@ -66,10 +65,11 @@ const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
                   />
                   {row.name}
                 </TableCell>
-                <TableCell>{moment(row.date).format("DD/MM/YYYY")}</TableCell>
-                <TableCell>{moment(row.date).format("hh:mm a")}</TableCell>
-                <TableCell>
-                  <TimelineOutlined />
+                <TableCell className="selectableTable__row__date">
+                  {moment(row.date).format("DD/MM/YYYY")}
+                </TableCell>
+                <TableCell className="selectableTable__row__time">
+                  {moment(row.date).format("hh:mm a")}
                 </TableCell>
               </TableRow>
             );

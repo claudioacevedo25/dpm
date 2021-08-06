@@ -2,6 +2,22 @@
   background: rgba(30, 30, 52, 0.4);
 }
 
+.selectableTable__row {
+  width: 100%;
+}
+
+.selectableTable__row__name {
+  width: 40%;
+}
+
+.selectableTable__row__date {
+  width: 30%;
+}
+
+.selectableTable__row__time {
+  width: 30%;
+}
+
 .selectableTable__row td {
   border-bottom: none;
   height: 20px;

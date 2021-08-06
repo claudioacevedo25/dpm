@@ -56,24 +56,23 @@ const OscillographyComponent = ({
 
   return (
     <div className="oscillographies">
-      <div className="oscillographies__header">
-        <Typography className="oscillographies__title">
-          Osilografías Registradas
-        </Typography>
-        <div className="oscillographies__button">
-          <Button
-            color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
-            textButton="Descargar zip"
-            disabled={selected.length > 0 ? false : true}
-            onClickButton={onClickOscillographies}
-          />
-        </div>
-      </div>
-
-      <div className="oscillographies__container">
-        {listOscillographies.data && !isDownload ? (
-          listOscillographies.data.length > 0 ? (
-            <>
+      {listOscillographies.data && !isDownload ? (
+        listOscillographies.data.length > 0 ? (
+          <>
+            <div className="oscillographies__header">
+              <Typography className="oscillographies__title">
+                Oscilografías Registradas
+              </Typography>
+              <div className="oscillographies__button">
+                <Button
+                  color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
+                  textButton="Descargar zip"
+                  disabled={selected.length > 0 ? false : true}
+                  onClickButton={onClickOscillographies}
+                />
+              </div>
+            </div>
+            <div className="oscillographies__container">
               <SelectableTable
                 onClickSelected={onClickSelected}
                 listOscillographies={listOscillographies.data}
@@ -83,16 +82,16 @@ const OscillographyComponent = ({
                 onPageChange={onPageChange}
                 activePage={activePage}
               />
-            </>
-          ) : (
-            <Typography className="oscillographies__subtitle">
-              No hay eventos
-            </Typography>
-          )
+            </div>
+          </>
         ) : (
-          <Spinner description={!!isDownload && "Descargando archivos"} />
-        )}
-      </div>
+          <Typography className="oscillographies__subtitle">
+            No hay oscilografias registrados
+          </Typography>
+        )
+      ) : (
+        <Spinner description={!!isDownload && "Descargando archivos"} />
+      )}
     </div>
   );
 };

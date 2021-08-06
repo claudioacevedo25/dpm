@@ -37,6 +37,18 @@
   font-weight: 200;
   letter-spacing: 0.4px;
   font-size: 1rem;
+  min-height: 50px;
+}
+
+.relay__header__appBar
+  .relay__header__appBar__tabs
+  .relay__header__appBar__tabs__item
+  .relay__header__appBar__tabs__icon {
+  height: 6px;
+  width: 6px;
+  align-self: flex-end;
+  margin-bottom: -5px;
+  color: #ff0000;
 }
 
 .relay__header__appBar__tabs .relay__header__appBar__tabs--active {
