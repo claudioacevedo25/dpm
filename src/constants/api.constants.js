@@ -10,7 +10,9 @@ export const ALLRELAYS = "1/relays/all/";
 export const EVENTS = "events/";
 export const BACKUP = "1/relays/activate_backup/";
 export const OSCILLOGRAPHIES = "oscillographies/";
-export const DOWNLOAD = "oscillographies/download/";
+export const DOWNLOAD_OSCILLOGRAPHIES = "oscillographies/download/";
+export const SETTINGS = "settings/";
+export const DOWNLOAD_SETTINGS = "settings/download/";
 
 export const httpRequestsValues = {
   GET: "get",
