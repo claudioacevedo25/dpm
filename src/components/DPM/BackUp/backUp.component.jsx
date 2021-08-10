@@ -25,7 +25,7 @@ const BackUpComponent = ({
   const [selected, setSelected] = useState([]);
   const [notificationMessage, setNotificationMessage] = useState(null);
   const headers = ["Nombre", "N subestación", "Paño"];
-  const size = 7;
+  const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {

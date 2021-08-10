@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -36,47 +37,49 @@ const SelectableTableComponent = ({ onClickSelected, listReports }) => {
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
   return (
-    <TableContainer className="selectableTable">
-      <Table aria-label="customized table">
-        <TableHead className="selectableTable__head">
-          <TableRow>
-            <TableCell>Superado</TableCell>
-            <TableCell>Fecha</TableCell>
-            <TableCell>Hora</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {listReports.map((row) => {
-            const isItemSelected = isSelected(row.id);
-            return (
-              <TableRow
-                hover
-                role="checkbox"
-                className="selectableTable__row"
-                key={row.id}
-                aria-checked={isItemSelected}
-                tabIndex={-1}
-              >
-                <TableCell className="selectableTable__row__name">
-                  <Checkbox
-                    onClick={(event) => handleClick(event, row.id)}
-                    color="primary"
-                    checked={isItemSelected || false}
-                  />
-                  {row.name}
-                </TableCell>
-                <TableCell className="selectableTable__row__date">
-                  {moment(row.date).format("DD/MM/YYYY")}
-                </TableCell>
-                <TableCell className="selectableTable__row__time">
-                  {moment(row.date).format("hh:mm a")}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Paper>
+      <TableContainer className="selectableTable">
+        <Table stickyHeader aria-label="customized table">
+          <TableHead className="selectableTable__head">
+            <TableRow>
+              <TableCell>Superado</TableCell>
+              <TableCell>Fecha</TableCell>
+              <TableCell>Hora</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {listReports.map((row) => {
+              const isItemSelected = isSelected(row.id);
+              return (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  className="selectableTable__row"
+                  key={row.id}
+                  aria-checked={isItemSelected}
+                  tabIndex={-1}
+                >
+                  <TableCell className="selectableTable__row__name">
+                    <Checkbox
+                      onClick={(event) => handleClick(event, row.id)}
+                      color="primary"
+                      checked={isItemSelected || false}
+                    />
+                    {row.name}
+                  </TableCell>
+                  <TableCell className="selectableTable__row__date">
+                    {moment(row.date).format("DD/MM/YYYY")}
+                  </TableCell>
+                  <TableCell className="selectableTable__row__time">
+                    {moment(row.date).format("hh:mm a")}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 };
 

@@ -2,6 +2,26 @@
   background: rgba(30, 30, 52, 0.4);
 }
 
+.selectableTable {
+  height: calc(100vh - 408px);
+}
+
+.selectableTable::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.selectableTable::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.selectableTable::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border-top: 10px solid #19192b;
+  border: 2px solid #19192b;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 .selectableTable__row {
   width: 100%;
 }
@@ -30,4 +50,5 @@
   padding: 10px 0;
   color: #aaaabe;
   font-size: 0.9rem;
+  background: #0f0f1f;
 }

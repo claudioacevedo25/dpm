@@ -18,7 +18,7 @@ const OscillographyComponent = ({
   const [selected, setSelected] = useState([]);
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
-  const size = 7;
+  const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {

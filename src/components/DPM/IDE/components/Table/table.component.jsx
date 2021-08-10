@@ -52,38 +52,44 @@ const TableComponent = ({
 
   return (
     <Card className="table">
-      <CardContent className="tableContainer">
-        <TableContainer component={Paper}>
-          <Table className="tableContainer__table" aria-label="simple table">
-            <TableHead className="tableContainer__table__head">
-              <TableRow>
-                <TableCell
-                  className="tableContainer__table__head__item"
-                  align="center"
-                >
-                  {props.header}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody className="tableContainer__table__body">
-              {props.rows.map((row) => (
-                <TableRow onClick={() => onChange(row)} key={row.id}>
+      <CardContent>
+        <Paper>
+          <TableContainer className="tableContainer">
+            <Table
+              stickyHeader
+              className="tableContainer__table"
+              aria-label="simple table"
+            >
+              <TableHead className="tableContainer__table__head">
+                <TableRow>
                   <TableCell
-                    key={row.id}
-                    className={`tableContainer__table__body__item ${
-                      selected === row.id &&
-                      "tableContainer__table__body--selected"
-                    }`}
+                    className="tableContainer__table__head__item"
                     align="center"
                   >
-                    {!!row.name ? row.name : row.mnemo}
+                    {props.header}
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+
+              <TableBody className="tableContainer__table__body">
+                {props.rows.map((row) => (
+                  <TableRow onClick={() => onChange(row)} key={row.id}>
+                    <TableCell
+                      key={row.id}
+                      className={`tableContainer__table__body__item ${
+                        selected === row.id &&
+                        "tableContainer__table__body--selected"
+                      }`}
+                      align="center"
+                    >
+                      {!!row.name ? row.name : row.mnemo}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
       </CardContent>
     </Card>
   );
