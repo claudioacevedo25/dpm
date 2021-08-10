@@ -5,6 +5,8 @@ import {
   updatePanio,
   updateRelay,
 } from "../../../../../redux/substationStructure/substationStructureActions";
+import { getPanios as obtainPanios } from "../../../../../redux/panios/paniosActions";
+import { getRelays as obtainRelays } from "../../../../../redux/relays/relaysActions";
 import {
   Card,
   CardContent,
@@ -22,9 +24,11 @@ const TableComponent = ({
   getPanios,
   getRelays,
   type,
-  dispatchSubstation,
-  dispatchPanio,
-  dispatchRelay,
+  dispatchSelectedSubstation,
+  dispatchSelectedPanio,
+  dispatchSelectedRelay,
+  dispatchnRelays,
+  dispatchnPanios,
   ...props
 }) => {
   const [selected, setSelected] = useState("");
@@ -32,13 +36,15 @@ const TableComponent = ({
     setSelected(selected.id);
     switch (type) {
       case "substation":
-        dispatchSubstation(selected);
+        dispatchnPanios([]);
+        dispatchSelectedSubstation(selected);
         return await getPanios(selected.id);
       case "panio":
-        dispatchPanio(selected);
+        dispatchnRelays([]);
+        dispatchSelectedPanio(selected);
         return await getRelays(selected.id);
       case "relay":
-        return dispatchRelay(selected);
+        return dispatchSelectedRelay(selected);
       default:
         return;
     }
@@ -85,9 +91,12 @@ const TableComponent = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSubstation: (substation) => dispatch(updateSubstation(substation)),
-    dispatchPanio: (panio) => dispatch(updatePanio(panio)),
-    dispatchRelay: (relay) => dispatch(updateRelay(relay)),
+    dispatchSelectedSubstation: (substation) =>
+      dispatch(updateSubstation(substation)),
+    dispatchSelectedPanio: (panio) => dispatch(updatePanio(panio)),
+    dispatchSelectedRelay: (relay) => dispatch(updateRelay(relay)),
+    dispatchnPanios: (panios) => dispatch(obtainPanios(panios)),
+    dispatchnRelays: (relays) => dispatch(obtainRelays(relays)),
   };
 };
 

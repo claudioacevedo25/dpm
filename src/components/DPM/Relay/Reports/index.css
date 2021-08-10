@@ -1,0 +1,64 @@
+.reports .reports__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.reports__header__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reports__label__file {
+  cursor: pointer;
+  color: #20ba87;
+  text-decoration-line: underline;
+  margin-left: 20px;
+  font-size: 0.8rem;
+}
+
+.reports__button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.reports__button .reports__button__refresh {
+  border: 2px solid #20ba87;
+  border-radius: 8px;
+  margin-right: 10px;
+  padding: 2px;
+  width: 22px;
+  height: 22px;
+}
+
+.reports__button .reports__button__refresh:hover {
+  cursor: pointer;
+}
+
+.reports__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reports__button .containerButton .button {
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+.reports .reports__subtitle {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.reports .reports__outdated {
+  color: #b32e2e;
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+
+.reports__container .spinner {
+  height: calc(100vh - 300px);
+}

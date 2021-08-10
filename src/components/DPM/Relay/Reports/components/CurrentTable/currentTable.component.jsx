@@ -3,20 +3,20 @@ import { Typography } from "@material-ui/core";
 import moment from "moment";
 import "./index.css";
 
-const CurrentTableComponent = ({ listSettings }) => {
+const CurrentTableComponent = ({ listReports }) => {
   return (
     <div className="currentTable">
       <Typography className="currentTable__head"> Ajuste actual </Typography>
 
       <div className="currentTable__container">
         <Typography className="currentTable__container__name">
-          {listSettings.name}
+          {listReports.name}
         </Typography>
         <Typography className="currentTable__container__date">
-          {moment(listSettings.date).format("DD/MM/YYYY")}
+          {moment(listReports.date).format("DD/MM/YYYY")}
         </Typography>
         <Typography className="currentTable__container__time">
-          {moment(listSettings.date).format("hh:mm a")}
+          {moment(listReports.date).format("hh:mm a")}
         </Typography>
       </div>
     </div>

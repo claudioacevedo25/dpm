@@ -1,0 +1,33 @@
+.selectableTable__row:nth-of-type(odd) {
+  background: rgba(30, 30, 52, 0.4);
+}
+
+.selectableTable__row {
+  width: 100%;
+}
+
+.selectableTable__row__name {
+  width: 40%;
+}
+
+.selectableTable__row__date {
+  width: 30%;
+}
+
+.selectableTable__row__time {
+  width: 30%;
+}
+
+.selectableTable__row td {
+  border-bottom: none;
+  height: 20px;
+  padding: 0;
+  font-size: 0.75rem;
+}
+
+.selectableTable__head th {
+  border-bottom: none;
+  padding: 10px 0;
+  color: #aaaabe;
+  font-size: 0.9rem;
+}
