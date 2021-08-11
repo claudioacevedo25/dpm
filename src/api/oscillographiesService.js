@@ -2,11 +2,12 @@ import { genericHttpRequest } from "./publicFetch";
 import {
   RELAYS,
   OSCILLOGRAPHIES,
+  DOWNLOAD_OSCILLOGRAPHIES,
   httpRequestsValues,
   DPM,
 } from "../constants/api.constants";
 
-const { GET } = httpRequestsValues;
+const { GET, POST } = httpRequestsValues;
 const apiSelection = DPM;
 
 /**
@@ -21,4 +22,12 @@ export const getOscillographies = (idRelay, page, size) => {
   };
   const RELAYOSCILLOGRAPHIES = RELAYS + idRelay + "/" + OSCILLOGRAPHIES;
   return genericHttpRequest(GET, RELAYOSCILLOGRAPHIES, data, apiSelection);
+};
+
+export const downloadOscillographies = (id, listRelays) => {
+  const relayByID = RELAYS + id + "/" + DOWNLOAD_OSCILLOGRAPHIES;
+  const data = {
+    oscillographies: listRelays,
+  };
+  return genericHttpRequest(POST, relayByID, data, apiSelection);
 };

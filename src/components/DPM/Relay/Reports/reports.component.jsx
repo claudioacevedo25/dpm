@@ -10,20 +10,18 @@ import Button from "../../../Button";
 import CurrentTable from "./components/CurrentTable";
 import "./index.css";
 
-const SettingsComponent = ({
-  getRelayIDSettings,
-  handleSettingsRelay,
-  handleRelaySettingsFile,
+const ReportsComponent = ({
+  getRelayIDReports,
+  handleReportsRelay,
+  handleRelayReportsFile,
   dispatchAlert,
-  relayUpdated,
-  updated,
   alert,
 }) => {
-  const [listSettings, setListSettings] = useState({});
+  const [listReports, setListReports] = useState({});
   const [selected, setSelected] = useState([]);
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
-  const [currentSetting, setCurrentSetting] = useState({});
+  const [currentReport, setCurrentReport] = useState({});
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
@@ -32,18 +30,18 @@ const SettingsComponent = ({
   }, []);
 
   const onPageChange = async (page = 0) => {
-    const listSettings = await getRelayIDSettings(page, size);
+    const listReports = await getRelayIDReports(page, size);
     if (page === 0) {
-      setCurrentSetting(listSettings.data[0]);
+      setCurrentReport(listReports.data[0]);
     }
-    setListSettings(listSettings);
+    setListReports(listReports);
     setActivePage(page);
   };
 
-  const onClickSettings = async () => {
+  const onClickReports = async () => {
     setIsDownload(true);
     setSelected([]);
-    await handleSettingsRelay(selected);
+    await handleReportsRelay(selected);
     setIsDownload(false);
   };
 
@@ -68,63 +66,58 @@ const SettingsComponent = ({
       const file = new FormData();
       const imagedata = document.querySelector('input[type="file"]').files[0];
       file.append("file", imagedata);
-      await handleRelaySettingsFile(file);
-      updated(true);
+      await handleRelayReportsFile(file);
     }
   };
 
   return (
-    <div className="settings">
-      {listSettings.data && !isDownload ? (
-        listSettings.data.length > 0 ? (
+    <div className="reports">
+      {listReports.data && !isDownload ? (
+        listReports.data.length > 0 ? (
           <>
-            <div className="settings__header">
-              <div className="settings__header__content">
-                <Typography className="settings__title">Ajustes</Typography>
-                <label className="settings__label__file">
+            <div className="reports__header">
+              <div className="reports__header__content">
+                <Typography className="reports__title">Ajustes</Typography>
+                <label className="reports__label__file">
                   Subir nuevo archivo
                   <input
                     type="file"
                     name="files"
                     style={{ visibility: "hidden" }}
-                    className="settings__input__file"
+                    className="reports__input__file"
                     onChange={handleFile}
                   ></input>
                 </label>
               </div>
-              <div className="settings__button">
+              <div className="reports__button">
                 <RefreshIcon
-                  className="settings__button__refresh"
+                  className="reports__button__refresh"
                   onClick={() => onPageChange(0)}
                 />
                 <Button
                   color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
                   textButton="Descargar zip"
                   disabled={selected.length > 0 ? false : true}
-                  onClickButton={onClickSettings}
+                  onClickButton={onClickReports}
                 />
               </div>
             </div>
 
-            <Typography className="settings__outdated">
-              {!relayUpdated && "Hay que actualizar el archivo de ajustes"}
-            </Typography>
-
-            <div className="settings__container">
-              <CurrentTable listSettings={currentSetting} />
+            <div className="reports__container">
+              <CurrentTable listReports={currentReport} />
               <SelectableTable
                 onClickSelected={onClickSelected}
-                listSettings={listSettings.data}
+                listReports={listReports.data}
               />
               <Pagination
-                totalPages={totalPage(listSettings.total)}
+                totalPages={totalPage(listReports.total)}
                 onPageChange={onPageChange}
                 activePage={activePage}
               />
             </div>
           </>
         ) : (
-          <Typography className="settings__subtitle">
+          <Typography className="reports__subtitle">
             No hay ajustes registrados,
           </Typography>
         )
@@ -143,4 +136,4 @@ const mapDispatchToProps = (dispatch) => {
     dispatchAlert: (alert) => dispatch(updateAlert(alert)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsComponent);
