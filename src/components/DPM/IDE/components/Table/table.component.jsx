@@ -5,6 +5,8 @@ import {
   updatePanio,
   updateRelay,
 } from "../../../../../redux/substationStructure/substationStructureActions";
+import { getPanios as obtainPanios } from "../../../../../redux/panios/paniosActions";
+import { getRelays as obtainRelays } from "../../../../../redux/relays/relaysActions";
 import {
   Card,
   CardContent,
@@ -22,9 +24,11 @@ const TableComponent = ({
   getPanios,
   getRelays,
   type,
-  dispatchSubstation,
-  dispatchPanio,
-  dispatchRelay,
+  dispatchSelectedSubstation,
+  dispatchSelectedPanio,
+  dispatchSelectedRelay,
+  dispatchnRelays,
+  dispatchnPanios,
   ...props
 }) => {
   const [selected, setSelected] = useState("");
@@ -32,13 +36,15 @@ const TableComponent = ({
     setSelected(selected.id);
     switch (type) {
       case "substation":
-        dispatchSubstation(selected);
+        dispatchnPanios([]);
+        dispatchSelectedSubstation(selected);
         return await getPanios(selected.id);
       case "panio":
-        dispatchPanio(selected);
+        dispatchnRelays([]);
+        dispatchSelectedPanio(selected);
         return await getRelays(selected.id);
       case "relay":
-        return dispatchRelay(selected);
+        return dispatchSelectedRelay(selected);
       default:
         return;
     }
@@ -46,38 +52,44 @@ const TableComponent = ({
 
   return (
     <Card className="table">
-      <CardContent className="tableContainer">
-        <TableContainer component={Paper}>
-          <Table className="tableContainer__table" aria-label="simple table">
-            <TableHead className="tableContainer__table__head">
-              <TableRow>
-                <TableCell
-                  className="tableContainer__table__head__item"
-                  align="center"
-                >
-                  {props.header}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody className="tableContainer__table__body">
-              {props.rows.map((row) => (
-                <TableRow onClick={() => onChange(row)} key={row.id}>
+      <CardContent>
+        <Paper>
+          <TableContainer className="tableContainer">
+            <Table
+              stickyHeader
+              className="tableContainer__table"
+              aria-label="simple table"
+            >
+              <TableHead className="tableContainer__table__head">
+                <TableRow>
                   <TableCell
-                    key={row.id}
-                    className={`tableContainer__table__body__item ${
-                      selected === row.id &&
-                      "tableContainer__table__body--selected"
-                    }`}
+                    className="tableContainer__table__head__item"
                     align="center"
                   >
-                    {!!row.name ? row.name : row.mnemo}
+                    {props.header}
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+
+              <TableBody className="tableContainer__table__body">
+                {props.rows.map((row) => (
+                  <TableRow onClick={() => onChange(row)} key={row.id}>
+                    <TableCell
+                      key={row.id}
+                      className={`tableContainer__table__body__item ${
+                        selected === row.id &&
+                        "tableContainer__table__body--selected"
+                      }`}
+                      align="center"
+                    >
+                      {!!row.name ? row.name : row.mnemo}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
       </CardContent>
     </Card>
   );
@@ -85,9 +97,12 @@ const TableComponent = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSubstation: (substation) => dispatch(updateSubstation(substation)),
-    dispatchPanio: (panio) => dispatch(updatePanio(panio)),
-    dispatchRelay: (relay) => dispatch(updateRelay(relay)),
+    dispatchSelectedSubstation: (substation) =>
+      dispatch(updateSubstation(substation)),
+    dispatchSelectedPanio: (panio) => dispatch(updatePanio(panio)),
+    dispatchSelectedRelay: (relay) => dispatch(updateRelay(relay)),
+    dispatchnPanios: (panios) => dispatch(obtainPanios(panios)),
+    dispatchnRelays: (relays) => dispatch(obtainRelays(relays)),
   };
 };
 

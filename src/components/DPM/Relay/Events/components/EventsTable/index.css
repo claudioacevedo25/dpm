@@ -2,6 +2,7 @@
   color: #aaaabe;
   border-bottom: none;
   font-size: 1rem;
+  background: #0f0f1f;
 }
 
 .eventsContainer__table__body .eventsContainer__table__body__item {
@@ -12,4 +13,24 @@
 
 .eventsContainer__table__body .eventsContainer__table__row:nth-of-type(odd) {
   background: rgba(30, 30, 52, 0.4);
+}
+
+.eventsContainer {
+  height: calc(100vh - 325px);
+}
+
+.eventsContainer::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.eventsContainer::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.eventsContainer::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border-top: 10px solid #19192b;
+  border: 2px solid #19192b;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }

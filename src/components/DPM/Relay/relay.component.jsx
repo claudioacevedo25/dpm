@@ -11,6 +11,7 @@ import { Search, FilterList, FiberManualRecord } from "@material-ui/icons";
 import Oscillography from "./Oscillography/oscillography.container";
 import Events from "./Events";
 import Settings from "./Settings";
+import Reports from "./Reports";
 import "./index.css";
 
 const RelayComponent = ({ relayID, relayName, getRelayID }) => {
@@ -19,7 +20,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID }) => {
   const tabs = [
     { name: "Osilografías" },
     { name: "Eventos" },
-    { name: "Reportes", disabled: true },
+    { name: "Reportes" },
     { name: "Ajustes", state: relayUpdated },
   ];
 
@@ -111,7 +112,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID }) => {
             <Events relayID={relayID} />
           </TabPanel>
           <TabPanel value={valueTab} index={2}>
-            cosas 2
+            <Reports relayID={relayID} />
           </TabPanel>
           <TabPanel value={valueTab} index={3}>
             <Settings
