@@ -4,13 +4,10 @@ import EventsComponent from "./events.component";
 
 const Events = ({ relayID }) => {
   const getRelayIDEvents = async (page = 0, size) => {
-    try {
-      const data = await getEvents(relayID, page, size);
-      return data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await getEvents(relayID, page, size);
+    return data;
   };
+
   return <EventsComponent getRelayIDEvents={getRelayIDEvents} />;
 };
 

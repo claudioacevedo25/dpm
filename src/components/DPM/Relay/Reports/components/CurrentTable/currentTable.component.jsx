@@ -6,7 +6,7 @@ import "./index.css";
 const CurrentTableComponent = ({ listReports }) => {
   return (
     <div className="currentTable">
-      <Typography className="currentTable__head"> Ajuste actual </Typography>
+      <Typography className="currentTable__head"> Reporte actual </Typography>
 
       <div className="currentTable__container">
         <Typography className="currentTable__container__name">

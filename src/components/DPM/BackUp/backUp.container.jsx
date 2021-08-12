@@ -7,20 +7,13 @@ import BackUpComponent from "./backUp.component";
 
 const BackUp = () => {
   const getAllRelays = async (page = 0, size) => {
-    try {
-      const data = await allRelaysService(page, size);
-      return data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await allRelaysService(page, size);
+    return data;
   };
 
   const handleBackupRelays = async (listRelays) => {
-    try {
-      await backupRelays(listRelays);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await backupRelays(listRelays);
+    return data;
   };
 
   return (
