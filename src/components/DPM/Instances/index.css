@@ -31,7 +31,7 @@ div .instances__container {
   cursor: pointer;
 }
 
-.instances__container__item__icon {
+.instances__container > div .instances__container__item__icon {
   width: 5px;
   height: 5px;
   margin-right: 8px;

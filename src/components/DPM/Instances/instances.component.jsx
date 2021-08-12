@@ -15,6 +15,7 @@ const InstancesComponent = ({}) => {
 
   const handleSelectedInstance = (instance) => {
     localStorage.setItem("dpm", JSON.stringify(instance));
+    window.location.href = "/home";
     setAnchorEl(null);
   };
 
@@ -52,7 +53,7 @@ const InstancesComponent = ({}) => {
             </Typography>
 
             {JSON.parse(user).instances["DPM"].map((instance, index) => (
-              <div className="instances__container__item">
+              <div key={instance.id} className="instances__container__item">
                 <FiberManualRecordIcon className="instances__container__item__icon" />
                 <Typography
                   className="instances__container__item__name"

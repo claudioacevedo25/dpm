@@ -3,9 +3,11 @@ import { httpRequestsValues, REFRESH, DPM } from "../constants/api.constants";
 
 const { POST, DELETE, GET, PUT } = httpRequestsValues;
 
+const instance = localStorage.getItem("dpm");
+
 const backendURL = (api) => {
   const platform = process.env.REACT_APP_PLATFORM_BACKEND_URL;
-  const dpm = process.env.REACT_APP_DPM_BACKEND_URL;
+  const dpm = process.env.REACT_APP_DPM_BACKEND_URL + JSON.parse(instance).id;
   return api === DPM ? dpm : platform;
 };
 

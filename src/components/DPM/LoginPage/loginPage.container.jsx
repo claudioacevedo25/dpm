@@ -8,7 +8,6 @@ const LoginPage = () => {
       const data = await loginService(values);
       sessionStorage.setItem("user", JSON.stringify(data));
       localStorage.setItem("dpm", JSON.stringify(data.instances["DPM"][0]));
-      debugger;
       window.location.href = "/home";
     } catch (error) {
       console.log("error :>> ", error);

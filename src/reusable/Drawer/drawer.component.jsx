@@ -19,7 +19,6 @@ import {
   TimelineOutlined,
 } from "@material-ui/icons";
 import paths from "../../constants/paths.constants";
-import logoDPM from "../../assets/images/LogoDPM.png";
 import Header from "../Header";
 import Alert from "../Alert";
 import Instances from "../../components/DPM/Instances";
@@ -75,7 +74,6 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
   const [open] = useState(true);
   const [redirect, setRedirect] = useState({});
   const pathname = history.location.pathname.split("/", (1, 2));
-  console.log("instance :>> ", JSON.parse(localStorage.getItem("dpm")).name);
 
   const onClickRedirect = (path) => {
     if (!alert.isAlert) {
