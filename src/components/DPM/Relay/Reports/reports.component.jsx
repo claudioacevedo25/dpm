@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { connect } from "react-redux";
+import { useNotification } from "../../../../hooks/notification";
 import { updateAlert } from "../../../../redux/alert/alertActions";
 import SelectableTable from "./components/SelectableTable";
 import Pagination from "../../../../reusable/Pagination";
@@ -22,6 +23,7 @@ const ReportsComponent = ({
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
   const [currentReport, setCurrentReport] = useState({});
+  const { onError, onSuccess } = useNotification();
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
@@ -30,18 +32,28 @@ const ReportsComponent = ({
   }, []);
 
   const onPageChange = async (page = 0) => {
-    const listReports = await getRelayIDReports(page, size);
-    if (page === 0) {
-      setCurrentReport(listReports.data[0]);
+    try {
+      const listReports = await getRelayIDReports(page, size);
+      if (page === 0) {
+        setCurrentReport(listReports.data[0]);
+      }
+      setListReports(listReports);
+      setActivePage(page);
+    } catch (error) {
+      onError(error);
     }
-    setListReports(listReports);
-    setActivePage(page);
   };
 
   const onClickReports = async () => {
     setIsDownload(true);
-    setSelected([]);
-    await handleReportsRelay(selected);
+    try {
+      setSelected([]);
+      await handleReportsRelay(selected);
+      dispatchAlert({ isAlert: false });
+      onSuccess("Descarga realizada con éxito");
+    } catch (error) {
+      onError("No se pudo realizar la descarga con éxito");
+    }
     setIsDownload(false);
   };
 
@@ -66,7 +78,13 @@ const ReportsComponent = ({
       const file = new FormData();
       const imagedata = document.querySelector('input[type="file"]').files[0];
       file.append("file", imagedata);
-      await handleRelayReportsFile(file);
+
+      try {
+        await handleRelayReportsFile(file);
+        onSuccess("Su archivo se subio con éxito");
+      } catch (error) {
+        onError(error);
+      }
     }
   };
 
@@ -77,7 +95,7 @@ const ReportsComponent = ({
           <>
             <div className="reports__header">
               <div className="reports__header__content">
-                <Typography className="reports__title">Ajustes</Typography>
+                <Typography className="reports__title">Reportes</Typography>
                 <label className="reports__label__file">
                   Subir nuevo archivo
                   <input

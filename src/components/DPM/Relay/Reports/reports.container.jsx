@@ -8,29 +8,19 @@ import ReportsComponent from "./reports.component";
 
 const Reports = ({ relayID }) => {
   const getRelayIDReports = async (page = 0, size) => {
-    try {
-      const data = await getReports(relayID, page, size);
-      return data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await getReports(relayID, page, size);
+    return data;
   };
 
   const handleReportsRelay = async (listRelays) => {
-    try {
-      const data = await downloadReports(relayID, listRelays);
-      window.location.assign(data["url"]);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await downloadReports(relayID, listRelays);
+    window.location.assign(data["url"]);
+    return data;
   };
 
   const handleRelayReportsFile = async (file) => {
-    try {
-      await reportsFile(relayID, file);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await reportsFile(relayID, file);
+    return data;
   };
 
   return (

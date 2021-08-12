@@ -8,29 +8,19 @@ import SettingsComponent from "./settings.component";
 
 const Settings = ({ relayID, relayUpdated, updated }) => {
   const getRelayIDSettings = async (page = 0, size) => {
-    try {
-      const data = await getSettings(relayID, page, size);
-      return data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await getSettings(relayID, page, size);
+    return data;
   };
 
   const handleSettingsRelay = async (listRelays) => {
-    try {
-      const data = await downloadSettings(relayID, listRelays);
-      window.location.assign(data["url"]);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await downloadSettings(relayID, listRelays);
+    window.location.assign(data["url"]);
+    return data;
   };
 
   const handleRelaySettingsFile = async (file) => {
-    try {
-      await settingsFile(relayID, file);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await settingsFile(relayID, file);
+    return data;
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
 import { connect } from "react-redux";
+import { useNotification } from "../../../../hooks/notification";
 import { updateAlert } from "../../../../redux/alert/alertActions";
 import SelectableTable from "./components/SelectableTable";
 import Pagination from "../../../../reusable/Pagination";
@@ -18,6 +19,7 @@ const OscillographyComponent = ({
   const [selected, setSelected] = useState([]);
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
+  const { onError, onSuccess } = useNotification();
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
@@ -26,15 +28,25 @@ const OscillographyComponent = ({
   }, []);
 
   const onPageChange = async (page) => {
-    const listOscillographies = await getRelayIDOscillographies(page, size);
-    setListOscillographies(listOscillographies);
-    setActivePage(page);
+    try {
+      const listOscillographies = await getRelayIDOscillographies(page, size);
+      setListOscillographies(listOscillographies);
+      setActivePage(page);
+    } catch (error) {
+      onError(error);
+    }
   };
 
   const onClickOscillographies = async () => {
     setIsDownload(true);
-    setSelected([]);
-    await handleOscillographiesRelay(selected);
+    try {
+      setSelected([]);
+      await handleOscillographiesRelay(selected);
+      dispatchAlert({ isAlert: false });
+      onSuccess("Descarga realizada con éxito");
+    } catch (error) {
+      onError("No se pudo realizar la descarga con éxito");
+    }
     setIsDownload(false);
   };
 
