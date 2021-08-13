@@ -19,6 +19,7 @@ const BackUpComponent = ({
   const [listRelays, setListRelays] = useState({});
   const [activePage, setActivePage] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [isDownload, setIsDownload] = useState(false);
   const { onError, onSuccess } = useNotification();
   const headers = ["Nombre", "N subestación", "Paño"];
   const size = 14;
@@ -39,15 +40,17 @@ const BackUpComponent = ({
   };
 
   const onClickBackup = async () => {
+    setIsDownload(true);
     try {
       await handleBackupRelays(selected);
-      onPageChange(0);
-      setSelected([]);
-      dispatchAlert("");
       onSuccess("Sus cambios se guardaron correctamente");
     } catch (error) {
       onError("No se pudo guardar sus cambios, intente nuevamente");
     }
+    onPageChange(0);
+    setSelected([]);
+    dispatchAlert("");
+    setIsDownload(false);
   };
 
   const onClickSelected = async (selected) => {
@@ -106,7 +109,9 @@ const BackUpComponent = ({
           onClickButton={onClickBackup}
         />
       </div>
-      {Object.keys(listRelays) && Object.keys(listRelays).length !== 0 ? (
+      {Object.keys(listRelays) &&
+      Object.keys(listRelays).length !== 0 &&
+      !isDownload ? (
         <>
           <SelectableTable
             onClickSelected={onClickSelected}
@@ -120,7 +125,9 @@ const BackUpComponent = ({
           ></Pagination>
         </>
       ) : (
-        <Spinner />
+        <Spinner
+          description={!!isDownload && "Guardando los cambios realizados "}
+        />
       )}
     </div>
   );
