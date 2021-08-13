@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
+import RefreshIcon from "@material-ui/icons/Refresh";
 import { connect } from "react-redux";
 import { useNotification } from "../../../../hooks/notification";
 import { updateAlert } from "../../../../redux/alert/alertActions";
@@ -7,41 +8,47 @@ import SelectableTable from "./components/SelectableTable";
 import Pagination from "../../../../reusable/Pagination";
 import Spinner from "../../../../reusable/Spinner";
 import Button from "../../../Button";
+import CurrentTable from "./components/CurrentTable";
 import "./index.css";
 
-const OscillographyComponent = ({
-  getRelayIDOscillographies,
-  handleOscillographiesRelay,
+const ReportsComponent = ({
+  getRelayIDReports,
+  handleReportsRelay,
+  handleRelayReportsFile,
   dispatchAlert,
   alert,
 }) => {
-  const [listOscillographies, setListOscillographies] = useState({});
+  const [listReports, setListReports] = useState({});
   const [selected, setSelected] = useState([]);
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
+  const [currentReport, setCurrentReport] = useState({});
   const { onError, onSuccess } = useNotification();
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {
-    onPageChange(0);
+    onPageChange();
   }, []);
 
-  const onPageChange = async (page) => {
+  const onPageChange = async (page = 0) => {
     try {
-      const listOscillographies = await getRelayIDOscillographies(page, size);
-      setListOscillographies(listOscillographies);
+      const listReports = await getRelayIDReports(page, size);
+      if (page === 0) {
+        setCurrentReport(listReports.data[0]);
+      }
+      setListReports(listReports);
       setActivePage(page);
     } catch (error) {
       onError(error);
     }
   };
 
-  const onClickOscillographies = async () => {
+  const onClickReports = async () => {
     setIsDownload(true);
     try {
       setSelected([]);
-      await handleOscillographiesRelay(selected);
+      await handleReportsRelay(selected);
       dispatchAlert({ isAlert: false });
       onSuccess("Descarga realizada con éxito");
     } catch (error) {
@@ -66,39 +73,70 @@ const OscillographyComponent = ({
     setSelected(selected);
   };
 
+  const handleFile = async () => {
+    if (document.querySelector('input[type="file"]').files[0] !== undefined) {
+      const file = new FormData();
+      const imagedata = document.querySelector('input[type="file"]').files[0];
+      file.append("file", imagedata);
+
+      try {
+        await handleRelayReportsFile(file);
+        onSuccess("Su archivo se subio con éxito");
+      } catch (error) {
+        onError(error);
+      }
+    }
+  };
+
   return (
-    <div className="oscillographies">
-      {listOscillographies.data && !isDownload ? (
-        listOscillographies.data.length > 0 ? (
+    <div className="reports">
+      {listReports.data && !isDownload ? (
+        listReports.data.length > 0 ? (
           <>
-            <div className="oscillographies__header">
-              <Typography className="oscillographies__title">
-                Oscilografías Registradas
-              </Typography>
-              <div className="oscillographies__button">
+            <div className="reports__header">
+              <div className="reports__header__content">
+                <Typography className="reports__title">Reportes</Typography>
+                <label className="reports__label__file">
+                  Subir nuevo archivo
+                  <input
+                    type="file"
+                    name="files"
+                    style={{ visibility: "hidden" }}
+                    className="reports__input__file"
+                    onChange={handleFile}
+                  ></input>
+                </label>
+              </div>
+              <div className="reports__button">
+                <RefreshIcon
+                  className="reports__button__refresh"
+                  onClick={() => onPageChange(0)}
+                />
                 <Button
                   color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
                   textButton="Descargar zip"
                   disabled={selected.length > 0 ? false : true}
-                  onClickButton={onClickOscillographies}
+                  onClickButton={onClickReports}
                 />
               </div>
             </div>
-            <div className="oscillographies__container">
+
+            <div className="reports__container">
+              <CurrentTable listReports={currentReport} />
               <SelectableTable
                 onClickSelected={onClickSelected}
-                listOscillographies={listOscillographies.data}
+                listReports={listReports.data}
               />
               <Pagination
-                totalPages={totalPage(listOscillographies.total)}
+                totalPages={totalPage(listReports.total)}
                 onPageChange={onPageChange}
                 activePage={activePage}
               />
             </div>
           </>
         ) : (
-          <Typography className="oscillographies__subtitle">
-            No hay oscilografias registrados
+          <Typography className="reports__subtitle">
+            No hay ajustes registrados,
           </Typography>
         )
       ) : (
@@ -116,7 +154,4 @@ const mapDispatchToProps = (dispatch) => {
     dispatchAlert: (alert) => dispatch(updateAlert(alert)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OscillographyComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsComponent);

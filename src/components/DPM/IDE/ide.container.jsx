@@ -25,9 +25,7 @@ const IDE = ({
 
   useEffect(() => {
     getSubstations();
-    return () => {
-      dispatchSelectedSubstation("");
-    };
+    return () => dispatchSelectedSubstation("");
   }, []);
 
   return (

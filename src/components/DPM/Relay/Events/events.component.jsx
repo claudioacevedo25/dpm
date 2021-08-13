@@ -8,16 +8,20 @@ import "./index.css";
 const EventsComponent = ({ getRelayIDEvents }) => {
   const [listEvents, setListEvents] = useState({});
   const [activePage, setActivePage] = useState(0);
-  const size = 7;
+  const size = 18;
   const totalPage = (total) => Math.ceil(total / size);
   useEffect(() => {
     onPageChange(0);
   }, []);
 
   const onPageChange = async (page) => {
-    const listEvents = await getRelayIDEvents(page, size);
-    setListEvents(listEvents);
-    setActivePage(page);
+    try {
+      const listEvents = await getRelayIDEvents(page, size);
+      setListEvents(listEvents);
+      setActivePage(page);
+    } catch (error) {
+      console.log("error :>> ", error);
+    }
   };
 
   return (

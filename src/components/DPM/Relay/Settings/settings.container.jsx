@@ -1,36 +1,26 @@
 import React from "react";
 import {
-  getRelaySettings,
-  downloadRelaySettings,
-  relaySettingsFile,
-} from "../../../../api/relaysService";
+  getSettings,
+  downloadSettings,
+  settingsFile,
+} from "../../../../api/settingsService";
 import SettingsComponent from "./settings.component";
 
 const Settings = ({ relayID, relayUpdated, updated }) => {
   const getRelayIDSettings = async (page = 0, size) => {
-    try {
-      const data = await getRelaySettings(relayID, page, size);
-      return data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await getSettings(relayID, page, size);
+    return data;
   };
 
   const handleSettingsRelay = async (listRelays) => {
-    try {
-      const data = await downloadRelaySettings(relayID, listRelays);
-      window.location.assign(data["url"]);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await downloadSettings(relayID, listRelays);
+    window.location.assign(data["url"]);
+    return data;
   };
 
   const handleRelaySettingsFile = async (file) => {
-    try {
-      await relaySettingsFile(relayID, file);
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await settingsFile(relayID, file);
+    return data;
   };
 
   return (

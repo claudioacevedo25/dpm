@@ -13,6 +13,8 @@ export const OSCILLOGRAPHIES = "oscillographies/";
 export const DOWNLOAD_OSCILLOGRAPHIES = "oscillographies/download/";
 export const SETTINGS = "settings/";
 export const DOWNLOAD_SETTINGS = "settings/download/";
+export const REPORTS = "reports/";
+export const DOWNLOAD_REPORTS = "reports/download/";
 
 export const httpRequestsValues = {
   GET: "get",
