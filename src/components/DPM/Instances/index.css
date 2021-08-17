@@ -1,0 +1,38 @@
+.instances__logo {
+  height: 40px;
+  width: 90px;
+}
+
+.instances__logo:hover {
+  cursor: pointer;
+}
+
+div .instances__container {
+  background: #3d3d4b;
+  border-radius: 8px;
+}
+
+.instances__container .instances__container__title {
+  font-size: 0.9rem;
+}
+
+.instances__container__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.instances__container > div .instances__container__item__name {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.instances__container > div .instances__container__item__name:hover {
+  cursor: pointer;
+}
+
+.instances__container > div .instances__container__item__icon {
+  width: 5px;
+  height: 5px;
+  margin-right: 8px;
+}
