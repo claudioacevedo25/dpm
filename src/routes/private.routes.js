@@ -6,6 +6,7 @@ import Home from "../components/DPM/Home";
 import IDE from "../components/DPM/IDE";
 import BackUp from "../components/DPM/BackUp";
 import Relay from "../components/DPM/Relay";
+import EventTimeline from "../components/DPM/EventTimeline";
 
 /**
  * Return private routes
@@ -21,14 +22,12 @@ const PrivateRoutes = (props) => {
         <PrivateRoute exact path={path.private.home} component={Home} />
         <PrivateRoute exact path={path.private.ide} component={IDE} />
         <PrivateRoute exact path={path.private.backup} component={BackUp} />
-
+        <PrivateRoute exact path={path.private.relay} component={Relay} />
         <PrivateRoute
           exact
           path={path.private.eventTimeline}
-          component={Home}
+          component={EventTimeline}
         />
-        <PrivateRoute exact path={path.private.relay} component={Relay} />
-
         <Route
           exact
           path="*"

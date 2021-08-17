@@ -1,0 +1,44 @@
+.eventTimeline {
+  margin: 0 46px;
+}
+
+.eventTimeline__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #242437;
+}
+
+.eventTimeline__header .eventTimeline__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.eventTimeline__header__contentSearch
+  .eventTimeline__header__contentSearch__search {
+  margin-right: 6px;
+}
+
+.eventTimeline .eventTimeline__subtitle {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.eventTimeline__substations {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.eventTimeline__substations__map {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.eventTimeline__substations__table {
+  width: 50%;
+  margin-left: 10px;
+}

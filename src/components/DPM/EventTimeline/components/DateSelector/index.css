@@ -1,0 +1,15 @@
+.dateSelector {
+  display: flex;
+  flex-direction: row;
+}
+
+.dateSelector .selectableDay span {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateSelector .selectableDay {
+  background: #19192b;
+  margin: 5px;
+  padding: 15px 0;
+}
