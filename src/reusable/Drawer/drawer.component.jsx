@@ -19,9 +19,9 @@ import {
   TimelineOutlined,
 } from "@material-ui/icons";
 import paths from "../../constants/paths.constants";
-import logoDPM from "../../assets/images/LogoDPM.png";
 import Header from "../Header";
 import Alert from "../Alert";
+import Instances from "../../components/DPM/Instances";
 import "./index.css";
 
 const drawerWidth = 240;
@@ -156,8 +156,14 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
           </IconButton>
         </div> */}
         <div className="drawer__header">
-          <img className="drawer__header__logo" alt="logoDPM" src={logoDPM} />
-          <Typography className="drawer__header__title">DPM</Typography>
+          {/* <img className="drawer__header__logo" alt="logoDPM" src={logoDPM} /> */}
+          <Instances />
+          <div>
+            <Typography className="drawer__header__title">DPM</Typography>
+            <Typography className="drawer__header__dpm">
+              {JSON.parse(localStorage.getItem("dpm")).name}
+            </Typography>
+          </div>
         </div>
         <List className="drawer__list">
           {listItem.map((item, index) => (

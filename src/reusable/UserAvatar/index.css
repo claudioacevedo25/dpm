@@ -1,0 +1,35 @@
+.userAvatar__icon:hover {
+  cursor: pointer;
+}
+
+.userAvatar__container {
+  background: #3d3d4b;
+  border-radius: 8px;
+}
+
+.userAvatar__container .userAvatar__container__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin: 0 5px;
+  border-bottom: 1px solid #5d5d61;
+}
+
+.userAvatar__container .userAvatar__container__name {
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.userAvatar__container__action {
+  justify-content: center;
+}
+
+.userAvatar__container__action .userAvatar__container__logout {
+  font-size: 0.8rem;
+}
+
+.userAvatar__container__action .userAvatar__container__logout:hover {
+  cursor: pointer;
+  font-weight: 500;
+}
