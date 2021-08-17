@@ -1,7 +1,7 @@
 import React from "react";
 import InstancesComponent from "./instances.component";
 
-const Instances = ({}) => {
+const Instances = () => {
   return <InstancesComponent />;
 };
 

@@ -18,6 +18,7 @@ const UserAvatarComponent = ({ user }) => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("user");
+    localStorage.removeItem("dpm");
     window.location.href = "login";
   };
 

@@ -5,7 +5,7 @@ import logoDPM from "../../../assets/images/LogoDPM.png";
 
 import "./index.css";
 
-const InstancesComponent = ({}) => {
+const InstancesComponent = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   let user = sessionStorage.getItem("user");
 
