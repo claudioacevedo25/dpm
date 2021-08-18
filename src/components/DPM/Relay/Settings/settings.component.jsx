@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { connect } from "react-redux";
+import { useNotification } from "../../../../hooks/notification";
 import { updateAlert } from "../../../../redux/alert/alertActions";
 import SelectableTable from "./components/SelectableTable";
 import Pagination from "../../../../reusable/Pagination";
@@ -24,6 +25,7 @@ const SettingsComponent = ({
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
   const [currentSetting, setCurrentSetting] = useState({});
+  const { onError, onSuccess } = useNotification();
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
 
@@ -32,18 +34,28 @@ const SettingsComponent = ({
   }, []);
 
   const onPageChange = async (page = 0) => {
-    const listSettings = await getRelayIDSettings(page, size);
-    if (page === 0) {
-      setCurrentSetting(listSettings.data[0]);
+    try {
+      const listSettings = await getRelayIDSettings(page, size);
+      if (page === 0) {
+        setCurrentSetting(listSettings.data[0]);
+      }
+      setListSettings(listSettings);
+      setActivePage(page);
+    } catch (error) {
+      onError(error);
     }
-    setListSettings(listSettings);
-    setActivePage(page);
   };
 
   const onClickSettings = async () => {
     setIsDownload(true);
-    setSelected([]);
-    await handleSettingsRelay(selected);
+    try {
+      setSelected([]);
+      await handleSettingsRelay(selected);
+      dispatchAlert({ isAlert: false });
+      onSuccess("Descarga realizada con éxito");
+    } catch (error) {
+      onSuccess("No se pudo realizar la descarga con éxito");
+    }
     setIsDownload(false);
   };
 
@@ -68,8 +80,13 @@ const SettingsComponent = ({
       const file = new FormData();
       const imagedata = document.querySelector('input[type="file"]').files[0];
       file.append("file", imagedata);
-      await handleRelaySettingsFile(file);
-      updated(true);
+      try {
+        await handleRelaySettingsFile(file);
+        updated(true);
+        onSuccess("Su archivo se subio con éxito");
+      } catch (error) {
+        onError(error);
+      }
     }
   };
 

@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { updateAlert } from "../../../redux/alert/alertActions";
-import {
-  Typography,
-  TextField,
-  InputAdornment,
-  Snackbar,
-} from "@material-ui/core";
+import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import { useNotification } from "../../../hooks/notification";
 import Button from "../../Button";
 import Pagination from "../../../reusable/Pagination";
 import SelectableTable from "./components/SelectableTable";
@@ -23,7 +19,8 @@ const BackUpComponent = ({
   const [listRelays, setListRelays] = useState({});
   const [activePage, setActivePage] = useState(0);
   const [selected, setSelected] = useState([]);
-  const [notificationMessage, setNotificationMessage] = useState(null);
+  const [isDownload, setIsDownload] = useState(false);
+  const { onError, onSuccess } = useNotification();
   const headers = ["Nombre", "N subestación", "Paño"];
   const size = 14;
   const totalPage = (total) => Math.ceil(total / size);
@@ -33,20 +30,27 @@ const BackUpComponent = ({
   }, []);
 
   const onPageChange = async (page) => {
-    const listRelays = await getAllRelays(page, size);
-    setListRelays(listRelays);
-    setActivePage(page);
+    try {
+      const listRelays = await getAllRelays(page, size);
+      setListRelays(listRelays);
+      setActivePage(page);
+    } catch (error) {
+      onError(error);
+    }
   };
 
   const onClickBackup = async () => {
-    await handleBackupRelays(selected);
-    setNotificationMessage("Sus cambios se guardaron correctamente");
+    setIsDownload(true);
+    try {
+      await handleBackupRelays(selected);
+      onSuccess("Sus cambios se guardaron correctamente");
+    } catch (error) {
+      onError("No se pudo guardar sus cambios, intente nuevamente");
+    }
     onPageChange(0);
     setSelected([]);
     dispatchAlert("");
-    setTimeout(() => {
-      setNotificationMessage(null);
-    }, 5000);
+    setIsDownload(false);
   };
 
   const onClickSelected = async (selected) => {
@@ -67,18 +71,6 @@ const BackUpComponent = ({
 
   return (
     <div className="backUp">
-      {!!notificationMessage && (
-        <Snackbar
-          className="success"
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          open
-          message={notificationMessage}
-          severity="success"
-        ></Snackbar>
-      )}
       <div className="backUp__header">
         <Typography className="backUp__title">Backup</Typography>
         <div className="backUp__header__contentSearch">
@@ -117,7 +109,9 @@ const BackUpComponent = ({
           onClickButton={onClickBackup}
         />
       </div>
-      {Object.keys(listRelays) && Object.keys(listRelays).length !== 0 ? (
+      {Object.keys(listRelays) &&
+      Object.keys(listRelays).length !== 0 &&
+      !isDownload ? (
         <>
           <SelectableTable
             onClickSelected={onClickSelected}
@@ -131,7 +125,9 @@ const BackUpComponent = ({
           ></Pagination>
         </>
       ) : (
-        <Spinner />
+        <Spinner
+          description={!!isDownload && "Guardando los cambios realizados "}
+        />
       )}
     </div>
   );

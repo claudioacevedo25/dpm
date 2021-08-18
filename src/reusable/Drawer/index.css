@@ -26,8 +26,14 @@
 
 .drawer__header .drawer__header__title {
   font-weight: bold;
-  margin: 14px;
+  margin: 14px 14px 0 14px;
   font-size: 1.2rem;
+}
+
+.drawer__header .drawer__header__dpm {
+  margin: -4px 0 0 14px;
+  font-size: 0.7rem;
+  font-weight: 200;
 }
 
 .drawer__list .drawer__list__item {
