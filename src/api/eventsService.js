@@ -17,3 +17,13 @@ export const getEvents = (id, page, size) => {
   };
   return genericHttpRequest(GET, relayByID, data, apiSelection);
 };
+
+export const getAllEvents = (from, to, page, size) => {
+  const data = {
+    page: page,
+    page_size: size,
+    from: from,
+    to: to,
+  };
+  return genericHttpRequest(GET, EVENTS, data, apiSelection);
+};

@@ -64,7 +64,7 @@ const TableComponent = ({
                 <TableRow>
                   <TableCell
                     className="tableContainer__table__head__item"
-                    align="center"
+                    align="left"
                   >
                     {props.header}
                   </TableCell>
@@ -80,7 +80,7 @@ const TableComponent = ({
                         selected === row.id &&
                         "tableContainer__table__body--selected"
                       }`}
-                      align="center"
+                      align="left"
                     >
                       {!!row.name ? row.name : row.mnemo}
                     </TableCell>
