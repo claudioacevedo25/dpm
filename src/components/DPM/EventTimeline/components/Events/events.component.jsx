@@ -38,7 +38,7 @@ const EventsComponent = ({ date, handleEvents }) => {
     <>
       {events !== null ? (
         events.length > 0 ? (
-          <Card className="events">
+          <Card className="eventsTimeline">
             <CardContent className="events__containerItems">
               <Paper>
                 <TableContainer className="eventsContainer">
