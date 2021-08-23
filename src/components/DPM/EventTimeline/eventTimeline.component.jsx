@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
-import DateSelector from "./components/DateSelector";
+import { useNotification } from "../../../hooks/notification";
+import Calendar from "./components/Calendar";
+import Events from "./components/Events";
+import Spinner from "../../../reusable/Spinner";
 import "./index.css";
+import { useState } from "react";
 
-const EventTimelineComponent = (props) => {
-  const [activeDay, setActiveDay] = useState(new Date().getDate());
-  const onDayChange = async (day) => {
-    setActiveDay(day);
+const EventTimelineComponent = ({ handleEvents }) => {
+  const { onError } = useNotification();
+  const [date, setDate] = useState(null);
+
+  const onDateClick = (event) => {
+    const date = {
+      from: event.day + "/" + (event.month + 1) + "/" + event.year,
+      to: event.day + 1 + "/" + (event.month + 1) + "/" + event.year,
+    };
+    setDate(date);
   };
 
   return (
@@ -42,12 +52,10 @@ const EventTimelineComponent = (props) => {
           />
         </div>
       </div>
-      <DateSelector
-        month={8}
-        year={2021}
-        onDayChange={onDayChange}
-        activeDay={activeDay}
-      />
+      <div className="eventTimeline__calendar">
+        <Calendar onDateClick={onDateClick} />
+        {date !== null && <Events date={date} />}
+      </div>
     </div>
   );
 };

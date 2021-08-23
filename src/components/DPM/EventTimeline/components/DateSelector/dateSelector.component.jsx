@@ -9,9 +9,9 @@ const DateSelectorComponent = ({ year, month, onDayChange, activeDay }) => {
 
   const getDaysArray = () => {
     var names = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
-    var date = new Date(year, month - 1, 1);
+    var date = new Date(year, month, 1);
     var result = [];
-    while (date.getMonth() == month - 1) {
+    while (date.getMonth() == month) {
       const day = {
         number: date.getDate(),
         name: names[date.getDay()],
@@ -37,6 +37,7 @@ const DateSelectorComponent = ({ year, month, onDayChange, activeDay }) => {
 
     if (totalDays > 1 && totalDays <= maxLength) {
       // no breaks in list
+
       return range(2, totalDays - 1);
     }
     if (day <= maxLength - sideWidth - 1 - rightWidth) {
@@ -58,7 +59,7 @@ const DateSelectorComponent = ({ year, month, onDayChange, activeDay }) => {
 
   const getDaysView = (day) => {
     onDayChange(day);
-    const number = getDays(activeDay + 1, 10);
+    const number = getDays(day, 10);
     setDaysView(number);
   };
 
@@ -66,25 +67,35 @@ const DateSelectorComponent = ({ year, month, onDayChange, activeDay }) => {
     const number = getDays(activeDay, 10);
     getDaysArray();
     setDaysView(number);
-  }, []);
+  }, [month]);
 
   return (
     <div className="dateSelector">
       <Button
         className="Pagination__button"
+        disabled={activeDay === 1}
         onClick={() => {
           getDaysView(activeDay - 1);
         }}
       >{`<`}</Button>
       {daysView.length > 0 &&
         daysView.map((day, index) => (
-          <SelectableDay
+          <div
             key={daysMonth[day - 1].number}
-            day={daysMonth[day - 1]}
-          />
+            className={`${activeDay === day && "selectableDay__selected"}`}
+            onClick={() => {
+              getDaysView(day);
+            }}
+          >
+            <SelectableDay
+              key={daysMonth[day - 1].number}
+              day={daysMonth[day - 1]}
+              active={activeDay === day}
+            />
+          </div>
         ))}
       <Button
-        // disabled={activePage === totalPages - 1}
+        disabled={activeDay === daysMonth.length}
         className="Pagination__button"
         onClick={() => {
           getDaysView(activeDay + 1);
