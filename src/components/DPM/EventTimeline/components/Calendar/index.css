@@ -1,0 +1,34 @@
+.calendar div div .eventTimeline__select::before {
+  border-bottom: none;
+  border-bottom-color: transparent;
+}
+
+.calendar .eventTimeline__select::after {
+  border-bottom: none;
+}
+
+.calendar .eventTimeline__select {
+  background: rgba(32, 186, 135, 0.4);
+  border-radius: 9px;
+  height: 32px;
+  color: #ffffff;
+  border: none;
+  padding-left: 15px;
+  font-size: 0.8rem;
+  font-family: Poppins;
+  margin: 15px 0 15px 64px;
+}
+
+.calendar .eventTimeline__select--year {
+  margin-left: 10px;
+}
+
+.eventTimeline__select__item {
+  background: #19192b;
+  font-family: Poppins;
+  font-size: 0.8rem;
+}
+
+.eventTimeline__select__item:hover {
+  background: #262627;
+}

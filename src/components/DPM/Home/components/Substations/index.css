@@ -1,6 +1,6 @@
 .home__substations__table .subestations {
   background: #19192b;
-  border-radius: 16px;
+  border-radius: 10px;
   height: 100%;
 }
 
@@ -9,11 +9,32 @@
   font-weight: bold;
   font-size: 1rem;
   padding: 10px 16px;
+  background: #19192b;
 }
 
 .subestationsContainer__table__body .subestationsContainer__table__body__item {
   border-bottom: none;
   padding: 10px 16px;
+}
+
+.subestationsContainer {
+  max-height: calc(100vh - 315px);
+}
+
+.subestationsContainer::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.subestationsContainer::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.subestationsContainer::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border-top: 10px solid #19192b;
+  border: 2px solid #19192b;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .subestationsContainer__table__body__item
