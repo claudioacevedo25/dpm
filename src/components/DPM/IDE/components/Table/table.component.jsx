@@ -34,7 +34,6 @@ const TableComponent = ({
   const [selected, setSelected] = useState("");
   useEffect(() => {
     if(props[type] !== ''){
-      console.log(props[type].id, type)
       setSelected(props[type].id)
     }
   }, []);
