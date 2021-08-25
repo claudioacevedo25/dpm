@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Substations from "./components/Substations";
@@ -7,6 +7,12 @@ import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const HomeComponent = (props) => {
+const [showTooltip, setShowTooltip] = useState(null);
+
+const handleTooltip = (subStation) =>{
+  setShowTooltip(subStation.id);
+}
+
   return (
     <div className="home">
       <div className="home__header">
@@ -47,10 +53,10 @@ const HomeComponent = (props) => {
         {props.substations.length > 0 ? (
           <>
             <div className="home__substations__map">
-              <Maps substations={props.substations} />
+              <Maps substations={props.substations} selected={showTooltip} />
             </div>
             <div className="home__substations__table">
-              <Substations substations={props.substations} />
+              <Substations substations={props.substations} handleTooltip={handleTooltip}  />
             </div>
           </>
         ) : (

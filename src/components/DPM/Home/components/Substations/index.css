@@ -43,6 +43,13 @@
   height: 12px;
 }
 
+.subestationsContainer__table__body td:nth-child(2):hover{
+  cursor: pointer;
+  background-color: #2A2A42;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .icon--notFail {
   color: #2bd283;
 }
