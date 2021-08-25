@@ -1,0 +1,43 @@
+.alarm__icon {
+  margin: 15px;
+}
+
+.alarm__icon:hover {
+  cursor: pointer;
+}
+
+.alarm__container {
+  background: #3d3d4b;
+  border-radius: 8px;
+}
+
+.alarm__container .alarm__container__title {
+  margin: 10px;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+div .alarm__container .alarm__container__profile {
+  border-top: 1px solid #5d5d61;
+  padding-bottom: 0;
+}
+
+.alarm__container__event {
+  margin-bottom: 12px;
+}
+
+.alarm__container__event .alarm__container__date {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.alarm__container__event .alarm__container__item {
+  font-size: 0.7rem;
+  font-weight: 300;
+}
+
+.alarm__container__profile .spinner {
+  height: 100px;
+  width: 110px;
+}
