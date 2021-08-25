@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { recoverSelection } from '../../../redux/substationStructure/substationStructureActions'
 import { connect } from "react-redux";
-import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import {
   Typography,
   TextField,
@@ -18,7 +18,7 @@ import Settings from "./Settings";
 import Reports from "./Reports";
 import "./index.css";
 
-const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData }) => {
+const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, ...props}) => {
   const history = useHistory();
   const [valueTab, setValueTab] = useState(1);
   const [relayUpdated, setRelayUpdated] = useState(null);
@@ -48,13 +48,18 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData }
 
   const backAction = () => {
     history.goBack()
-    recoverSelectionData()
+    props.substationSelected.backup && recoverSelectionData()
   }
 
   return (
     <div className="relay">
       <div className="relay__header">
-      <ArrowBackOutlinedIcon  onClick={backAction}/>
+      <div className="relay__header_data">
+      <ArrowBackIosRoundedIcon style={{cursor: 'pointer', float:'left'}} onClick={backAction}/>
+      {props.substationSelected.backup &&<Typography style={{float:'left'}}className="">{`
+      ${props.substationSelected.backup.substation.name} /
+      ${props.substationSelected.backup.panio.name}`}</Typography>}
+      </div>
         <Typography className="relay__title">{relayName}</Typography>
         <div className="relay__header__container">
           <AppBar className="relay__header__appBar" position="static">                    
@@ -147,4 +152,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(RelayComponent);
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RelayComponent);
