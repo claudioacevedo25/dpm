@@ -4,14 +4,15 @@ import {
   ErrorOutlined,
   HistoryOutlined,
 } from "@material-ui/icons";
-import UserAvatar from "../UserAvatar";
+import UserAvatar from "./components/UserAvatar";
+import Alarm from "./components/Alarm";
 import "./index.css";
 
 const HeaderComponent = ({ user }) => {
   return (
     <div className="header">
       <AssignmentOutlined className="header__icon" />
-      <ErrorOutlined className="header__icon" />
+      <Alarm />
       <HistoryOutlined className="header__icon" />
       <UserAvatar user={user} />
     </div>
