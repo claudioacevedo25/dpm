@@ -1,7 +1,7 @@
 import { Switch, Redirect, Route } from "react-router-dom";
 import { PrivateRoute } from "./helperRoutes";
 import path from "../constants/paths.constants";
-import Drawer from "../reusable/Drawer";
+import Drawer from "../components/Drawer";
 import Home from "../components/DPM/Home";
 import IDE from "../components/DPM/IDE";
 import BackUp from "../components/DPM/BackUp";

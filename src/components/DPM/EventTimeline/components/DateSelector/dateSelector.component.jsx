@@ -11,7 +11,7 @@ const DateSelectorComponent = ({ year, month, onDayChange, activeDay }) => {
     var names = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
     var date = new Date(year, month, 1);
     var result = [];
-    while (date.getMonth() == month) {
+    while (date.getMonth() === month) {
       const day = {
         number: date.getDate(),
         name: names[date.getDay()],

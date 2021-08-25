@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
-import { useNotification } from "../../../hooks/notification";
 import Calendar from "./components/Calendar";
 import Events from "./components/Events";
-import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 import { useState } from "react";
 
 const EventTimelineComponent = ({ handleEvents }) => {
-  const { onError } = useNotification();
   const [date, setDate] = useState(null);
 
   const onDateClick = (event) => {

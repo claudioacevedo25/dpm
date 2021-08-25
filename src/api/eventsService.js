@@ -27,3 +27,12 @@ export const getAllEvents = (from, to, page, size) => {
   };
   return genericHttpRequest(GET, EVENTS, data, apiSelection);
 };
+
+export const getEventsAlert = (page, size) => {
+  const data = {
+    page: page,
+    page_size: size,
+    alert: "True",
+  };
+  return genericHttpRequest(GET, EVENTS, data, apiSelection);
+};
