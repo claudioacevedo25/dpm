@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   updateSubstation,
@@ -32,6 +32,11 @@ const TableComponent = ({
   ...props
 }) => {
   const [selected, setSelected] = useState("");
+  useEffect(() => {
+    if(props[type] !== ''){
+      setSelected(props[type].id)
+    }
+  }, []);
   const onChange = async (selected) => {
     setSelected(selected.id);
     switch (type) {
@@ -106,4 +111,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(TableComponent);
+const mapStateToProps = (state) => {
+  return state.substationSelected;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
