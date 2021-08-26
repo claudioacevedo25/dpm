@@ -50,7 +50,7 @@ const SubstationsComponent = (props) => {
                       >
                         <FiberManualRecordIcon
                           className={`subestationsContainer__table__body__item__icon ${
-                            !!row.is_fail ? "icon--notFail" : "icon--isFail"
+                            !!row.is_fail ? "icon--isFail" : "icon--notFail"
                           }`}
                         />
                       </TableCell>

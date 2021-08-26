@@ -19,9 +19,9 @@ import {
   TimelineOutlined,
 } from "@material-ui/icons";
 import paths from "../../constants/paths.constants";
-import Header from "../Header";
-import Alert from "../Alert";
-import Instances from "../../components/DPM/Instances";
+import Header from "../../components/Header";
+import Alert from "../../reusable/Alert";
+import Instances from "../DPM/Instances";
 import "./index.css";
 
 const drawerWidth = 240;

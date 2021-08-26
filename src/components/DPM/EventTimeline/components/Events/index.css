@@ -2,6 +2,7 @@
   background: #19192b;
   border-radius: 16px;
   width: 75%;
+  margin-top: 15px;
 }
 
 .events__item {
@@ -47,7 +48,7 @@
 }
 
 .eventsContainer {
-  max-height: calc(100vh - 400px);
+  max-height: calc(100vh - 415px);
 }
 
 .eventsContainer::-webkit-scrollbar {
