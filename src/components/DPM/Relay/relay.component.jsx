@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom'
+import { recoverSelection } from '../../../redux/substationStructure/substationStructureActions'
+import { connect } from "react-redux";
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import {
   Typography,
   TextField,
@@ -14,7 +18,8 @@ import Settings from "./Settings";
 import Reports from "./Reports";
 import "./index.css";
 
-const RelayComponent = ({ relayID, relayName, getRelayID }) => {
+const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, ...props}) => {
+  const history = useHistory();
   const [valueTab, setValueTab] = useState(1);
   const [relayUpdated, setRelayUpdated] = useState(null);
   const tabs = [
@@ -41,18 +46,30 @@ const RelayComponent = ({ relayID, relayName, getRelayID }) => {
     return value === index && children;
   };
 
+  const backAction = () => {
+    history.goBack()
+    props.substationSelected.backup && recoverSelectionData()
+  }
+
   return (
     <div className="relay">
       <div className="relay__header">
+      <div className="relay__header_data">
+      <ArrowBackIosRoundedIcon style={{cursor: 'pointer', float:'left'}} onClick={backAction}/>
+      {props.substationSelected.backup &&<Typography style={{float:'left'}}className="">{`
+      ${props.substationSelected.backup.substation.name} /
+      ${props.substationSelected.backup.panio.name}`}</Typography>}
+      </div>
         <Typography className="relay__title">{relayName}</Typography>
         <div className="relay__header__container">
-          <AppBar className="relay__header__appBar" position="static">
+          <AppBar className="relay__header__appBar" position="static">                    
             <Tabs
               className="relay__header__appBar__tabs"
               value={valueTab}
               onChange={handleStateTabChange}
               aria-label="simple tabs example"
             >
+
               {tabs.map((tab, index) => (
                 <Tab
                   key={index}
@@ -127,4 +144,16 @@ const RelayComponent = ({ relayID, relayName, getRelayID }) => {
   );
 };
 
-export default RelayComponent;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    recoverSelectionData: () =>
+      dispatch(recoverSelection()),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RelayComponent);
