@@ -14,18 +14,18 @@ const geoUrl =
 
 const MapComponent = (props) => {
 
-  const [open, setOpen] = useState(props.selected);
+  const [selectedSubstation, setSelectedSubstation] = useState(props.selected);
 
   const handleTooltip = (id) => {
-   setOpen(id)
+   setSelectedSubstation(id)
   };
 
   const handleClose = () => {
-    setOpen(null)
+    setSelectedSubstation(null)
   }
 
   useEffect(()=>{
-    setOpen(props.selected)
+    setSelectedSubstation(props.selected)
   },[props.selected])
 
 
@@ -60,7 +60,7 @@ const MapComponent = (props) => {
                   <Tooltip
                     title={name} 
                     TransitionComponent={Zoom} 
-                    open={open === id ? true : false} 
+                    open={selectedSubstation === id ? true : false} 
                     onClose={handleClose}
                     disableHoverListener
                     arrow 
