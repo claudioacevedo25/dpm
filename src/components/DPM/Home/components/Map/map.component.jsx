@@ -17,12 +17,12 @@ const MapComponent = (props) => {
   const [selectedSubstation, setSelectedSubstation] = useState(props.selected);
 
   const handleTooltip = (id) => {
+    if(!!selectedSubstation){
+      setSelectedSubstation(null);
+      return;
+    }
    setSelectedSubstation(id)
   };
-
-  const handleClose = () => {
-    setSelectedSubstation(null)
-  }
 
   useEffect(()=>{
     setSelectedSubstation(props.selected)
@@ -60,8 +60,7 @@ const MapComponent = (props) => {
                   <Tooltip
                     title={name} 
                     TransitionComponent={Zoom} 
-                    open={selectedSubstation === id ? true : false} 
-                    onClose={handleClose}
+                    open={selectedSubstation === id ? true : false}                   
                     disableHoverListener
                     arrow 
                     interactive
@@ -72,7 +71,7 @@ const MapComponent = (props) => {
                           fill={is_fail ?  "#d22b53" : "#2bd283" }
                           stroke="#fff"
                           strokeWidth={2}     
-                          onClick={()=>handleTooltip(id)}  
+                          onClick={()=>handleTooltip(id)}                        
                           />
                      
                     </Tooltip>

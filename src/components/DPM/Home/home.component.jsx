@@ -10,6 +10,10 @@ const HomeComponent = (props) => {
 const [showTooltip, setShowTooltip] = useState(null);
 
 const handleTooltip = (subStation) =>{
+  if(!!showTooltip){
+    setShowTooltip(null);
+    return;
+  }
   setShowTooltip(subStation.id);
 }
 
