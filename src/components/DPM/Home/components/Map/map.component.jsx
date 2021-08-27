@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, CardContent } from "@material-ui/core";
+import React, {useEffect, useState} from "react";
+import { Card, CardContent, Tooltip, Zoom } from "@material-ui/core";
 import {
   ComposableMap,
   ZoomableGroup,
@@ -13,6 +13,22 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 const MapComponent = (props) => {
+
+  const [selectedSubstation, setSelectedSubstation] = useState(props.selected);
+
+  const handleTooltip = (id) => {
+    if(!!selectedSubstation){
+      setSelectedSubstation(null);
+      return;
+    }
+   setSelectedSubstation(id)
+  };
+
+  useEffect(()=>{
+    setSelectedSubstation(props.selected)
+  },[props.selected])
+
+
   return (
     <Card className="map">
       <CardContent className="map">
@@ -39,22 +55,26 @@ const MapComponent = (props) => {
                   ))
               }
             </Geographies>
-            {props.substations.map(({ name, lat, lon, is_fail }) => (
+            {props.substations.map(({ id, name, lat, lon, is_fail }) => (
               <Marker key={name} coordinates={[lon, lat]}>
-                <circle
-                  r={6}
-                  fill={is_fail ? "#2bd283" : "#d22b53"}
-                  stroke="#fff"
-                  strokeWidth={2}
-                />
-                {/* aca deberia uir una card para que muestre los datos */}
-                <text
-                  textAnchor="middle"
-                  y="-15"
-                  style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-                >
-                  {name}
-                </text>
+                  <Tooltip
+                    title={name} 
+                    TransitionComponent={Zoom} 
+                    open={selectedSubstation === id ? true : false}                   
+                    disableHoverListener
+                    arrow 
+                    interactive
+                    >       
+                    
+                        <circle
+                          r={6}
+                          fill={is_fail ?  "#d22b53" : "#2bd283" }
+                          stroke="#fff"
+                          strokeWidth={2}     
+                          onClick={()=>handleTooltip(id)}                        
+                          />
+                     
+                    </Tooltip>
               </Marker>
             ))}
           </ZoomableGroup>
