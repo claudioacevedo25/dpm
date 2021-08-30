@@ -54,7 +54,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
 
   const backAction = () => {
     history.goBack()
-    props.substationSelected.backup && recoverSelectionData()
+    props.backup && recoverSelectionData()
   }
 
   return (
@@ -159,7 +159,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  return state.substationSelected;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RelayComponent);
