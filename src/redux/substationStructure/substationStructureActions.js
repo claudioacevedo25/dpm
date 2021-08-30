@@ -2,6 +2,7 @@ import {
   UPDATESUBSTATION,
   UPDATEPANIO,
   UPDATERELAY,
+  RECOVERSELECTION
 } from "./substationStructureTypes";
 
 export const updateSubstation = (substation) => {
@@ -9,6 +10,14 @@ export const updateSubstation = (substation) => {
     type: UPDATESUBSTATION,
     payload: {
       substation,
+    },
+  };
+};
+
+export const recoverSelection = () => {
+  return {
+    type: RECOVERSELECTION,
+    payload: {
     },
   };
 };

@@ -9,6 +9,9 @@
   padding-bottom: 35px;
   border-bottom: 1px solid #242437;
 }
+.relay__header_data{
+  margin-bottom: 24px;
+}
 
 .relay__header .relay__title {
   font-style: normal;
