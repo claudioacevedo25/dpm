@@ -22,6 +22,9 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
   const history = useHistory();
   const [valueTab, setValueTab] = useState(1);
   const [relayUpdated, setRelayUpdated] = useState(null);
+  const [substation, setSubstation] = useState('');
+  const [panio, setPanio] = useState('');
+
   const tabs = [
     { name: "Osilografías" },
     { name: "Eventos" },
@@ -36,6 +39,9 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
   const getRelays = async () => {
     const data = await getRelayID();
     setRelayUpdated(data.updated);
+    setSubstation(data.substation);
+    setPanio(data.panio)
+    console.log(data)
   };
 
   const handleStateTabChange = (event, newValue) => {
@@ -55,10 +61,10 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
     <div className="relay">
       <div className="relay__header">
       <div className="relay__header_data">
-      <ArrowBackIosRoundedIcon style={{cursor: 'pointer', float:'left'}} onClick={backAction}/>
-      {props.substationSelected.backup &&<Typography style={{float:'left'}}className="">{`
-      ${props.substationSelected.backup.substation.name} /
-      ${props.substationSelected.backup.panio.name}`}</Typography>}
+      <ArrowBackIosRoundedIcon  fontSize="small" className="relay__back__arrow" onClick={backAction}/>
+      {relayUpdated !== null &&<Typography style={{float:'left'}}className="">{`
+      ${substation} /
+      ${panio}`}</Typography>}
       </div>
         <Typography className="relay__title">{relayName}</Typography>
         <div className="relay__header__container">
