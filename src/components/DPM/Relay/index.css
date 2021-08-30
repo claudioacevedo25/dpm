@@ -12,6 +12,11 @@
 .relay__header_data{
   margin-bottom: 24px;
 }
+.relay__back__arrow{
+  cursor: pointer;
+  float: left;
+  margin-right: 18px;
+}
 
 .relay__header .relay__title {
   font-style: normal;
