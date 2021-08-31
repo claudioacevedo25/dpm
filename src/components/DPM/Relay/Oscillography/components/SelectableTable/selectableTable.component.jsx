@@ -13,7 +13,11 @@ import { TimelineOutlined } from "@material-ui/icons";
 import moment from "moment";
 import "./index.css";
 
-const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
+const SelectableTableComponent = ({
+  onClickSelected,
+  listOscillographies,
+  onClickOscillography,
+}) => {
   const [selected, setSelected] = useState([]);
 
   const handleClick = (event, id) => {
@@ -39,7 +43,7 @@ const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
 
   return (
     <Paper>
-      <TableContainer className="selectableTable">
+      <TableContainer className="selectableTable__oscillography">
         <Table stickyHeader aria-label="customized table">
           <TableHead className="selectableTable__head">
             <TableRow>
@@ -71,8 +75,10 @@ const SelectableTableComponent = ({ onClickSelected, listOscillographies }) => {
                   </TableCell>
                   <TableCell>{moment(row.date).format("DD/MM/YYYY")}</TableCell>
                   <TableCell>{moment(row.date).format("hh:mm a")}</TableCell>
-                  <TableCell>
-                    <TimelineOutlined />
+                  <TableCell className="selectableTable__item__icon">
+                    <TimelineOutlined
+                      onClick={() => onClickOscillography(row)}
+                    />
                   </TableCell>
                 </TableRow>
               );

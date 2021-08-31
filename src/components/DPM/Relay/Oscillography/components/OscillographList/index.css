@@ -1,0 +1,30 @@
+.oscillographList .oscillographList__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.oscillographList__button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.oscillographList__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oscillographList__button .containerButton .button {
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+.oscillographList .oscillographList__subtitle {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.oscillographList__container .spinner {
+  height: calc(100vh - 300px);
+}

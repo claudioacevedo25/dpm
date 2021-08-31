@@ -31,3 +31,10 @@ export const downloadOscillographies = (id, listRelays) => {
   };
   return genericHttpRequest(POST, relayByID, data, apiSelection);
 };
+
+export const getOscillography = (idRelay, idOscillography) => {
+  const data = "";
+  const RELAYOSCILLOGRAPHIES =
+    RELAYS + idRelay + "/" + OSCILLOGRAPHIES + idOscillography + "/";
+  return genericHttpRequest(GET, RELAYOSCILLOGRAPHIES, data, apiSelection);
+};

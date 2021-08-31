@@ -9,13 +9,22 @@
   padding-bottom: 35px;
   border-bottom: 1px solid #242437;
 }
-.relay__header_data{
-  margin-bottom: 24px;
+.relay__header_data {
+  margin-bottom: 18px;
+  margin-top: -50px;
+  display: flex;
+  align-items: center;
 }
-.relay__back__arrow{
+
+.relay__header_data .relay__back__arrow {
   cursor: pointer;
   float: left;
   margin-right: 18px;
+  height: 15px;
+}
+
+.relay__header_data .relay__header__title {
+  font-size: 0.8rem;
 }
 
 .relay__header .relay__title {

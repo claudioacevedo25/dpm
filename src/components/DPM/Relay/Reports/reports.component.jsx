@@ -136,7 +136,7 @@ const ReportsComponent = ({
           </>
         ) : (
           <Typography className="reports__subtitle">
-            No hay ajustes registrados,
+            No hay reportes registrados,
           </Typography>
         )
       ) : (

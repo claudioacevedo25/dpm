@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Calendar from "./components/Calendar";
 import Events from "./components/Events";
+import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 import { useState } from "react";
 
