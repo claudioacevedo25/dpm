@@ -12,9 +12,11 @@ const Pagination = ({ totalPages, onPageChange, activePage }) => {
     if (maxLength < 5) {
       throw new Error("maxLength must be at least 5");
     }
+
     function range(start, end) {
       return Array.from(Array(end - start + 1), (_, i) => i + start);
     }
+
     var sideWidth = maxLength < 9 ? 1 : 2;
     var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
     var rightWidth = (maxLength - sideWidth * 2 - 2) >> 1;

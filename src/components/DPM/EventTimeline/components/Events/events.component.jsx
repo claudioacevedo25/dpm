@@ -26,11 +26,13 @@ const EventsComponent = ({ date, handleEvents }) => {
 
   const getAllEvents = async (from, to) => {
     setEvents(null);
+
     try {
       const data = await handleEvents(from, to);
       setEvents(data.data);
     } catch (error) {
-      onError(error);
+      onError("Ocurrio un error");
+      setEvents(0);
     }
   };
 
@@ -39,57 +41,57 @@ const EventsComponent = ({ date, handleEvents }) => {
       {events !== null ? (
         events.length > 0 ? (
           <Card className="eventsTimeline">
-            <CardContent className="events__containerItems">
+            <CardContent className="eventsTimeline__containerItems">
               <Paper>
-                <TableContainer className="eventsContainer">
+                <TableContainer className="eventsTimelineContainer">
                   <Table
                     stickyHeader
-                    className="eventsContainer__table"
+                    className="eventsTimelineContainer__table"
                     aria-label="simple table"
                   >
-                    <TableHead className="eventsContainer__table__head">
+                    <TableHead className="eventsTimelineContainer__table__head">
                       <TableRow>
                         <TableCell
-                          className="eventsContainer__table__head__item"
+                          className="eventsTimelineContainer__table__head__item"
                           align="left"
                         >
                           Nombre del evento
                         </TableCell>
                         <TableCell
-                          className="eventsContainer__table__head__item"
+                          className="eventsTimelineContainer__table__head__item"
                           align="left"
                         >
                           Nombre del rele
                         </TableCell>
                         <TableCell
-                          className="eventsContainer__table__head__item"
+                          className="eventsTimelineContainer__table__head__item"
                           align="left"
                         >
                           Hora
                         </TableCell>
                       </TableRow>
                     </TableHead>
-                    <TableBody className="eventsContainer__table__body">
+                    <TableBody className="eventsTimelineContainer__table__body">
                       {!!events &&
                         events.map((event) => (
                           <TableRow
-                            className="eventsContainer__table__body__row"
+                            className="eventsTimelineContainer__table__body__row"
                             key={event.id}
                           >
                             <TableCell
-                              className="eventsContainer__table__body__item"
+                              className="eventsTimelineContainer__table__body__item"
                               align="left"
                             >
                               {event.description}
                             </TableCell>
                             <TableCell
-                              className="eventsContainer__table__body__item"
+                              className="eventsTimelineContainer__table__body__item"
                               align="left"
                             >
                               {event.relay}
                             </TableCell>
                             <TableCell
-                              className="eventsContainer__table__body__item"
+                              className="eventsTimelineContainer__table__body__item"
                               align="left"
                             >
                               {moment(event.date).format("hh:mm a")}
@@ -103,7 +105,7 @@ const EventsComponent = ({ date, handleEvents }) => {
             </CardContent>
           </Card>
         ) : (
-          <Typography className="events__title">
+          <Typography className="eventsTimeline__title">
             No hay eventos registrados
           </Typography>
         )

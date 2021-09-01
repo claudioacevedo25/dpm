@@ -38,7 +38,7 @@ const SelectableTableComponent = ({ onClickSelected, listSettings }) => {
 
   return (
     <Paper>
-      <TableContainer className="selectableTable">
+      <TableContainer className="selectableTable__setting">
         <Table stickyHeader aria-label="customized table">
           <TableHead className="selectableTable__head">
             <TableRow>

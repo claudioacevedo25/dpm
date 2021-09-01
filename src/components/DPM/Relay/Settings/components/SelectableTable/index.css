@@ -2,19 +2,19 @@
   background: rgba(30, 30, 52, 0.4);
 }
 
-.selectableTable {
+.selectableTable__setting {
   height: calc(100vh - 408px);
 }
 
-.selectableTable::-webkit-scrollbar {
+.selectableTable__setting::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
-.selectableTable::-webkit-scrollbar:vertical {
+.selectableTable__setting::-webkit-scrollbar:vertical {
   width: 10px;
 }
 
-.selectableTable::-webkit-scrollbar-thumb {
+.selectableTable__setting::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
   border-top: 10px solid #19192b;
