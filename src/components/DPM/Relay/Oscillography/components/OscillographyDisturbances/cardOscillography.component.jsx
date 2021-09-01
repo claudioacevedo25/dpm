@@ -3,7 +3,6 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import "./index.css";
 
 const CardOscillography = ({ title, content }) => {
-  console.log("content :>> ", content);
   return (
     <Card className="cardOscillography">
       <CardContent>

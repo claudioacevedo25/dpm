@@ -11,7 +11,6 @@ const OscillographyDisturbancesComponent = ({ getRelayIDOscillography }) => {
   useEffect(() => {
     getOscillography();
   }, []);
-  console.log("oscillography :>> ", oscillography);
 
   const getOscillography = async () => {
     try {

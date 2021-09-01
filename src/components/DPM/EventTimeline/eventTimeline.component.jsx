@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import moment from "moment";
 import Calendar from "./components/Calendar";
 import Events from "./components/Events";
-import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 import { useState } from "react";
 
-const EventTimelineComponent = ({ handleEvents }) => {
+const EventTimelineComponent = () => {
   const [date, setDate] = useState(null);
 
   const onDateClick = (event) => {
+    const currentDate = new Date(
+      `${event.year}/${event.month + 1}/${event.day}`
+    );
+    new Date(currentDate.setDate(currentDate.getDate() + 1));
     const date = {
       from: event.day + "/" + (event.month + 1) + "/" + event.year,
-      to: event.day + 1 + "/" + (event.month + 1) + "/" + event.year,
+      to: moment(currentDate).format("DD/MM/YYYY"),
     };
     setDate(date);
   };

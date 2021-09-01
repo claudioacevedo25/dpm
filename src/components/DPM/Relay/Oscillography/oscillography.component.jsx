@@ -7,7 +7,6 @@ import "./index.css";
 
 const OscillographyComponent = ({ relayID }) => {
   const [selectedOscillography, setSelectedOscillography] = useState(null);
-  console.log("object :>> ", selectedOscillography);
   return (
     <div className="oscillographies">
       {selectedOscillography === null ? (

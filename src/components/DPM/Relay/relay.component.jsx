@@ -47,7 +47,6 @@ const RelayComponent = ({
     setRelayUpdated(data.updated);
     setSubstation(data.substation);
     setPanio(data.panio);
-    console.log(data);
   };
 
   const handleStateTabChange = (event, newValue) => {
