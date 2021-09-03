@@ -18,6 +18,7 @@ const OscillographyComponent = ({ relayID }) => {
         <OscillographyDisturbances
           relayID={relayID}
           oscillographyID={selectedOscillography.id}
+          goBack={setSelectedOscillography}
         />
       )}
     </div>

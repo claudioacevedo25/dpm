@@ -14,10 +14,9 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import "./index.css";
 
 const SubstationsComponent = (props) => {
-  
   const selectedSubStation = (row) => {
-    props.handleTooltip(row)
-  }
+    props.handleTooltip(row);
+  };
   return (
     <Card className="subestations">
       <CardContent>
@@ -46,8 +45,8 @@ const SubstationsComponent = (props) => {
               </TableHead>
               <TableBody className="subestationsContainer__table__body">
                 {!!props.substations &&
-                  props.substations.map((row) => ( 
-                     <TableRow key={row.name}>
+                  props.substations.map((row) => (
+                    <TableRow key={row.name}>
                       <TableCell
                         className="subestationsContainer__table__body__item"
                         align="center"
@@ -61,7 +60,7 @@ const SubstationsComponent = (props) => {
                       <TableCell
                         className="subestationsContainer__table__body__item"
                         align="center"
-                        onClick={()=>selectedSubStation(row)}
+                        onClick={() => selectedSubStation(row)}
                       >
                         {row.name}
                       </TableCell>

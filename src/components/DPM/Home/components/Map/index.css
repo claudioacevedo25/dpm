@@ -1,4 +1,13 @@
 .map {
   background: #19192b;
   border-radius: 16px;
+  height: 100%;
+}
+
+.map_content {
+  height: 100%;
+}
+
+.map_composableMap {
+  height: calc(100vh - 280px);
 }

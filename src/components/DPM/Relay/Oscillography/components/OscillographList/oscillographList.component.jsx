@@ -21,7 +21,7 @@ const OscillographListComponent = ({
   const [isDownload, setIsDownload] = useState(false);
   const [activePage, setActivePage] = useState(0);
   const { onError, onSuccess } = useNotification();
-  const size = 14;
+  const size = 16;
   const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {

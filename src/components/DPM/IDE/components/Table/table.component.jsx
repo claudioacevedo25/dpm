@@ -33,8 +33,8 @@ const TableComponent = ({
 }) => {
   const [selected, setSelected] = useState("");
   useEffect(() => {
-    if(props[type] !== ''){
-      setSelected(props[type].id)
+    if (props[type] !== "") {
+      setSelected(props[type].id);
     }
   }, []);
   const onChange = async (selected) => {
@@ -60,11 +60,7 @@ const TableComponent = ({
       <CardContent>
         <Paper>
           <TableContainer className="tableContainer">
-            <Table
-              stickyHeader
-              className="tableContainer__table"
-              aria-label="simple table"
-            >
+            <Table className="tableContainer__table" aria-label="simple table">
               <TableHead className="tableContainer__table__head">
                 <TableRow>
                   <TableCell

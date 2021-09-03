@@ -24,7 +24,7 @@ const ReportsComponent = ({
   const [activePage, setActivePage] = useState(0);
   const [currentReport, setCurrentReport] = useState({});
   const { onError, onSuccess } = useNotification();
-  const size = 14;
+  const size = 13;
   const totalPage = (total) => Math.ceil(total / size);
 
   useEffect(() => {

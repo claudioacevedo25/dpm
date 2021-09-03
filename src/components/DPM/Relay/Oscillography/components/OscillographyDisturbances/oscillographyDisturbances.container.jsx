@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getOscillography } from "../../../../../../api/oscillographiesService";
 import OscillographyDisturbancesComponent from "./oscillographyDisturbances.component";
 
-const OscillographyDisturbances = ({ relayID, oscillographyID }) => {
+const OscillographyDisturbances = ({ relayID, oscillographyID, goBack }) => {
   const getRelayIDOscillography = async () => {
     const data = await getOscillography(relayID, oscillographyID);
     return data;
@@ -11,6 +11,7 @@ const OscillographyDisturbances = ({ relayID, oscillographyID }) => {
   return (
     <OscillographyDisturbancesComponent
       getRelayIDOscillography={getRelayIDOscillography}
+      goBack={goBack}
     />
   );
 };

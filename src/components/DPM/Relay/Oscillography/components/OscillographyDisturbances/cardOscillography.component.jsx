@@ -8,7 +8,7 @@ const CardOscillography = ({ title, content }) => {
       <CardContent>
         <Typography className="cardOscillography__title">{title}</Typography>
         {content.map((item, index) => (
-          <div className="cardOscillography__content">
+          <div key={index} className="cardOscillography__content">
             <Typography className="cardOscillography__content__item">
               {item.label}
             </Typography>

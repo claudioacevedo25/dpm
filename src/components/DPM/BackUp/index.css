@@ -3,6 +3,7 @@
 }
 
 .backUp__header {
+  margin-top: -32px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
