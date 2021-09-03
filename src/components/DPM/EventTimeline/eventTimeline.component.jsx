@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
+import moment from "moment";
 import Calendar from "./components/Calendar";
 import Events from "./components/Events";
 import "./index.css";
 import { useState } from "react";
 
-const EventTimelineComponent = ({ handleEvents }) => {
+const EventTimelineComponent = () => {
   const [date, setDate] = useState(null);
 
   const onDateClick = (event) => {
+    const currentDate = new Date(
+      `${event.year}/${event.month + 1}/${event.day}`
+    );
+    new Date(currentDate.setDate(currentDate.getDate() + 1));
     const date = {
       from: event.day + "/" + (event.month + 1) + "/" + event.year,
-      to: event.day + 1 + "/" + (event.month + 1) + "/" + event.year,
+      to: moment(currentDate).format("DD/MM/YYYY"),
     };
     setDate(date);
   };
@@ -21,7 +26,7 @@ const EventTimelineComponent = ({ handleEvents }) => {
     <div className="eventTimeline">
       <div className="eventTimeline__header">
         <Typography className="eventTimeline__title">Event Timeline</Typography>
-        <div className="eventTimeline__header__contentSearch">
+        {/* <div className="eventTimeline__header__contentSearch">
           <TextField
             className="eventTimeline__header__contentSearch__search"
             type="search"
@@ -47,7 +52,7 @@ const EventTimelineComponent = ({ handleEvents }) => {
               ),
             }}
           />
-        </div>
+        </div> */}
       </div>
       <div className="eventTimeline__calendar">
         <Calendar onDateClick={onDateClick} />

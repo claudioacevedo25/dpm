@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom'
-import { recoverSelection } from '../../../redux/substationStructure/substationStructureActions'
+import { useHistory } from "react-router-dom";
+import { recoverSelection } from "../../../redux/substationStructure/substationStructureActions";
 import { connect } from "react-redux";
-import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import {
   Typography,
   TextField,
@@ -18,12 +18,18 @@ import Settings from "./Settings";
 import Reports from "./Reports";
 import "./index.css";
 
-const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, ...props}) => {
+const RelayComponent = ({
+  relayID,
+  relayName,
+  getRelayID,
+  recoverSelectionData,
+  ...props
+}) => {
   const history = useHistory();
   const [valueTab, setValueTab] = useState(1);
   const [relayUpdated, setRelayUpdated] = useState(null);
-  const [substation, setSubstation] = useState('');
-  const [panio, setPanio] = useState('');
+  const [substation, setSubstation] = useState("");
+  const [panio, setPanio] = useState("");
 
   const tabs = [
     { name: "Osilografías" },
@@ -40,8 +46,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
     const data = await getRelayID();
     setRelayUpdated(data.updated);
     setSubstation(data.substation);
-    setPanio(data.panio)
-    console.log(data)
+    setPanio(data.panio);
   };
 
   const handleStateTabChange = (event, newValue) => {
@@ -53,29 +58,33 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
   };
 
   const backAction = () => {
-    history.goBack()
-    props.backup && recoverSelectionData()
-  }
+    history.goBack();
+    props.substationSelected.backup && recoverSelectionData();
+  };
 
   return (
     <div className="relay">
       <div className="relay__header">
-      <div className="relay__header_data">
-      <ArrowBackIosRoundedIcon  fontSize="small" className="relay__back__arrow" onClick={backAction}/>
-      {relayUpdated !== null &&<Typography style={{float:'left'}}className="">{`
-      ${substation} /
-      ${panio}`}</Typography>}
-      </div>
+        <div className="relay__header_data">
+          <ArrowBackIosRoundedIcon
+            className="relay__back__arrow"
+            onClick={backAction}
+          />
+          {relayUpdated !== null && (
+            <Typography className="relay__header__title">
+              {substation + " / " + panio}
+            </Typography>
+          )}
+        </div>
         <Typography className="relay__title">{relayName}</Typography>
         <div className="relay__header__container">
-          <AppBar className="relay__header__appBar" position="static">                    
+          <AppBar className="relay__header__appBar" position="static">
             <Tabs
               className="relay__header__appBar__tabs"
               value={valueTab}
               onChange={handleStateTabChange}
               aria-label="simple tabs example"
             >
-
               {tabs.map((tab, index) => (
                 <Tab
                   key={index}
@@ -97,7 +106,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
             </Tabs>
           </AppBar>
 
-          <div className="relay__header__contentSearch">
+          {/* <div className="relay__header__contentSearch">
             <TextField
               className="relay__header__contentSearch__search"
               type="search"
@@ -123,7 +132,7 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
                 ),
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {relayUpdated !== null && (
@@ -150,11 +159,9 @@ const RelayComponent = ({ relayID, relayName, getRelayID, recoverSelectionData, 
   );
 };
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    recoverSelectionData: () =>
-      dispatch(recoverSelection()),
+    recoverSelectionData: () => dispatch(recoverSelection()),
   };
 };
 

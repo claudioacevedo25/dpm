@@ -1,108 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "@material-ui/core";
 import { connect } from "react-redux";
-import { useNotification } from "../../../../hooks/notification";
 import { updateAlert } from "../../../../redux/alert/alertActions";
-import SelectableTable from "./components/SelectableTable";
-import Pagination from "../../../../reusable/Pagination";
-import Spinner from "../../../../reusable/Spinner";
-import Button from "../../../Button";
+import OscillographList from "./components/OscillographList";
+import OscillographyDisturbances from "./components/OscillographyDisturbances";
 import "./index.css";
 
-const OscillographyComponent = ({
-  getRelayIDOscillographies,
-  handleOscillographiesRelay,
-  dispatchAlert,
-  alert,
-}) => {
-  const [listOscillographies, setListOscillographies] = useState({});
-  const [selected, setSelected] = useState([]);
-  const [isDownload, setIsDownload] = useState(false);
-  const [activePage, setActivePage] = useState(0);
-  const { onError, onSuccess } = useNotification();
-  const size = 14;
-  const totalPage = (total) => Math.ceil(total / size);
-
-  useEffect(() => {
-    onPageChange(0);
-  }, []);
-
-  const onPageChange = async (page) => {
-    try {
-      const listOscillographies = await getRelayIDOscillographies(page, size);
-      setListOscillographies(listOscillographies);
-      setActivePage(page);
-    } catch (error) {
-      onError(error);
-    }
-  };
-
-  const onClickOscillographies = async () => {
-    setIsDownload(true);
-    try {
-      setSelected([]);
-      await handleOscillographiesRelay(selected);
-      dispatchAlert({ isAlert: false });
-      onSuccess("Descarga realizada con éxito");
-    } catch (error) {
-      onError("No se pudo realizar la descarga con éxito");
-    }
-    setIsDownload(false);
-  };
-
-  const onClickSelected = async (selected) => {
-    if (selected.length > 0 && !alert.isAlert) {
-      const alert = {
-        agree: "Continuar sin guardar",
-        disagree: "Guardar ",
-        isAlert: true,
-        message: "¿Queres guardar los cambios antes de salir?",
-      };
-      dispatchAlert(alert);
-    }
-    if (selected.length === 0) {
-      dispatchAlert({ isAlert: false });
-    }
-    setSelected(selected);
-  };
-
+const OscillographyComponent = ({ relayID }) => {
+  const [selectedOscillography, setSelectedOscillography] = useState(null);
   return (
     <div className="oscillographies">
-      {listOscillographies.data && !isDownload ? (
-        listOscillographies.data.length > 0 ? (
-          <>
-            <div className="oscillographies__header">
-              <Typography className="oscillographies__title">
-                Oscilografías Registradas
-              </Typography>
-              <div className="oscillographies__button">
-                <Button
-                  color={selected.length > 0 ? "#20BA87" : "#2A2A42"}
-                  textButton="Descargar zip"
-                  disabled={selected.length > 0 ? false : true}
-                  onClickButton={onClickOscillographies}
-                />
-              </div>
-            </div>
-            <div className="oscillographies__container">
-              <SelectableTable
-                onClickSelected={onClickSelected}
-                listOscillographies={listOscillographies.data}
-              />
-              <Pagination
-                totalPages={totalPage(listOscillographies.total)}
-                onPageChange={onPageChange}
-                activePage={activePage}
-              />
-            </div>
-          </>
-        ) : (
-          <Typography className="oscillographies__subtitle">
-            No hay oscilografias registrados
-          </Typography>
-        )
+      {selectedOscillography === null ? (
+        <OscillographList
+          onClickOscillography={setSelectedOscillography}
+          relayID={relayID}
+        />
       ) : (
-        <Spinner description={!!isDownload && "Descargando archivos"} />
+        <OscillographyDisturbances
+          relayID={relayID}
+          oscillographyID={selectedOscillography.id}
+          goBack={setSelectedOscillography}
+        />
       )}
     </div>
   );

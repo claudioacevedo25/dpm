@@ -4,14 +4,10 @@ import LoginPageComponent from "./loginPage.component";
 
 const LoginPage = () => {
   const formOnSubmit = async (values) => {
-    try {
-      const data = await loginService(values);
-      sessionStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("dpm", JSON.stringify(data.instances["DPM"][0]));
-      window.location.href = "/home";
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    const data = await loginService(values);
+    sessionStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("dpm", JSON.stringify(data.instances["DPM"][0]));
+    window.location.href = "/home";
   };
 
   const initialValues = {

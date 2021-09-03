@@ -1,9 +1,10 @@
 .ide {
   margin: 0 46px 46px 46px;
-  height: calc(100vh - 265px);
+  height: calc(100vh - 230px);
 }
 
 .ide__header {
+  margin-top: -32px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;

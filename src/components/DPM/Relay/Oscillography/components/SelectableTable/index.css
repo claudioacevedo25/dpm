@@ -2,19 +2,19 @@
   background: rgba(30, 30, 52, 0.4);
 }
 
-.oscillographies__container .selectableTable {
-  height: calc(100vh - 325px);
+.selectableTable__oscillography {
+  height: calc(100vh - 310px);
 }
 
-.selectableTable::-webkit-scrollbar {
+.selectableTable__oscillography::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
-.selectableTable::-webkit-scrollbar:vertical {
+.selectableTable__oscillography::-webkit-scrollbar:vertical {
   width: 10px;
 }
 
-.selectableTable::-webkit-scrollbar-thumb {
+.selectableTable__oscillography::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
   border-top: 10px solid #19192b;
@@ -34,4 +34,12 @@
   padding: 10px 0;
   color: #aaaabe;
   font-size: 0.9rem;
+}
+
+.selectableTable__item__icon :hover {
+  cursor: pointer;
+}
+
+.selectableTable__item__checkbox span svg {
+  height: 22px;
 }

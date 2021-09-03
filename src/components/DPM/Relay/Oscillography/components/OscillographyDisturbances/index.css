@@ -1,0 +1,69 @@
+.oscillographyDisturbances .oscillographyDisturbances__goBack {
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.oscillographyDisturbances__goBack:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.oscillographyDisturbances .oscillographyDisturbances__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.oscillographyDisturbances__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oscillographyDisturbances .oscillographyDisturbances__subtitle {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.oscillographyDisturbances__content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 280px);
+}
+
+.oscillographyDisturbances__cardOscillography {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.oscillographyDisturbances__container .spinner {
+  height: calc(100vh - 300px);
+}
+
+.oscillographyDisturbances__cardOscillography .cardOscillography {
+  background: #19192b;
+  border-radius: 16px;
+  margin: 5px 0;
+}
+
+.cardOscillography__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cardOscillography__content {
+  display: flex;
+  width: 100%;
+}
+
+.cardOscillography__content .cardOscillography__content__item {
+  padding: 5px;
+  font-weight: normal;
+  font-size: 0.8rem;
+  width: 50%;
+}

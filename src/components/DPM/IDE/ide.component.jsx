@@ -25,7 +25,7 @@ const IDEComponent = ({ ...props }) => {
         <Typography className="ide__title">
           Selecciona subestación, paño y relé
         </Typography>
-        <div className="ide__header__contentSearch">
+        {/* <div className="ide__header__contentSearch">
           <TextField
             className="ide__header__contentSearch__search"
             type="search"
@@ -51,7 +51,7 @@ const IDEComponent = ({ ...props }) => {
               ),
             }}
           />
-        </div>
+        </div> */}
       </div>
       <div className="ide__button">
         <Button

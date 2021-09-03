@@ -16,7 +16,7 @@
 }
 
 .eventsContainer {
-  height: calc(100vh - 325px);
+  height: calc(100vh - 315px);
 }
 
 .eventsContainer::-webkit-scrollbar {

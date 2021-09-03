@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { Search, FilterList } from "@material-ui/icons";
 import Substations from "./components/Substations";
@@ -7,21 +7,21 @@ import Spinner from "../../../reusable/Spinner";
 import "./index.css";
 
 const HomeComponent = (props) => {
-const [showTooltip, setShowTooltip] = useState(null);
+  const [showTooltip, setShowTooltip] = useState(null);
 
-const handleTooltip = (subStation) =>{
-  if(!!showTooltip){
-    setShowTooltip(null);
-    return;
-  }
-  setShowTooltip(subStation.id);
-}
+  const handleTooltip = (subStation) => {
+    if (!!showTooltip) {
+      setShowTooltip(null);
+      return;
+    }
+    setShowTooltip(subStation.id);
+  };
 
   return (
     <div className="home">
       <div className="home__header">
         <Typography className="home__title">Inicio</Typography>
-        <div className="home__header__contentSearch">
+        {/* <div className="home__header__contentSearch">
           <TextField
             className="home__header__contentSearch__search"
             type="search"
@@ -47,7 +47,7 @@ const handleTooltip = (subStation) =>{
               ),
             }}
           />
-        </div>
+        </div> */}
       </div>
       <Typography className="home__subtitle">
         Conoce el estado de cada subestación
@@ -60,7 +60,10 @@ const handleTooltip = (subStation) =>{
               <Maps substations={props.substations} selected={showTooltip} />
             </div>
             <div className="home__substations__table">
-              <Substations substations={props.substations} handleTooltip={handleTooltip}  />
+              <Substations
+                substations={props.substations}
+                handleTooltip={handleTooltip}
+              />
             </div>
           </>
         ) : (
