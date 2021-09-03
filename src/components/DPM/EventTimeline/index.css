@@ -3,6 +3,7 @@
 }
 
 .eventTimeline__header {
+  margin-top: -32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

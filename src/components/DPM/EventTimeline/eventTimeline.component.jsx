@@ -26,7 +26,7 @@ const EventTimelineComponent = () => {
     <div className="eventTimeline">
       <div className="eventTimeline__header">
         <Typography className="eventTimeline__title">Event Timeline</Typography>
-        <div className="eventTimeline__header__contentSearch">
+        {/* <div className="eventTimeline__header__contentSearch">
           <TextField
             className="eventTimeline__header__contentSearch__search"
             type="search"
@@ -52,7 +52,7 @@ const EventTimelineComponent = () => {
               ),
             }}
           />
-        </div>
+        </div> */}
       </div>
       <div className="eventTimeline__calendar">
         <Calendar onDateClick={onDateClick} />

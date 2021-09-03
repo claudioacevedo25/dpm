@@ -3,7 +3,7 @@
 }
 
 .selectableTable__oscillography {
-  height: calc(100vh - 300px);
+  height: calc(100vh - 310px);
 }
 
 .selectableTable__oscillography::-webkit-scrollbar {
@@ -38,4 +38,8 @@
 
 .selectableTable__item__icon :hover {
   cursor: pointer;
+}
+
+.selectableTable__item__checkbox span svg {
+  height: 22px;
 }

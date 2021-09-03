@@ -5,7 +5,10 @@ import CardOscillography from "./cardOscillography.component";
 import Spinner from "../../../../../../reusable/Spinner";
 import "./index.css";
 
-const OscillographyDisturbancesComponent = ({ getRelayIDOscillography }) => {
+const OscillographyDisturbancesComponent = ({
+  getRelayIDOscillography,
+  goBack,
+}) => {
   const [oscillography, setOscillography] = useState(null);
 
   useEffect(() => {
@@ -44,6 +47,12 @@ const OscillographyDisturbancesComponent = ({ getRelayIDOscillography }) => {
     <div className="oscillographyDisturbances">
       {oscillography !== null ? (
         <>
+          <Typography
+            className="oscillographyDisturbances__goBack"
+            onClick={() => goBack(null)}
+          >
+            Volver a oscilografias
+          </Typography>
           <div className="oscillographyDisturbances__header">
             <Typography className="oscillographyDisturbances__title">
               Informe breve de perturbaciones

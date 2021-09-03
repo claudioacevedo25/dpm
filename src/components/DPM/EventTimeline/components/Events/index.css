@@ -53,7 +53,7 @@
 }
 
 .eventsTimelineContainer {
-  max-height: calc(100vh - 415px);
+  max-height: calc(100vh - 365px);
 }
 
 .eventsTimelineContainer::-webkit-scrollbar {

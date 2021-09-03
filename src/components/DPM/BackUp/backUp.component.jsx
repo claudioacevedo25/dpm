@@ -73,7 +73,7 @@ const BackUpComponent = ({
     <div className="backUp">
       <div className="backUp__header">
         <Typography className="backUp__title">Backup</Typography>
-        <div className="backUp__header__contentSearch">
+        {/* <div className="backUp__header__contentSearch">
           <TextField
             className="backUp__header__contentSearch__search"
             type="search"
@@ -99,7 +99,7 @@ const BackUpComponent = ({
               ),
             }}
           />
-        </div>
+        </div> */}
       </div>
       <div className="backUp__button">
         <Button

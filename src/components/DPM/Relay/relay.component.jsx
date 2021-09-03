@@ -106,7 +106,7 @@ const RelayComponent = ({
             </Tabs>
           </AppBar>
 
-          <div className="relay__header__contentSearch">
+          {/* <div className="relay__header__contentSearch">
             <TextField
               className="relay__header__contentSearch__search"
               type="search"
@@ -132,7 +132,7 @@ const RelayComponent = ({
                 ),
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {relayUpdated !== null && (

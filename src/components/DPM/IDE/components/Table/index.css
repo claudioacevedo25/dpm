@@ -1,5 +1,9 @@
 .ide__tablesContainer__item .table {
-  background: #19192b;
+  background: linear-gradient(
+    111.07deg,
+    #242430 -43.51%,
+    rgba(30, 30, 56, 0) 109.63%
+  );
   border-radius: 16px;
   height: 100%;
 }
@@ -35,12 +39,16 @@
   font-weight: bold;
   font-size: 1rem;
   padding: 10px 16px;
-  background: #19192b;
+  background: transparent;
 }
 
 .tableContainer__table__body .tableContainer__table__body__item {
   border-bottom: none;
   padding: 4px 16px;
+}
+
+.tableContainer__table__body .tableContainer__table__body__item:hover {
+  cursor: pointer;
 }
 
 .tableContainer__table__body--selected {

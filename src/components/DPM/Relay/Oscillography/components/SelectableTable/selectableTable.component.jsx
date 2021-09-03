@@ -67,6 +67,7 @@ const SelectableTableComponent = ({
                 >
                   <TableCell>
                     <Checkbox
+                      className="selectableTable__item__checkbox"
                       onClick={(event) => handleClick(event, row.id)}
                       color="primary"
                       checked={isItemSelected || false}

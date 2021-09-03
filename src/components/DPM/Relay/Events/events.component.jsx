@@ -8,7 +8,7 @@ import "./index.css";
 const EventsComponent = ({ getRelayIDEvents }) => {
   const [listEvents, setListEvents] = useState({});
   const [activePage, setActivePage] = useState(0);
-  const size = 18;
+  const size = 16;
   const totalPage = (total) => Math.ceil(total / size);
   useEffect(() => {
     onPageChange(0);

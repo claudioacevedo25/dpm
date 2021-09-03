@@ -1,7 +1,17 @@
+.oscillographyDisturbances .oscillographyDisturbances__goBack {
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.oscillographyDisturbances__goBack:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .oscillographyDisturbances .oscillographyDisturbances__title {
   font-size: 1.4rem;
   font-weight: 600;
-  margin-top: 15px;
 }
 
 .oscillographyDisturbances__header {
@@ -20,7 +30,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 255px);
+  height: calc(100vh - 280px);
 }
 
 .oscillographyDisturbances__cardOscillography {

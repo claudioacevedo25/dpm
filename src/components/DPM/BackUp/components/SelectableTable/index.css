@@ -15,7 +15,7 @@
 }
 
 .backUp .selectableTable {
-  min-height: calc(100vh - 310px);
+  max-height: calc(100vh - 265px);
 }
 
 .selectableTable::-webkit-scrollbar {
