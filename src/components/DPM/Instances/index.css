@@ -1,9 +1,8 @@
-.instances__logo {
-  height: 40px;
-  width: 90px;
+.instances__icon {
+  padding: 12px 30px 12px 15px;
 }
 
-.instances__logo:hover {
+.instances__icon:hover {
   cursor: pointer;
 }
 
