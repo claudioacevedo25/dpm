@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Popover, Typography, Card, CardContent } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import logoDPM from "../../../assets/images/LogoDPM.png";
+import ReplyIcon from "@material-ui/icons/Reply";
 
 import "./index.css";
 
@@ -27,12 +27,7 @@ const InstancesComponent = () => {
 
   return (
     <div className="instances">
-      <img
-        className="instances__logo"
-        alt="logoDPM"
-        src={logoDPM}
-        onClick={handleInstances}
-      />
+      <ReplyIcon className="instances__icon" onClick={handleInstances} />
       <Popover
         open={open}
         anchorEl={anchorEl}
