@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 
-const ChartComponent = ({type, xaxis, yaxis, id}) => {
+const ChartComponent = ({type, xaxis, yaxis, id, colors}) => {
+  
 
     const isChartLine = type === 'line';
     const colorChart = !!isChartLine ? "#107558" : '#088069';
@@ -27,7 +28,7 @@ const ChartComponent = ({type, xaxis, yaxis, id}) => {
             curve: 'smooth',
             width: !isChartLine ? false : 2,
           },
-        colors: [colorChart],
+        colors: colors ,
         fill: {
             colors:[colorChart],
             type: !isChartLine ? 'gradient' : 'solid',
@@ -51,7 +52,7 @@ const ChartComponent = ({type, xaxis, yaxis, id}) => {
             tickAmount: 5,
             decimalsInFloat: 2,
             axisBorder: {
-                show: !!isChartLine ? false : true,
+                show: true,
             },
             categories: xaxis, //[] Values of 'X'
             labels: {
@@ -64,11 +65,11 @@ const ChartComponent = ({type, xaxis, yaxis, id}) => {
             },
         },
         yaxis: {
-          max:0.0001,
+          // max:0.0001,
           logarithmic: true,
           forceNiceScale: true,
             axisBorder: {
-                show: !!isChartLine ? false : true,
+                show: true,
             },
             // decimalsInFloat: 5,
             tickAmount: 4,

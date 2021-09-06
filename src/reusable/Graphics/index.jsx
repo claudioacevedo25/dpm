@@ -1,3 +1,3 @@
-import Chart from './chart.container';
+import Chart from './Chart.container';
 
 export default Chart;
