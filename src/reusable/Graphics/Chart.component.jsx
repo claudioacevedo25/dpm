@@ -16,7 +16,7 @@ const ChartComponent = ({type, xaxis, yaxis, id}) => {
     const chartState = {
       options: {
         chart: {
-          id: "basic-bar",
+          id: id,
           toolbar: {
               tools: {
                   download: false,
