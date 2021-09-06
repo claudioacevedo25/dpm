@@ -21,7 +21,7 @@ import {
 import paths from "../../constants/paths.constants";
 import Header from "../../components/Header";
 import Alert from "../../reusable/Alert";
-import Instances from "../DPM/Instances";
+import logoDPM from "../../assets/images/LogoDPM.png";
 import "./index.css";
 
 const drawerWidth = 240;
@@ -156,8 +156,7 @@ const DrawerComponent = ({ dispatchAlert, alert, ...props }) => {
           </IconButton>
         </div> */}
         <div className="drawer__header">
-          {/* <img className="drawer__header__logo" alt="logoDPM" src={logoDPM} /> */}
-          <Instances />
+          <img className="drawer__header__logo" alt="logoDPM" src={logoDPM} />
           <div>
             <Typography className="drawer__header__title">DPM</Typography>
             <Typography className="drawer__header__dpm">
