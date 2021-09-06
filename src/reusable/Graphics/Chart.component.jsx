@@ -1,21 +1,8 @@
 import React, { useEffect } from "react";
 import Chart from "react-apexcharts";
 
-const ChartComponent = ({type, axisData, id}) => {
+const ChartComponent = ({type, xaxis, yaxis, id}) => {
 
-    let valuesSeriesLine = []; //array de objetos que representan los valores de Y (line)
-    let valuesSeriesBar = []; //array de objetos que representan los valores de Y (bar)
-    const addGraphicsYaxis = (type) => {
-      if(type === 'bar' && !valuesSeriesBar.length) {
-        valuesSeriesBar.push({data: axisData.y});
-      };
-      type === 'line' && valuesSeriesLine.push({data: axisData.y});
-     };
-
-     useEffect(() => { 
-      addGraphicsYaxis(type);
-     },[id])
-    
     const isChartLine = type === 'line';
     const colorChart = !!isChartLine ? "#107558" : '#088069';
     const axisStyle = {
@@ -66,7 +53,7 @@ const ChartComponent = ({type, axisData, id}) => {
             axisBorder: {
                 show: !!isChartLine ? false : true,
             },
-            categories: axisData.x, //[] Values of 'X'
+            categories: xaxis, //[] Values of 'X'
             labels: {
                 show: true,
                 style: axisStyle,
@@ -100,7 +87,7 @@ const ChartComponent = ({type, axisData, id}) => {
         }
       
     },
-      series: type === 'line' ? valuesSeriesLine : valuesSeriesBar, //values of 'Y'
+      series: yaxis, // [{},n...{}]values of 'Y'
     };
 
     return (

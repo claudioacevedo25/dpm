@@ -1,5 +1,5 @@
 import ChartComponent from './chart.component';
 
-const Chart = ({ type, data, id }) => <ChartComponent type={type} axisData={data} id={id}/>;
+const Chart = ({ type, xaxis, yaxis, id }) => <ChartComponent type={type} xaxis={xaxis} yaxis={yaxis} id={id}/>;
 
 export default Chart;
