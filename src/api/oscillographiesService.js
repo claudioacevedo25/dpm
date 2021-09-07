@@ -4,6 +4,7 @@ import {
   OSCILLOGRAPHIES,
   DOWNLOAD_OSCILLOGRAPHIES,
   httpRequestsValues,
+  REPORT,
   DPM,
 } from "../constants/api.constants";
 
@@ -37,4 +38,11 @@ export const getOscillography = (idRelay, idOscillography) => {
   const RELAYOSCILLOGRAPHIES =
     RELAYS + idRelay + "/" + OSCILLOGRAPHIES + idOscillography + "/";
   return genericHttpRequest(GET, RELAYOSCILLOGRAPHIES, data, apiSelection);
+};
+
+export const getGraphicsOscillography = (idRelay, idOscillography) => {
+  const data = "";
+  const GRAPHICSOSCILLOGRAPHY =
+    RELAYS + idRelay + "/" + OSCILLOGRAPHIES + idOscillography + "/" + REPORT;
+  return genericHttpRequest(GET, GRAPHICSOSCILLOGRAPHY, data, apiSelection);
 };
