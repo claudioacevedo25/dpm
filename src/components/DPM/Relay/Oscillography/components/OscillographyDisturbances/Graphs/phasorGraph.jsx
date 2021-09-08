@@ -7,33 +7,7 @@ const PhasorGraph = (props) => {
   const svgRef = useRef()
   const localSize = { width: props.width, height: props.width }
   const [zoomState, setzoomState] = useState({zoom:1, offset:{x:0,y:0}})
-  const [filteredVectorData, setfilteredVectorData] = useState([])
-
-  const hideVector=(vectorToToggle)=>{
-    if(filteredVectorData.indexOf(vectorToToggle) == -1){
-      setfilteredVectorData([...filteredVectorData, vectorToToggle])
-    }else{
-    const newVectorData = filteredVectorData.filter((vector)=>{
-      return vector.id != vectorToToggle.id
-    })
-    setfilteredVectorData(newVectorData)
-    }
-  }
-
-  const hideVectorSelect=(event)=>{
-    if(filteredVectorData.find((cvector) =>{return cvector.id == event.target.value})){
-      const newVectorData = filteredVectorData.filter((vectorToHide)=>{
-        return vectorToHide.id != event.target.value
-      })
-      setfilteredVectorData(newVectorData)
-    }else{
-      const vectorToAdd = props.vectorData.find((vToAdd)=>{
-        return vToAdd.id == event.target.value
-      })
-      setfilteredVectorData([...filteredVectorData, vectorToAdd])
-    }
-  }
-
+  const [filteredVectorData, setfilteredVectorData] = useState([{amp:48, angle:92, color:'cyan', id:'TestVector'}])
 
   //Render Funcition
   function renderSvg() {
@@ -41,7 +15,7 @@ const PhasorGraph = (props) => {
     svg.selectAll("*").remove()
     d3.select('body').selectAll('#tooltip').remove()
     //SVG properties declarations
-    let margin = { top: 25 + zoomState.offset.y, bot: 15, left: 25 + zoomState.offset.x, right: 25 }
+    let margin = { top: 25 + zoomState.offset.y, bot: 25, left: 25 + zoomState.offset.x, right: 25 }
     let width = localSize.width
     let height = localSize.height
     let totalWidth = width - margin.left - margin.right + zoomState.offset.x
@@ -74,6 +48,8 @@ const PhasorGraph = (props) => {
 
     const mouseOut = () => {
       tooltip.style("opacity", 0)
+      .style('left', 0 + 'px')
+      .style('top', 0 + 'px')
     }
     //Scales
     let xAxisScale = d3.scaleLinear()
@@ -184,34 +160,15 @@ const PhasorGraph = (props) => {
   }, [props, filteredVectorData, zoomState])
   return (
     <div className='phasor_graph_container'>
-      <div className='vector_button_container'>
-        <select onChange={hideVectorSelect}>
-        {props.vectorData.map((vector)=>{
-        return(<option
-        className='option_vector' 
-        key={"option-vector-" +props.vectorData.indexOf(vector)}
-        style={{backgroundColor: vector.color}}
-        value={vector.id}
-        >{vector.id}</option>)
-      })}
-        </select>
-        {filteredVectorData.map((vector)=>{
-        return(<Button onClick={()=>hideVector(vector)} 
-        className='button_vector' 
-        key={"button-vector-" +props.vectorData.indexOf(vector)}
-        style={{backgroundColor: vector.color}}
-        >{vector.id}</Button>)
-      })}
-      </div>
       <svg ref={svgRef} className='svg_graph'></svg>
-      
-      <div>
-      <Button onClick={()=>{setzoomState({...zoomState, zoom: zoomState.zoom + 0.5})}}>+</Button>
-      <Button onClick={()=>{setzoomState({...zoomState, zoom: zoomState.zoom - 0.5})}}>-</Button>
-      <Button onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, x: zoomState.offset.x + 15}})}}>←</Button>
-      <Button onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, x: zoomState.offset.x - 15}})}}>→</Button>
-      <Button onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, y: zoomState.offset.y + 15}})}}>↑</Button>
-      <Button onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, y: zoomState.offset.y - 15}})}}>↓</Button>
+      <div className='zoom_controls_container'>
+
+      <Button className={'zoom_plus zoom_control'} onClick={()=>{setzoomState({...zoomState, zoom: zoomState.zoom + 0.5})}}>+</Button>
+      <Button className={'zoom_minus zoom_control'} onClick={()=>{setzoomState({...zoomState, zoom: zoomState.zoom - 0.5})}}>-</Button>
+      <Button className={'zoom_leftarr zoom_control'} onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, x: zoomState.offset.x + 15}})}}>{'\<'}</Button>
+      <Button className={'zoom_rightarr zoom_control'} onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, x: zoomState.offset.x - 15}})}}>{'\>'}</Button>
+      <Button className={'zoom_uparr zoom_control'} onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, y: zoomState.offset.y + 15}})}}>{'\<'}</Button>
+      <Button className={'zoom_downarr zoom_control'} onClick={()=>{setzoomState({...zoomState, offset:{...zoomState.offset, y: zoomState.offset.y - 15}})}}>{'\>'}</Button>
       </div>
     </div>
   )
