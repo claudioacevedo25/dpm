@@ -1,3 +1,5 @@
 import Chart from './Chart.container';
+import Phasor from './phasorGraph.container';
 
-export default Chart;
+export const Chart;
+export const Phasor;
