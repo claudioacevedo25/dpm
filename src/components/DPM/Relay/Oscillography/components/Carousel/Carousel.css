@@ -1,0 +1,45 @@
+.carousel_container {
+    width: 100% !important;
+    display: flex;
+    height: 98%;
+    background: #19192b;
+    border-radius: 16px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+div .carousel .carousel-slider {
+    margin-left: 25%;
+}
+
+.carousel_body {
+    display: 'flex';
+    flexDirection: 'column';
+}
+
+.plus_button {
+    align-self: flex-end;
+    margin-top: 50px;
+    
+}
+
+.phasor_graph_container {}
+
+.carousel_header{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    max-width: 100%;
+    flex: 1 1 0
+}
+
+.carousel_header_select{
+    min-width: 80px;
+}
+
+.MuiPopover-paper .MuiList-root 
+{
+    background-color: #282841 !important;
+}

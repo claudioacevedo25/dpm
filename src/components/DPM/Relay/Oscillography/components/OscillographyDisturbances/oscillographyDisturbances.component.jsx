@@ -4,17 +4,21 @@ import moment from "moment";
 import CardOscillography from "./cardOscillography.component";
 import Spinner from "../../../../../../reusable/Spinner";
 import "./index.css";
-
+import Carousel from '../Carousel'
 const OscillographyDisturbancesComponent = ({
   getRelayIDOscillography,
   goBack,
+  relayID,
+  oscillographyID
 }) => {
   const [oscillography, setOscillography] = useState(null);
-
+  const [hideDetails, setHideDetails] = useState(false)
   useEffect(() => {
     getOscillography();
   }, []);
-
+  const toggleHideDetails = () =>{
+    setHideDetails(!hideDetails)
+  }
   const getOscillography = async () => {
     try {
       const data = await getRelayIDOscillography();
@@ -53,12 +57,14 @@ const OscillographyDisturbancesComponent = ({
           >
             Volver a oscilografias
           </Typography>
+          
           <div className="oscillographyDisturbances__header">
             <Typography className="oscillographyDisturbances__title">
               Informe breve de perturbaciones
             </Typography>
           </div>
           <div className="oscillographyDisturbances__content">
+          {!hideDetails &&
             <div className="oscillographyDisturbances__cardOscillography">
               <CardOscillography
                 title="Información del dispositivo"
@@ -72,7 +78,8 @@ const OscillographyDisturbancesComponent = ({
                 title="Información del dispositivo"
                 content={oscillography.generalInformation}
               />
-            </div>
+            </div>}
+            <Carousel oscillographyID={oscillographyID} relayID={relayID} setHideDetails={toggleHideDetails}/> 
           </div>
         </>
       ) : (

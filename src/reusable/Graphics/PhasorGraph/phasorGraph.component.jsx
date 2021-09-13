@@ -7,7 +7,6 @@ const PhasorGraph = (props) => {
   const svgRef = useRef()
   const localSize = { width: props.width, height: props.width }
   const [zoomState, setzoomState] = useState({ zoom: 1, offset: { x: 0, y: 0 } })
-  const [filteredVectorData, setfilteredVectorData] = useState([...props.vectorData])
 
   //Render Funcition
   function renderSvg() {
@@ -30,7 +29,9 @@ const PhasorGraph = (props) => {
       .attr("id", "tooltip")
       .style("opacity", 0)
       .text("tooltip");
-    //Tooltip methods declaration
+      
+    tooltip.style('left', 0 + 'px')
+    .style('top', 0 + 'px').style('position', 'absolute')   //Tooltip methods declaration
 
 
     const mouseOver = (e, d) => {
@@ -86,7 +87,7 @@ const PhasorGraph = (props) => {
       .range([-15, totalWidth * zoomState.zoom + 15]);
 
 
-    let max = d3.max(filteredVectorData, (d) => { return d.amp })
+    let max = d3.max(props.vectorData, (d) => { return d.amp })
     if (!max) {
       max = 20
     }
@@ -279,7 +280,7 @@ const PhasorGraph = (props) => {
 
     //Se agregan los vectores
     svg.append("g").selectAll('line')
-      .data(filteredVectorData)
+      .data(props.vectorData)
       .enter()
       .append('line')
       .attr('class', 'vector__line')
@@ -297,20 +298,27 @@ const PhasorGraph = (props) => {
 
   }
   useEffect(() => {
+    console.log(props)
     renderSvg()
-  }, [props, filteredVectorData, zoomState])
+  }, [props, zoomState])
   return (
     <div className='phasor_graph_container'>
       <svg ref={svgRef} className='svg_graph'></svg>
-
-
+      <div className='zoom_controls_container'>
+      <div className='zoom_controls_group_one'>
       <Button className={'zoom_plus zoom_control'} onClick={() => { setzoomState({ ...zoomState, zoom: zoomState.zoom + 0.5 }) }}>+</Button>
       <Button className={'zoom_minus zoom_control'} onClick={() => { setzoomState({ ...zoomState, zoom: zoomState.zoom - 0.5 }) }}>-</Button>
+      </div>
+      <div className={'zoom_controls_group_two'}>
       <Button className={'zoom_leftarr zoom_control'} onClick={() => { setzoomState({ ...zoomState, offset: { ...zoomState.offset, x: zoomState.offset.x + 15 } }) }}>{'\<'}</Button>
-      <Button className={'zoom_rightarr zoom_control'} onClick={() => { setzoomState({ ...zoomState, offset: { ...zoomState.offset, x: zoomState.offset.x - 15 } }) }}>{'\>'}</Button>
+      <div className={'zoom_controls_up_down'}>
       <Button className={'zoom_uparr zoom_control'} onClick={() => { setzoomState({ ...zoomState, offset: { ...zoomState.offset, y: zoomState.offset.y + 15 } }) }}>{'\<'}</Button>
       <Button className={'zoom_downarr zoom_control'} onClick={() => { setzoomState({ ...zoomState, offset: { ...zoomState.offset, y: zoomState.offset.y - 15 } }) }}>{'\>'}</Button>
+      </div>
+      <Button className={'zoom_rightarr zoom_control'} onClick={() => { setzoomState({ ...zoomState, offset: { ...zoomState.offset, x: zoomState.offset.x - 15 } }) }}>{'\>'}</Button>
 
+      </div>
+      </div>
 
     </div>
   )

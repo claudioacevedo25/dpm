@@ -12,6 +12,8 @@ const OscillographyDisturbances = ({ relayID, oscillographyID, goBack }) => {
     <OscillographyDisturbancesComponent
       getRelayIDOscillography={getRelayIDOscillography}
       goBack={goBack}
+      relayID={relayID}
+      oscillographyID={oscillographyID}
     />
   );
 };

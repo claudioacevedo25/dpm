@@ -1,0 +1,40 @@
+.current_selector_container{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+
+.chip_scrollable_container{
+    margin: 0px 20px !important;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    max-width: 400px !important;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .chip_scrollable_container {
+    scrollbar-width: auto;
+    scrollbar-color: #282841 #19192b;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .chip_scrollable_container::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .chip_scrollable_container::-webkit-scrollbar-track {
+    background: #19192b;
+    width: 5px;
+    height: 5px;
+  }
+
+  .chip_scrollable_container::-webkit-scrollbar-thumb {
+    background-color: #282841;
+    border-radius: 13px;
+    width: 5px;
+    height: 5px;
+    border: 0px solid #ffffff;
+  }
