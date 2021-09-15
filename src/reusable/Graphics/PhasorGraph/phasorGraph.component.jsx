@@ -298,7 +298,7 @@ const PhasorGraph = (props) => {
 
   }
   useEffect(() => {
-    console.log(props)
+
     renderSvg()
   }, [props, zoomState])
   return (

@@ -10,9 +10,11 @@ const CurrentSelector = (props)=> {
   return (
      
     <CurrentSelectorComponent
-      currentsData={props.currentsData}
-      currentsDataFiltered={props.currentsDataFiltered}
-      setCurrentsDataFiltered={props.setCurrentsDataFiltered}
+      currentGraphData={props.currentGraphData}
+      currentGraphDataFiltered={props.currentGraphDataFiltered}
+      setCurrentGraphDataFiltered={props.setCurrentGraphDataFiltered}
+      graphsData={props.graphsData}
+      indexToShow={props.indexToShow}
     />
   );
 };

@@ -19,6 +19,16 @@ div .carousel .carousel-slider {
     flexDirection: 'column';
 }
 
+.Mixed__Chart div div{
+    display: flex;
+    justify-content: center !important;
+    align-content: center !important;
+    align-items: center !important;
+    justify-items: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .plus_button {
     align-self: flex-end;
     margin-top: 50px;
@@ -42,4 +52,10 @@ div .carousel .carousel-slider {
 .MuiPopover-paper .MuiList-root 
 {
     background-color: #282841 !important;
+}
+
+.carousel.carousel-slider .control-arrow {
+
+    margin-top: -13px !important;
+
 }
