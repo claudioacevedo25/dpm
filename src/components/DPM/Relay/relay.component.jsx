@@ -59,7 +59,7 @@ const RelayComponent = ({
 
   const backAction = () => {
     history.goBack();
-    props.substationSelected.backup && recoverSelectionData();
+    if(props.substationSelected){props.substationSelected.backup && recoverSelectionData();}
   };
 
   return (
