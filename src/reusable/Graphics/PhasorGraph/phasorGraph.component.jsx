@@ -19,6 +19,7 @@ const PhasorGraph = (props) => {
     let height = localSize.height
     let totalWidth = width - margin.left - margin.right + zoomState.offset.x
     let totalHeight = height - margin.top - margin.bot + zoomState.offset.y
+    let expanded = props.width != 320 ? true : false
     svg.attr('width', localSize.width).attr("height", localSize.height)
 
 
@@ -80,7 +81,7 @@ const PhasorGraph = (props) => {
 
     let diagXAxisScale = d3.scaleLinear()
       .domain([225, 45])
-      .range([-2, totalWidth * zoomState.zoom - 2]);
+      .range([!expanded ? (-1- zoomState.zoom ) : 0, totalWidth * zoomState.zoom +(!expanded ? (-1- zoomState.zoom ): 0)]);
 
     let diagXAxisScale2 = d3.scaleLinear()
       .domain([225, 45])
@@ -172,7 +173,7 @@ const PhasorGraph = (props) => {
     ampAxisGroup.select('path').remove()
 
     const diagpointX1 = ((margin.left + totalWidth / 2) - ampAxisScale(max * (3 / 4)) + 4.5 * zoomState.zoom)
-    const diagpointX2 = ((margin.left + totalWidth / 2) - ampAxisScale(max * (3 / 4)) + 5.5 * zoomState.zoom)
+    const diagpointX2 = ((margin.left + totalWidth / 2) - ampAxisScale(max * (3 / 4)) + (expanded ? 3 : 7) * zoomState.zoom)
     const diagpointY1 = ((margin.top + totalHeight / 2) - ampAxisScale(max * (3 / 4)) + 4.5 * zoomState.zoom)
     const diagpointY2 = (totalHeight / 2 + margin.top + Math.sqrt((Math.pow(ampAxisScale(max), 2) - Math.pow(ampAxisScale(max * (3 / 4)), 2))) + 4.5 * zoomState.zoom)
 

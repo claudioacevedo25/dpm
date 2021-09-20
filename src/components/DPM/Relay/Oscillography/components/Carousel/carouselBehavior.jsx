@@ -16,7 +16,8 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
                     barChartYAxisArray.push(
                         {
                         data: graphDataObject.vars[graphDataObject.graphs[graph]['used_vars'][dvar].id].y,
-                        name: graphDataObject.graphs[graph]['used_vars'][dvar].name
+                        name: graphDataObject.graphs[graph]['used_vars'][dvar].name,
+                        color: getRandomColor()
                         }
                         )
                 }
@@ -33,7 +34,8 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
                     lineChartYAxisArray.push(
                         {
                          data: graphDataObject.vars[graphDataObject.graphs[graph]['used_vars'][dvar].id],
-                         name: graphDataObject.graphs[graph]['used_vars'][dvar].name
+                         name: graphDataObject.graphs[graph]['used_vars'][dvar].name,
+                         color: getRandomColor()
                         }
                         )
                 }
@@ -51,7 +53,7 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
                         id: graphDataObject.graphs[graph]['used_vars'][dvar].name,
                         amp: graphDataObject.vars[graphDataObject.graphs[graph]['used_vars'][dvar].id].amplitude,
                         angle: graphDataObject.vars[graphDataObject.graphs[graph]['used_vars'][dvar].id].phase,
-                        color: 'red'
+                        color: getRandomColor()
                     }
                     arrayOfVarsToAdd.push(varToAdd)
                 }
@@ -71,6 +73,18 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
     setIndexToShow(0)
 }
 
+function getRandomColor() {
+    var num=(Math.floor(Math.random()*4)*4).toString(16);
+    var letters = ['0','F',num];
+    var color = '#';
+    
+    for (var i = 0; i < 3; i++ ) {
+        let pos=Math.floor(Math.random() * letters.length);
+        color += letters[pos];
+        letters.splice(pos,1);
+    }
+    return color
+}
 export const getGraphDataHandler = async (relayID, oscillographyID, graphDataSetter, currentGraphDataSetter, setIndexToShow, neutralizeFilter, setCurrentGraphDataFiltered) => {
     try {
         const recievedGraphData = await getGraphicsOscillography(relayID, oscillographyID)

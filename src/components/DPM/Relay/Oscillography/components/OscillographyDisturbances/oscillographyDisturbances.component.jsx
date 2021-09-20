@@ -50,19 +50,20 @@ const OscillographyDisturbancesComponent = ({
   return (
     <div className="oscillographyDisturbances">
       {oscillography !== null ? (
-        <>
+        <>{!hideDetails &&
           <Typography
             className="oscillographyDisturbances__goBack"
             onClick={() => goBack(null)}
           >
             Volver a oscilografias
           </Typography>
-          
+          }{!hideDetails &&
           <div className="oscillographyDisturbances__header">
             <Typography className="oscillographyDisturbances__title">
               Informe breve de perturbaciones
             </Typography>
           </div>
+          }
           <div className="oscillographyDisturbances__content">
           {!hideDetails &&
             <div className="oscillographyDisturbances__cardOscillography">
@@ -79,7 +80,7 @@ const OscillographyDisturbancesComponent = ({
                 content={oscillography.generalInformation}
               />
             </div>}
-            <Carousel oscillographyID={oscillographyID} relayID={relayID} setHideDetails={toggleHideDetails}/> 
+            <Carousel oscillographyID={oscillographyID} relayID={relayID} setHideDetails={toggleHideDetails} hideDetails={hideDetails}/> 
           </div>
         </>
       ) : (

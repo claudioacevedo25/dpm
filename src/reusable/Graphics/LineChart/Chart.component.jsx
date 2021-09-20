@@ -1,8 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_name}) => {
-  
+const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_name, extended}) => {
     const isChartLine = type === 'line';
     const colorChart = !!isChartLine ? "#107558" : '#088069';
     const axisStyle = {
@@ -16,6 +15,10 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
     const chartState = {
       options: {
         chart: {
+          zoom:{
+            enabled:true,
+            type:'x',
+          },
           id: id,
           toolbar: {
               tools: {
@@ -47,9 +50,10 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
             enabled: false,
           },
           xaxis: {
-            type: 'number',
+            tickPlacement: 'on',
+            type: type=='bar' ? 'categoric' : 'numeric',
             tickAmount: 5,
-            decimalsInFloat: 2,
+            decimalsInFloat: 3,
             axisBorder: {
                 show: true,
             },
@@ -71,13 +75,13 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
         },
         yaxis: {
           // max:0.0001,
-          logarithmic: false,
-          forceNiceScale: true,
+           logarithmic: false,
+           forceNiceScale: false,
             axisBorder: {
                 show: true,
             },
-            // decimalsInFloat: 5,
-            tickAmount: 4,
+            decimalsInFloat:5,
+            tickAmount: 0,
             title:{
               text: yaxis_name,
               style: {
@@ -93,10 +97,16 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
         grid: {
             show: false,
           },
-          tooltip: {
+          tooltip: type=='bar' ?  ({
+            custom: function({series, seriesIndex, dataPointIndex, w}) {
+              return '<div style="padding: 5px; background-color: black;">' +
+                '<b>' + series[seriesIndex][dataPointIndex] + '</b>' +
+                '</div>'
+            }
+          }) : ({
             enabled: true,
             theme: 'dark',
-        }
+        })
       
     },
       series: yaxis, // [{},n...{}]values of 'Y'
@@ -110,7 +120,7 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
               options={chartState.options}
               series={chartState.series}
               type={type}
-              width="500"
+              width={extended ? "630" : "500"}
             />
           </div>
         </div>

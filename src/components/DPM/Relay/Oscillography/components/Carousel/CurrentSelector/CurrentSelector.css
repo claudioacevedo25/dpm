@@ -1,17 +1,39 @@
 .current_selector_container{
     display: flex !important;
     flex-direction: row !important;
-    justify-content: space-between;
-    margin-left: 20px;
+    width: 100%;
+    margin-left:15px
+} 
+.current_selector_chip{
+  margin: 0px 2px 0px !important;
+  height: min-content !important;
+  }
+.MuiSelect-selectMenu em, .MuiMenu-list li{
+  font-family: "Poppins" !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .chip_scrollable_container{
-    margin: 0px 20px !important;
     display: flex;
+    margin: auto;
     flex-direction: row;
     overflow-x: scroll;
-    max-width: 400px !important;
+    width: 300px;
 }
+
+.chip_scrollable_container_extended{
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  overflow-x: scroll;
+  width: 500px;
+}
+
 
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
@@ -33,6 +55,32 @@
   }
 
   .chip_scrollable_container::-webkit-scrollbar-thumb {
+    background-color: #282841;
+    border-radius: 13px;
+    width: 5px;
+    height: 5px;
+    border: 0px solid #ffffff;
+  }
+
+  /* Firefox */
+  .chip_scrollable_container_extended {
+    scrollbar-width: auto;
+    scrollbar-color: #282841 #19192b;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .chip_scrollable_container_extended::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .chip_scrollable_container_extended::-webkit-scrollbar-track {
+    background: #19192b;
+    width: 5px;
+    height: 5px;
+  }
+
+  .chip_scrollable_container_extended::-webkit-scrollbar-thumb {
     background-color: #282841;
     border-radius: 13px;
     width: 5px;

@@ -48,6 +48,7 @@ const Carousel = (props)=> {
     indexToShow={indexToShow}
     setIndexToShow={changeIndexToShow}
     setHideDetails = {props.setHideDetails}
+    hideDetails = {props.hideDetails}
     />
   );
 };

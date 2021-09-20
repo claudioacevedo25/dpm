@@ -6,21 +6,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import './Carousel.css'
-
+import  PlusSize  from '../../../../../../assets/icons/plusSize.png' 
 const CarouselComponent = (props) => {
-    /*<div className='carousel_body'>
-                <div className='carousel_header'>
-                    <CurrentSelector 
-                    currentsData={props.phasorGraphData} 
-                    currentsDataFiltered={props.phasorGraphDataFiltered}
-                    setCurrentsDataFiltered={props.setPhasorGraphDataFiltered}/>
-                    <Button className='plus_button' onClick={()=>{props.setHideDetails()}}>+</Button>
-                </div>
-                {props.phasorGraphDataFiltered &&<Phasor width={250} vectorData={props.phasorGraphDataFiltered} />}
-            </div>*/
+    
 
     return (
-        <Carousel className='carousel_container' showThumbs={false} showIndicators={false} showStatus={false} onChange={(index, item) => { props.setIndexToShow(index) }}>
+        <Carousel className={props.hideDetails ? 'carousel_container_extended' : 'carousel_container'} showThumbs={false} showIndicators={false} showStatus={false} onChange={(index, item) => { props.setIndexToShow(index) }}>
             {props.graphsData ?
                 props.graphsData.map((graph, indexOfGraph) => {
                     switch (graph.type) {
@@ -35,10 +26,11 @@ const CarouselComponent = (props) => {
                                                 currentGraphDataFiltered={props.currentGraphDataFiltered}
                                                 setCurrentGraphDataFiltered={props.setCurrentGraphDataFiltered}
                                                 indexToShow={props.indexToShow}
+                                                hideDetails={props.hideDetails}
                                             />
-                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}>+</Button>
+                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}><img className='zoomIcon' src={PlusSize}/></Button>
                                         </div>
-                                        <Phasor width={250} vectorData={props.currentGraphDataFiltered.vars} />
+                                        <Phasor width={props.hideDetails ? 320 : 240 } vectorData={props.currentGraphDataFiltered.vars} />
                                     </div>)
                             } else { return 'Cargando...' }
                             break
@@ -53,8 +45,9 @@ const CarouselComponent = (props) => {
                                                 currentGraphDataFiltered={props.currentGraphDataFiltered}
                                                 setCurrentGraphDataFiltered={props.setCurrentGraphDataFiltered}
                                                 indexToShow={props.indexToShow}
+                                                hideDetails={props.hideDetails}
                                             />
-                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}>+</Button>
+                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}><img className='zoomIcon' src={PlusSize}/></Button>
                                         </div>
                                         <Chart 
                                         type={'line'}
@@ -62,7 +55,8 @@ const CarouselComponent = (props) => {
                                         yaxis={props.currentGraphDataFiltered.yaxis}
                                         id={'line-chart' + indexOfGraph}
                                         xaxis_name={props.currentGraphDataFiltered['xaxis_name']}
-                                        yaxis_name={props.currentGraphDataFiltered['yaxis_name']}/>
+                                        yaxis_name={props.currentGraphDataFiltered['yaxis_name']}
+                                        extended={props.hideDetails}/>
                                     </div>)
                             } else { return 'Cargando...' }
                             break
@@ -77,16 +71,18 @@ const CarouselComponent = (props) => {
                                                 currentGraphDataFiltered={props.currentGraphDataFiltered}
                                                 setCurrentGraphDataFiltered={props.setCurrentGraphDataFiltered}
                                                 indexToShow={props.indexToShow}
+                                                hideDetails={props.hideDetails}
                                             />
-                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}>+</Button>
+                                            <Button className='plus_button' onClick={() => { props.setHideDetails() }}><img className='zoomIcon' src={PlusSize}/></Button>
                                         </div>
                                         <Chart 
                                         type={'bar'}
-                                        xaxis={props.currentGraphDataFiltered.xaxis}
+                                        xaxis={props.currentGraphDataFiltered.xaxis[0]}
                                         yaxis={props.currentGraphDataFiltered.yaxis}
                                         id={'bar-chart' + indexOfGraph}
                                         xaxis_name={props.currentGraphDataFiltered['xaxis_name']}
-                                        yaxis_name={props.currentGraphDataFiltered['yaxis_name']}/>
+                                        yaxis_name={props.currentGraphDataFiltered['yaxis_name']}
+                                        extended={props.hideDetails}/>
                                     </div>)
                             } else { return 'Cargando...' }
                             break
