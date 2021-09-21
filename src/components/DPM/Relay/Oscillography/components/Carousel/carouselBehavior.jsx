@@ -66,7 +66,6 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
         }
 
     }
-    console.log(graphsCollection)
     setCurrentGraphDataFiltered(neutralizeFilter({...graphsCollection[0]}))
     setGraphsData(graphsCollection)
     currentGraphDataSetter(graphsCollection[0])
