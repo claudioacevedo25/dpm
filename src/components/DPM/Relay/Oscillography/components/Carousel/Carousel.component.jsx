@@ -2,11 +2,11 @@ import { Button } from "@material-ui/core";
 import CurrentSelector from "./CurrentSelector";
 import Phasor from "../../../../../../reusable/Graphics/PhasorGraph";
 import Chart from "../../../../../../reusable/Graphics/LineChart";
+import SearchIcon from '@material-ui/icons/Search';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "./Carousel.css";
-import PlusSize from "../../../../../../assets/icons/plusSize.png";
 const CarouselComponent = (props) => {
   return (
     <div
@@ -23,14 +23,14 @@ const CarouselComponent = (props) => {
           indexToShow={props.indexToShow}
           hideDetails={props.hideDetails}
         />
-        <Button
+        {props.graphsData &&<Button
           className="plus_button"
           onClick={() => {
             props.setHideDetails();
           }}
         >
-          <img className="zoomIcon" src={PlusSize} />
-        </Button>
+          <SearchIcon/>
+        </Button>}
       </div>
       <Carousel
         className={`carousel_container ${

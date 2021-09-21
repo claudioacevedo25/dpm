@@ -27,7 +27,7 @@ const Carousel = (props)=> {
         emptyFilteredData.vars = []
       break
       case 'line':
-        emptyFilteredData.yaxis = []
+        emptyFilteredData.yaxis = [graph.yaxis[1]]
       break
       case 'bar':
         emptyFilteredData.yaxis = [graph.yaxis[2]]
