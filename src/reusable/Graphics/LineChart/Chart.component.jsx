@@ -51,7 +51,7 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
           },
           xaxis: {
             tickPlacement: 'on',
-            type: type=='bar' ? 'categoric' : 'numeric',
+            type: type==='bar' ? 'categoric' : 'numeric',
             tickAmount: 5,
             decimalsInFloat: 3,
             axisBorder: {
@@ -97,7 +97,7 @@ const ChartComponent = ({type, xaxis, yaxis, id, chartColors, xaxis_name, yaxis_
         grid: {
             show: false,
           },
-          tooltip: type=='bar' ?  ({
+          tooltip: type==='bar' ?  ({
             custom: function({series, seriesIndex, dataPointIndex, w}) {
               return '<div style="padding: 5px; background-color: black;">' +
                 '<b>' + series[seriesIndex][dataPointIndex] + '</b>' +

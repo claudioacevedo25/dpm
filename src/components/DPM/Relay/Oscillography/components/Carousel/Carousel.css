@@ -1,6 +1,7 @@
 .carousel_container {
     width: 60% !important;
     display: flex;
+    flex-direction: column;
     height: 96% !important;
     background: #19192b;
     border-radius: 16px;
@@ -14,8 +15,33 @@
 .carousel_container_extended {
     width: 100% !important;
     display: flex;
+    flex-direction: column;
     height: 118% !important;
     background: #19192b;
+    border-radius: 16px;
+    margin: 5px;
+    margin-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.carousel_container-interior {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height:90%;
+    margin: 5px;
+    margin-bottom: 0px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.carousel_container_extended-interior {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     border-radius: 16px;
     margin: 5px;
     margin-bottom: 0px;
@@ -36,6 +62,7 @@ div .carousel .carousel-slider {
 .carousel_body {
     display: 'flex';
     flexDirection: 'column';
+   
 }
 
 .Mixed__Chart div div{

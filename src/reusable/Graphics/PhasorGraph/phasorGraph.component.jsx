@@ -19,7 +19,7 @@ const PhasorGraph = (props) => {
     let height = localSize.height
     let totalWidth = width - margin.left - margin.right + zoomState.offset.x
     let totalHeight = height - margin.top - margin.bot + zoomState.offset.y
-    let expanded = props.width != 320 ? true : false
+    let expanded = props.width !== 320 ? true : false
     svg.attr('width', localSize.width).attr("height", localSize.height)
 
 

@@ -2,6 +2,7 @@ import { getGraphicsOscillography } from "../../../../../../api/oscillographiesS
 
 
 export const buildGraphDataArray = async (graphData, setGraphsData, currentGraphDataSetter, setIndexToShow, neutralizeFilter, setCurrentGraphDataFiltered) => {
+    try{
     const graphDataObject = await graphData
     let graphsCollection = []
     for (const graph in graphDataObject.graphs) {
@@ -70,6 +71,7 @@ export const buildGraphDataArray = async (graphData, setGraphsData, currentGraph
     setGraphsData(graphsCollection)
     currentGraphDataSetter(graphsCollection[0])
     setIndexToShow(0)
+    }catch(error){console.log(error)}
 }
 
 function getRandomColor() {

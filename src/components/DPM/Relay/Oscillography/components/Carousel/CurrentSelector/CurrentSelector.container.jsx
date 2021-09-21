@@ -129,6 +129,8 @@ const createChipsArray = () => {
           case 'phasor':
               props.currentGraphDataFiltered.vars.map((v) => {
                   variableCollection.push(<Chip
+                  
+                      className='current_selector_chip'
                       label={v.id}
                       key={'chip-phasor' + v.id}
                       onClick={() => filterCurrentSelect(v.id)}
@@ -152,6 +154,7 @@ const createChipsArray = () => {
               case 'bar':
                   props.currentGraphDataFiltered.yaxis.map((v) => {
                       variableCollection.push(<Chip
+                          className='current_selector_chip'
                           label={v.name}
                           key={'chip-line' + v.name}
                           onClick={() => filterCurrentSelect(v.name)}
