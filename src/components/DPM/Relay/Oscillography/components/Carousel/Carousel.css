@@ -1,107 +1,99 @@
 .carousel_container {
-    width: 60% !important;
-    display: flex;
-    flex-direction: column;
-    height: 96% !important;
-    background: #19192b;
-    border-radius: 16px;
-    margin: 5px;
-    margin-bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  height: 96%;
+  background: #19192b;
+  border-radius: 16px;
+  margin: 5px;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .carousel_container_extended {
-    width: 100% !important;
-    display: flex;
-    flex-direction: column;
-    height: 118% !important;
-    background: #19192b;
-    border-radius: 16px;
-    margin: 5px;
-    margin-bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 118%;
+  background: #19192b;
+  border-radius: 16px;
+  margin: 5px;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .carousel_container-interior {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height:90%;
-    margin: 5px;
-    margin-bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  margin: 5px;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .carousel_container_extended-interior {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    margin: 5px;
-    margin-bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  margin: 5px;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-.zoomIcon{
-    width: 15px !important;
-    height: 15px;
+.zoomIcon {
+  width: 15px;
+  height: 15px;
 }
 
 div .carousel .carousel-slider {
-    margin-left: 25%;
+  margin-left: 25%;
 }
 
 .carousel_body {
-    display: 'flex';
-    flexDirection: 'column';
-   
+  display: "flex";
+  flex-direction: "column";
 }
 
-.Mixed__Chart div div{
-    display: flex;
-    justify-content: center !important;
-    align-content: center !important;
-    align-items: center !important;
-    justify-items: center !important;
-    margin-left: auto;
-    margin-right: auto;
+.carousel_container div {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
 }
 
 .plus_button {
-    align-self: flex-end;
-    margin-top: 50px;
-    
+  align-self: flex-end;
+  margin-right: 10px;
 }
 
-.phasor_graph_container {}
-
-.carousel_header{
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 5px 0px;
-    max-width: 100%;
-    flex: 1 1 0
+.carousel_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px 0px;
+  width: 100%;
+  flex: 1 1 0;
 }
 
-.carousel_header_select{
-    min-width: 80px;
+.carousel_header_select {
+  min-width: 80px;
 }
 
-.MuiPopover-paper .MuiList-root 
-{
-    background-color: #282841 !important;
+.MuiPopover-paper .MuiList-root {
+  background-color: #282841;
 }
 
-.carousel.carousel-slider .control-arrow {
-
-    margin-top: -13px !important;
-
+.carousel_container .carousel .control-arrow {
+  margin-top: -13px;
+  padding: 8px;
 }

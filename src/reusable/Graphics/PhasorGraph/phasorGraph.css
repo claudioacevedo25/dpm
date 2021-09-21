@@ -1,71 +1,57 @@
-
-
-.zoom_control{
-    background: #282841 !important;
-    padding: 0px !important;
-    margin:2px !important;
-    min-width: 25px !important;
-    max-width: 25px !important;
-    max-height: 25px !important;
-    min-height: 25px !important;
+div .zoom_control {
+  background: #282841;
+  padding: 0px;
+  margin: 2px;
+  min-width: 25px;
+  min-height: 25px;
 }
 
-.svg_graph{
-
+.zoom_uparr {
+  transform: rotate(90deg);
 }
 
-.zoom_control_button{}
-
-.zoom_plus{
-}
-.zoom_minus{
-}
-.zoom_uparr{
-    transform: rotate(90deg);
-}
-.zoom_downarr{
-    transform: rotate(90deg);
-}
-.zoom_leftarr{
-    align-self: flex-end;
-}
-.zoom_rightarr{
-    align-self: flex-end;
+.zoom_downarr {
+  transform: rotate(90deg);
 }
 
-.svg_graph{
+.zoom_leftarr {
+  align-self: flex-end;
+}
+
+.zoom_rightarr {
+  align-self: flex-end;
 }
 
 .phasor_graph_container {
-    width:100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.zoom_controls_container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 30%;
-    align-self: flex-start;
-    margin-bottom: 30px;
+.zoom_controls_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 30%;
+  align-self: flex-start;
+  margin-bottom: 30px;
 }
 
-.zoom_controls_group_one{
-    display: flex;
-    flex-direction: column;
-    margin: 0px 25px;
+.zoom_controls_group_one {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 25px;
 }
 
-.zoom_controls_group_two{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: flex-end;
+.zoom_controls_group_two {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-end;
 }
 
-.zoom_controls_up_down{
-    display: flex;
-    flex-direction: column;
+.zoom_controls_up_down {
+  display: flex;
+  flex-direction: column;
 }
